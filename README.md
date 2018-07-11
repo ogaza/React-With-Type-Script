@@ -1,10 +1,10 @@
-# TestProj
+# React and TypeScript
 
 Playground - react and typescript and hopefully something more
 
 ## Install all packages
 
-`npm run restore` or `npm run restore:global`
+`npm install` or `npm run restore`
 
 ## Development server
 
