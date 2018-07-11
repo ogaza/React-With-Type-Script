@@ -1,10 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import Hello from './components/hello';
 
 
 ReactDOM.render(
-    <div>
-        Test app - react and type script
-    </div>,
+    <Hello name="TypeScript"/>,
     document.getElementById("root")
 );
