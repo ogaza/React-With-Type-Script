@@ -5,8 +5,9 @@
     "repository": {},
     "scripts": {
         "build": "webpack -p",
+        "restore": "npm install",
         "start": "webpack-dev-server -d --content-base ./public",
-        "restore": "npm install"
+        "webpack": "webpack -w"
     },
     "dependencies": {
         "@types/react": "^16.4.6",
