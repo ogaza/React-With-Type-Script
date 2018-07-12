@@ -11,7 +11,7 @@ class Hello extends React.Component<IProps, {}> {
         return (
             <div className="hello">
                 <div className="greeting">
-                    Hello
+                    {name}
                 </div>
             </div>
         );
