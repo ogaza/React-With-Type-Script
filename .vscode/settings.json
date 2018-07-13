@@ -1,6 +1,7 @@
 {
     "search.exclude": {
         "**/node_modules": true,
+        "**/public/build": true
     },
 
     "path-intellisense.mappings": {
