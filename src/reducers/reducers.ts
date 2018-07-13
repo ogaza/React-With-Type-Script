@@ -1,4 +1,4 @@
-// import { combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import { actionTypes } from '_src/actions/actionTypes';
 import { IAction } from '_src/actions/iAction';
 
@@ -22,3 +22,5 @@ const todos = ( state: ITodos, action: IAction<ITodo> ): ITodos => {
     
     return state;
 }
+
+export const todoApp = combineReducers({todos});
