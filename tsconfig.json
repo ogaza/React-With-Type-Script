@@ -1,12 +1,22 @@
 {
     "compilerOptions": {
-        "sourceMap": true,
+        "baseUrl": "./",
+        "jsx": "react",
         "module": "commonjs",
-        "target": "es5",
-        "jsx": "react"
+        "paths": {
+            "_src/*": [
+                "./src/*"
+            ]
+        },
+        "sourceMap": true,
+        "target": "es5"
     },
     "include": [
         "src"
+    ],
+    "exclude": [
+        "node_modules",
+        "public/**/*"
     ],
     "compileOnSave": false
 }

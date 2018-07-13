@@ -1,4 +1,12 @@
+var path = require('path');
+
 module.exports = {
+    resolve: {
+        alias: {
+            _src: path.resolve(__dirname, '..', 'src')
+        },
+        extensions: ['*', '.js', '.jsx', ".ts", ".tsx", '.css', '.less', '.png', '.svg', '.json']
+    },
     // a string here because there is one file as an entry point
     // if there is more than one, then use an array
     entry: './src/app.tsx',

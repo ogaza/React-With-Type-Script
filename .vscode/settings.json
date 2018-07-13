@@ -1,0 +1,9 @@
+{
+    "search.exclude": {
+        "**/node_modules": true,
+    },
+
+    "path-intellisense.mappings": {
+        "_src": "${workspaceRoot}/src"
+    },
+}
