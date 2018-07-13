@@ -1,4 +1,4 @@
 import { createStore } from 'redux';
-import { todoApp} from'_src/reducers/reducers';
+import { todoApp} from'../reducers/reducers';
 
 export const store = createStore(todoApp, {});

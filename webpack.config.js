@@ -3,7 +3,7 @@ var path = require('path');
 module.exports = {
     resolve: {
         alias: {
-            _src: path.resolve(__dirname, '..', 'src')
+            _src: path.resolve(__dirname, '/src')
         },
         extensions: ['*', '.js', '.jsx', ".ts", ".tsx", '.css', '.less', '.png', '.svg', '.json']
     },

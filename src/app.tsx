@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import Hello from './components/hello';
+import { store } from './store/store';
 
 const App = () => (
     <div>
@@ -9,6 +11,8 @@ const App = () => (
   );
 
 ReactDOM.render(
-    <App/>,
-    document.getElementById("root")
+  <Provider store={store}>
+    <App/>
+  </Provider>,
+  document.getElementById("root")
 );

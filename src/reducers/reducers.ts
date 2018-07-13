@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { actionTypes } from '_src/actions/actionTypes';
+import { actionTypes } from '../actions/actionTypes';
 import { IAction } from '_src/actions/iAction';
 
 export interface ITodo {
