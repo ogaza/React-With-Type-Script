@@ -1,9 +1,16 @@
-import {actionTypes } from './actionTypes';
-import { IAction } from './iAction';
+import { actionTypes } from '_src/actions/actionTypes';
+import { IAction } from '_src/actions/iAction';
+import { ITodo } from '_src/reducers/reducers';
+
+let id = 1;
 
 export const Actions = {
-    addToDo: (text: string) : IAction<string> => <IAction<string>> { 
+    addToDo: (text: string) : IAction<ITodo> => <IAction<ITodo>> { 
         type: actionTypes.ADD_TODO,
-        payload: text
+        payload: <ITodo>{
+            id: id++,
+            text,
+            completed: false
+        }
     }
 };

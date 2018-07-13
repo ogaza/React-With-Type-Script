@@ -1,10 +1,11 @@
-import { IAction } from '../actions/iAction';
-import { actionTypes } from '../actions/actionTypes';
+// import { combineReducers } from 'redux';
+import { actionTypes } from '_src/actions/actionTypes';
+import { IAction } from '_src/actions/iAction';
 
 export interface ITodo {
     id: number;
     text: string;
-    isDone: boolean;
+    completed: boolean;
 }
 
 export interface ITodos {
