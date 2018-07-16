@@ -1,21 +1,21 @@
 import * as React from 'react';
 
 export interface IProps {
-    name: string;
+  name: string;
 }
 
 class Hello extends React.Component<IProps, {}> {
-    render() {
-        const { name } = this.props;
+  render() {
+    const { name } = this.props;
 
-        return (
-            <div className="hello">
-                <div className="greeting">
-                    {name}
-                </div>
-            </div>
-        );
-    }
+    return (
+      <div className="hello">
+        <div className="greeting">
+          {name}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Hello;
