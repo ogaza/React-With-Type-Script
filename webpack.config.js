@@ -10,6 +10,8 @@ module.exports = {
   // a string here because there is one file as an entry point
   // if there is more than one, then use an array
   entry: './src/app.tsx',
+  //  tell webpack to extract source maps and into our final bundle
+  devtool: 'inline-source-map',
   // the path and name of the file that will be generated, and to be referenced in the html file
   output: {
     path: __dirname + '/public',
