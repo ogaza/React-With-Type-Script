@@ -2,7 +2,6 @@ import { IAction } from '../actions/action';
 import { actionTypes } from '../actions/actionTypes';
 import { IModalState } from '../store/state';
 
-
 const initialState = <IModalState>{ isVisible: false };
 
 export const modal = (state: IModalState = initialState, action: IAction<boolean>): IModalState => {
@@ -19,6 +18,14 @@ export const modal = (state: IModalState = initialState, action: IAction<boolean
       isVisible: false
     };
   }
+  if (action.type === actionTypes.TOGGLE_MODAL) {
+    const { isVisible } = state;
+
+    return {
+      ...state,
+      isVisible: !isVisible
+    };
+  }
 
   return state;
-}
+};

@@ -4,19 +4,12 @@
     "jsx": "react",
     "module": "commonjs",
     "paths": {
-      "_src/*": [
-        "src/*"
-      ]
+      "_src/*": ["src/*"]
     },
     "sourceMap": true,
     "target": "es5"
   },
-  "exclude": [
-    "node_modules",
-    "dist", "public"
-  ],
-  "include": [
-    "./src"
-  ],
+  "exclude": ["node_modules", "dist", "public"],
+  "include": ["./src"],
   "compileOnSave": false
 }

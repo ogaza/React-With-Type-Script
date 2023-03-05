@@ -14,4 +14,4 @@ export const todos = (state: ITodosState = initialState, action: IAction<ITodo>)
   }
 
   return state;
-}
+};

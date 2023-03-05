@@ -1,14 +1,14 @@
 import { ITodo } from '../models/todo';
 
 export interface ITodosState {
-  todos: ITodo[]
-};
+  todos: ITodo[];
+}
 
 export interface IModalState {
-  isVisible: boolean
-};
+  isVisible: boolean;
+}
 
 export interface IAppState {
-  todos: ITodosState,
-  modal: IModalState
-};
+  todos: ITodosState;
+  modal: IModalState;
+}

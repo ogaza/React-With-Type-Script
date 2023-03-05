@@ -1,13 +1,13 @@
 var path = require('path');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: "development",
+  mode: 'development',
   // a string here because there is one file as an entry point
   // if there is more than one, then use an array
   entry: './src/app.tsx',
   //  tell webpack to extract source maps and into our final bundle
-  // devtool: 'inline-source-map',
+  devtool: 'inline-source-map',
   // devServer: {
   //   static: './dist',
   // },
@@ -22,20 +22,22 @@ module.exports = {
       _src: path.resolve(__dirname, '/src')
     },
     //   // by default Webpack does no load .ts and .tsx files so it needs to be told
-    extensions: ['*', '.js', '.jsx', ".ts", ".tsx", '.css', '.less', '.png', '.svg', '.json']
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.css', '.less', '.png', '.svg', '.json']
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "src/index.html"),
+      template: path.resolve(__dirname, 'src/index.html'),
       inject: true
-  })],
+    })
+  ],
   module: {
-    rules: [{
+    rules: [
+      {
         // a regular expression that tests what kind of files to run through this loader
         test: /\.tsx?$/,
         use: ['ts-loader'],
-        exclude: /dist/,
-      }//,
+        exclude: /dist/
+      } //,
       // {
       //   test: /\.css$/,
       //   use: [{
@@ -51,4 +53,4 @@ module.exports = {
       // }
     ]
   }
-}
+};

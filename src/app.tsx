@@ -7,8 +7,8 @@ import { IAppState } from './store/state';
 import { store } from './store/store';
 
 interface IAppProps {
-  showModal: boolean,
-  dispatch: any
+  showModal: boolean;
+  dispatch: any;
 }
 
 const mapStateToProps = (state: IAppState) => {
@@ -17,46 +17,48 @@ const mapStateToProps = (state: IAppState) => {
   };
 };
 
-const AppConnected = connect(mapStateToProps)(class App extends React.Component<IAppProps, {}> {
+const AppConnected = connect(mapStateToProps)(
+  class App extends React.Component<IAppProps, {}> {
+    constructor(props) {
+      super(props);
+      this.showModal = this.showModal.bind(this);
+      this.hideModal = this.hideModal.bind(this);
+      this.toggleModal = this.toggleModal.bind(this);
+    }
 
-  constructor(props) {
-    super(props);
-    this.showModal = this.showModal.bind(this);
-    this.hideModal = this.hideModal.bind(this);
+    showModal() {
+      const { dispatch } = this.props;
+      dispatch(Actions.showModal());
+    }
+
+    hideModal() {
+      const { dispatch } = this.props;
+      dispatch(Actions.hideModal());
+    }
+
+    toggleModal() {
+      const { dispatch } = this.props;
+      dispatch(Actions.toggleModal());
+    }
+
+    render() {
+      const { showModal } = this.props;
+
+      return (
+        <div>
+          <Hello name="Type Script Application" />
+          <button onClick={this.toggleModal}>toggle</button>
+          showModal : {showModal ? 'true' : 'false'}
+          {showModal}
+        </div>
+      );
+    }
   }
-
-  showModal() {
-    const { dispatch } = this.props;
-    dispatch(Actions.showModal());
-  }
-
-  hideModal() {
-    const { dispatch } = this.props;
-    dispatch(Actions.hideModal());
-  }
-
-  render() {
-
-    const { showModal } = this.props;
-
-    return (
-      <div>
-        <Hello name="Type Script Application" />
-        {/* <Button onClick={this.showModal}>Open</Button>
-        <Modal visible={showModal} onOk={this.hideModal} onCancel={this.hideModal}>
-          <p>some content</p>
-        </Modal> */}
-      </div>
-    )
-  }
-});
+);
 
 ReactDOM.render(
-  // <div>
-  //   Hello here :)
-  // </div>,
   <Provider store={store}>
     <AppConnected />
   </Provider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );

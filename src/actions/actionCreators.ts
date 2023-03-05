@@ -3,7 +3,7 @@ import { actionTypes } from '../actions/actionTypes';
 let id = 1;
 
 export const Actions = {
-  addToDo: (text: string) => ({
+  addToDo: (text) => ({
     type: actionTypes.ADD_TODO,
     payload: {
       id: id++,
@@ -18,5 +18,8 @@ export const Actions = {
   hideModal: () => ({
     type: actionTypes.HIDE_MODAL,
     payload: false
+  }),
+  toggleModal: () => ({
+    type: actionTypes.TOGGLE_MODAL
   })
 };
