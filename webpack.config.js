@@ -59,6 +59,26 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.s[ac]ss$/,
+        use: [
+          'style-loader',
+          // isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2
+            }
+          },
+          'resolve-url-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
       }
     ]
   }

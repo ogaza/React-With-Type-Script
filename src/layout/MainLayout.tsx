@@ -1,4 +1,5 @@
 import * as React from 'react';
+import './MainLayout.scss';
 
 interface IMainLayoutProps {
   statusBar: JSX.Element;
@@ -7,7 +8,7 @@ interface IMainLayoutProps {
 
 export default function MainLayout({ statusBar, mainPanel }: IMainLayoutProps) {
   return (
-    <main>
+    <main className="main-layout">
       {statusBar}
       {mainPanel}
     </main>
