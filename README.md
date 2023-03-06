@@ -8,7 +8,7 @@ Playground - react and typescript and hopefully something more
 
 ## Development server
 
-Run `npm start` for a dev server. Navigate to `http://localhost:8008/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:8080/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 

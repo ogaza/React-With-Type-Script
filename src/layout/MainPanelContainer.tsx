@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { Actions } from '../actions/actionCreators';
+import './MainPanelContainer.scss';
 
 export default function MainPanelContainer() {
   const dispatch = useDispatch();
   return (
-    <section>
+    <section className="main-panel">
       This is main panel
       <button
         onClick={() => {

@@ -4,11 +4,14 @@ html {
 body {
   margin: 0;
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-  // margin: 1rem;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: inherit;
+}
+
+:root {
+  --status-panel-bg-color: #0058a1;
 }
