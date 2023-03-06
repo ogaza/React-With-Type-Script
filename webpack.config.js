@@ -8,7 +8,7 @@ module.exports = {
   mode: 'development',
   // a string here because there is one file as an entry point
   // if there is more than one, then use an array
-  entry: './src/app.tsx',
+  entry: './src/index.tsx',
   //  tell webpack to extract source maps and into our final bundle
   devtool: 'inline-source-map',
   // devServer: {

@@ -1,0 +1,14 @@
+html {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  // margin: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
