@@ -1,6 +1,9 @@
 var path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const cssRegex = /\.css$/;
+const cssModuleRegex = /\.module\.css$/;
+
 module.exports = {
   mode: 'development',
   // a string here because there is one file as an entry point
@@ -37,20 +40,26 @@ module.exports = {
         test: /\.tsx?$/,
         use: ['ts-loader'],
         exclude: /dist/
-      } //,
-      // {
-      //   test: /\.css$/,
-      //   use: [{
-      //       loader: 'style-loader'
-      //     },
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         sourceMap: true
-      //       }
-      //     }
-      //   ]
-      // }
+      },
+      {
+        test: cssRegex,
+        exclude: cssModuleRegex,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment
+            }
+          }
+        ]
+      }
     ]
   }
 };
