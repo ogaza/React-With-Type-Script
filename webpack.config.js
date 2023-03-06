@@ -55,7 +55,7 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment
+              sourceMap: true
             }
           }
         ]
