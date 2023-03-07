@@ -1,12 +1,11 @@
-import { put, takeEvery, select } from 'redux-saga/effects';
+import { put, takeEvery, select, call } from 'redux-saga/effects';
 import { actionTypes } from '../actions/actionTypes';
+import { sendMessage } from '../../socket/socket';
 
 function* removeToDo(action) {
   try {
-    const todos = yield select((store) => store.todos);
-    console.log(todos);
-
-    console.log(action);
+    // const todos = yield select((store) => store.todos);
+    yield call(sendMessage, 'example data');
   } catch (e) {
     yield put({ type: 'REMOVE_TODO_FAILED', message: e.message });
   }
