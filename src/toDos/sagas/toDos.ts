@@ -1,4 +1,4 @@
-import { call, put, takeEvery, select } from 'redux-saga/effects';
+import { put, takeEvery, select } from 'redux-saga/effects';
 import { actionTypes } from '../actions/actionTypes';
 
 function* removeToDo(action) {
