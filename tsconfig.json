@@ -7,7 +7,7 @@
       "_src/*": ["src/*"]
     },
     "sourceMap": true,
-    "target": "es5"
+    "target": "ES2015"
   },
   "exclude": ["node_modules", "dist", "public"],
   "include": ["./src"],
