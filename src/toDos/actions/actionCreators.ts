@@ -1,21 +1,29 @@
 import { actionTypes } from './actionTypes';
 
-let id = 1;
-
 export const Actions = {
-  addToDo: (text) => ({
-    type: actionTypes.ADD_TODO,
-    payload: {
-      id: id++,
-      text,
-      completed: false
-    }
-  }),
+  setTodos: function (todos) {
+    return {
+      type: actionTypes.SET_TODOS,
+      payload: todos
+    };
+  },
 
-  deleteToDo: (id) => ({
-    type: actionTypes.REMOVE_TODO,
-    payload: {
-      id
-    }
-  })
+  addToDo: function (text) {
+    return {
+      type: actionTypes.ADD_TODO,
+      payload: {
+        text,
+        completed: false
+      }
+    };
+  },
+
+  deleteToDo: function (id) {
+    return {
+      type: actionTypes.REMOVE_TODO,
+      payload: {
+        id
+      }
+    };
+  }
 };

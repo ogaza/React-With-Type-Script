@@ -1,15 +1,26 @@
 import { actionTypes } from '../actions/actionTypes';
-import { IAction } from '../../actions/action';
-import { ITodo } from '../../models/todo';
 import { ITodosState } from '../store/state';
 
 const initialState = <ITodosState>{ todos: [] };
 
-export const todos = (state: ITodosState = initialState, action: IAction<ITodo>): ITodosState => {
+export const todos = (state: ITodosState = initialState, action): ITodosState => {
+  if (action.type === actionTypes.SET_TODOS) {
+    const {
+      payload: { todos }
+    } = action;
+    return {
+      todos: todos
+    };
+  }
+
   if (action.type === actionTypes.ADD_TODO) {
+    const { payload: todo } = action;
+
+    const newState = [...state.todos, todo];
+
     return {
       ...state,
-      todos: [...state.todos, action.payload]
+      todos: newState
     };
   }
 
