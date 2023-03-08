@@ -10,8 +10,8 @@ socket.on('disconnect', () => {
   console.log('cocket connection: disconnected');
 });
 
-export async function sendMessage(data) {
-  socket.emit('msg:post', data, (val) => {
+export async function sendMessage(eventName, data = undefined) {
+  socket.emit(eventName, data, (val) => {
     console.log(val);
   });
 }
