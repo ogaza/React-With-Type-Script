@@ -12,7 +12,6 @@ export default function MainPanelContainer() {
   const dispatch = useDispatch();
   return (
     <section className="main-panel">
-      This is main panel
       <AddTodoForm onSubmit={addToDo} />
       <TodoList todos={todos} onDelete={deleteToDo} />
     </section>
@@ -30,10 +29,11 @@ export default function MainPanelContainer() {
 function AddTodoForm({ onSubmit }) {
   const [text, setText] = useState('');
   return (
-    <>
+    <section className="add-todo">
+      <h3>Add todo</h3>
       <input type="text" value={text} onChange={handleChange} />
       <button onClick={handleSubmit}>create</button>
-    </>
+    </section>
   );
 
   function handleSubmit() {
@@ -55,7 +55,8 @@ function AddTodoForm({ onSubmit }) {
 
 function TodoList({ todos, onDelete }) {
   return (
-    <>
+    <section className="todo-list">
+      <h3>Todolist</h3>
       {todos.todos.map((x) => (
         <div key={x.id}>
           <span>{x.text}</span>
@@ -66,7 +67,7 @@ function TodoList({ todos, onDelete }) {
           </span>
         </div>
       ))}
-    </>
+    </section>
   );
 
   function handleDeleteClick(e) {
