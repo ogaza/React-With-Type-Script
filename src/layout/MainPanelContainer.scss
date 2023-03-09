@@ -14,3 +14,29 @@
     color: var(--app-text-color);
   }
 }
+
+.submit-button {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+
+  &:before {
+    background-color: var(--button-clicked-before-bg);
+    border-radius: 50%;
+    content: ' ';
+    width: 2em;
+    height: 2em;
+    transform: translate(25%, -25%);
+  }
+
+  &:active {
+    &::before {
+      display: inline;
+      position: absolute;
+    }
+  }
+
+  &--disabled {
+    color: var(--button-disabled);
+  }
+}

@@ -28,27 +28,28 @@ export default function MainPanelContainer() {
 
 function AddTodoForm({ onSubmit }) {
   const [text, setText] = useState('');
+  const isValid = !!text;
+
   return (
     <section className="add-todo">
       <h3>Add todo</h3>
       <input type="text" value={text} onChange={handleChange} />
-      <button onClick={handleSubmit}>create</button>
+      <SubmitButton onClick={handleSubmit} label="create" enabled={isValid} />
     </section>
   );
 
   function handleSubmit() {
-    if (!text) {
-      console.log('invalid data: empty todo text');
+    if (isValid) {
+      onSubmit(text);
+      setText('');
       return;
     }
 
-    onSubmit(text);
-    setText('');
+    console.log('invalid data: empty todo text');
   }
 
   function handleChange(e) {
     const value = e.target.value;
-    console.log(e.target.value);
     setText(value);
   }
 }
@@ -79,5 +80,19 @@ function TodoList({ todos, onDelete }) {
     if (!id) return;
 
     onDelete(id);
+  }
+}
+
+function SubmitButton({ onClick, label, enabled = false }) {
+  const cssClass = enabled ? '' : 'submit-button--disabled';
+
+  return (
+    <div role="button" className={`submit-button ${cssClass}`} onClick={handleSubmit}>
+      {label}
+    </div>
+  );
+
+  function handleSubmit() {
+    onClick();
   }
 }
