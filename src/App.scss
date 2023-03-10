@@ -2,6 +2,7 @@ html {
   box-sizing: border-box;
 }
 body {
+  background-color: var(--app-bg-color);
   margin: 0;
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
@@ -13,6 +14,7 @@ body {
 }
 
 :root {
+  --app-bg-color: #e4e9f0;
   --app-text-color-lightest: #ffffff;
   --app-text-color: #202832;
   --status-panel-bg-color: #0058a1;

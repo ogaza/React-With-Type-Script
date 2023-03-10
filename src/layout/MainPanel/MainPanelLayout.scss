@@ -1,0 +1,26 @@
+.main-panel-layout {
+  color: var(--app-text-color);
+  padding: 0.75rem;
+
+  display: flex;
+  flex-flow: column nowrap;
+
+  &__left {
+  }
+  &__right {
+    order: -1;
+  }
+}
+
+@media (min-width: 768px) {
+  .main-panel-layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    &__left {
+      grid-column: 1/2;
+    }
+    &__right {
+      grid-column: 2/3;
+    }
+  }
+}
