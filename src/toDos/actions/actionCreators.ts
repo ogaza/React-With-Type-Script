@@ -13,7 +13,8 @@ export const Actions = {
       type: actionTypes.ADD_TODO,
       payload: {
         text,
-        completed: false
+        completed: false,
+        created: Date.now()
       }
     };
   },

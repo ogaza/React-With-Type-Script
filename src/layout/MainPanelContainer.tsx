@@ -8,13 +8,16 @@ import { TodoList } from '../components/TodoList';
 import { AddTodoForm } from '../components/AddTodoForm';
 
 export default function MainPanelContainer() {
+  const dispatch = useDispatch();
   const todos = useSelector((state: IAppState) => state.todos);
 
-  const dispatch = useDispatch();
+  const { state } = todos;
+  const todosAreBeingLoaded = state === 'LOADING';
+
   return (
     <MainPanelLayout
       panelLeft={<TodoList todos={todos} onDelete={deleteToDo} />}
-      panelRight={<AddTodoForm onSubmit={addToDo} />}
+      panelRight={<AddTodoForm onSubmit={addToDo} enabled={!todosAreBeingLoaded} />}
     />
   );
 

@@ -1,9 +1,10 @@
 .main-panel-layout {
   color: var(--app-text-color);
-  padding: 0.75rem;
+  padding: 0.625rem;
 
   display: flex;
   flex-flow: column nowrap;
+  gap: 0.625rem;
 
   &__left {
   }
@@ -21,6 +22,7 @@
     }
     &__right {
       grid-column: 2/3;
+      order: initial;
     }
   }
 }

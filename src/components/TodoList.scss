@@ -1,4 +1,21 @@
 .todo-list {
   background-color: var(--app-text-color-lightest);
   border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.todo {
+  // display: flex;
+  // justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  padding: 0.25rem;
+
+  &__button {
+    text-align: center;
+  }
+
+  &--disabled {
+    color: var(--button-disabled);
+  }
 }

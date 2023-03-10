@@ -1,7 +1,8 @@
+import { ITodo } from '../../models/todo';
 import { actionTypes } from '../actions/actionTypes';
 import { ITodosState } from '../store/state';
 
-const initialState = <ITodosState>{ todos: [] };
+const initialState = <ITodosState>{ collection: [] };
 
 export const todos = (state: ITodosState = initialState, action): ITodosState => {
   if (action.type === actionTypes.SET_TODOS) {
@@ -9,18 +10,23 @@ export const todos = (state: ITodosState = initialState, action): ITodosState =>
       payload: { todos }
     } = action;
     return {
-      todos: todos
+      collection: todos,
+      state: 'LOADED'
     };
   }
 
   if (action.type === actionTypes.ADD_TODO) {
     const { payload: todo } = action;
 
-    const newState = [...state.todos, todo];
+    const placeholder: ITodo = {
+      id: 0,
+      ...todo
+    };
+    const newState = [...state.collection, placeholder];
 
     return {
-      ...state,
-      todos: newState
+      collection: newState,
+      state: 'LOADING'
     };
   }
 
@@ -28,13 +34,17 @@ export const todos = (state: ITodosState = initialState, action): ITodosState =>
     const {
       payload: { id }
     } = action;
-    const { todos } = state;
+    const { collection } = state;
 
-    const newTodos = [...todos.filter((x) => x.id !== id)];
+    const todoToRemove = collection.find((x) => x.id === id);
+    const idx = collection.findIndex((x) => x.id === id);
+
+    collection.splice(idx, 1, { ...todoToRemove, id: 0 });
+    const newTodos = collection;
 
     return {
-      ...state,
-      todos: newTodos
+      collection: newTodos,
+      state: 'LOADING'
     };
   }
 

@@ -1,7 +1,8 @@
 .add-todo {
   background-color: var(--app-text-color-lightest);
-  border-radius: 0.5rem;
-  button {
+  border-radius: 0.625rem;
+  padding: 0.5rem;
+  & button {
     color: var(--app-text-color);
   }
 }
