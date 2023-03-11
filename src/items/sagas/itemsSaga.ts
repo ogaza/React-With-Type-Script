@@ -7,7 +7,7 @@ const dalayInMs = 500;
 
 function* getItems() {
   try {
-    yield delay(dalayInMs);
+    // yield delay(dalayInMs);
 
     yield call(itemsApi.get);
   } catch (e) {
@@ -19,7 +19,7 @@ function* addItem(action) {
     // const items = yield select((store) => store.items);
     const { payload } = action;
 
-    yield delay(dalayInMs);
+    // yield delay(dalayInMs);
 
     yield call(itemsApi.post, payload);
   } catch (e) {
@@ -32,7 +32,7 @@ function* removeItem(action) {
     const {
       payload: { id }
     } = action;
-    yield delay(dalayInMs);
+    // yield delay(dalayInMs);
     yield call(itemsApi.delete, id);
   } catch (e) {
     yield put(Actions.operationFailure(e.message));
