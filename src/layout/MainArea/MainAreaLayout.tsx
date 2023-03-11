@@ -1,12 +1,12 @@
 import * as React from 'react';
-import './MainPanelLayout.scss';
+import './MainAreaLayout.scss';
 
-interface IMainPanelLayoutProps {
+interface IMainAreaLayoutProps {
   panelLeft: JSX.Element;
   panelRight: JSX.Element;
 }
 
-export function MainPanelLayout({ panelLeft, panelRight }: IMainPanelLayoutProps) {
+export function MainAreaLayout({ panelLeft, panelRight }: IMainAreaLayoutProps) {
   return (
     <section className="main-panel-layout">
       <div className="main-panel-layout__left">{panelLeft}</div>

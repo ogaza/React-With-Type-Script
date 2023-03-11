@@ -3,14 +3,14 @@ import './MainLayout.scss';
 
 interface IMainLayoutProps {
   statusBar: JSX.Element;
-  mainPanel: JSX.Element;
+  mainArea: JSX.Element;
 }
 
-export default function MainLayout({ statusBar, mainPanel }: IMainLayoutProps) {
+export default function MainLayout({ statusBar, mainArea }: IMainLayoutProps) {
   return (
     <main className="main-layout">
       {statusBar}
-      {mainPanel}
+      {mainArea}
     </main>
   );
 }
