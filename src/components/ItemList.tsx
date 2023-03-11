@@ -25,7 +25,7 @@ export function ItemList({ items: { collection, state }, onDelete }) {
 
 function ItemListElement({ id, text, created, onDeleteClick }) {
   const date = created ? new Date(created).toISOString() : '';
-  const isPlaceholder = id === 0;
+  const isPlaceholder = id <= 0;
 
   const cssClass = isPlaceholder ? 'item--disabled' : '';
 

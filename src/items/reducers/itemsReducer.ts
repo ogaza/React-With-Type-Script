@@ -46,7 +46,7 @@ export const items = (state: IItemsState = initialState, action): IItemsState =>
     const itemToRemove = collection.find((x) => x.id === id);
     const idx = collection.findIndex((x) => x.id === id);
 
-    collection.splice(idx, 1, { ...itemToRemove, id: 0 });
+    collection.splice(idx, 1, { ...itemToRemove, id: -id });
     const newItems = collection;
 
     return {
