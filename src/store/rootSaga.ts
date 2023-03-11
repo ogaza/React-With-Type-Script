@@ -1,8 +1,8 @@
 import { all } from 'redux-saga/effects';
-import toDosSaga from '../toDos/sagas/toDosSaga';
+import itemsSaga from '../items/sagas/itemsSaga';
 
 function* rootSaga() {
-  yield all([toDosSaga()]);
+  yield all([itemsSaga()]);
 }
 
 export default rootSaga;

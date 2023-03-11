@@ -1,6 +1,0 @@
-export const actionTypes = {
-  SET_TODOS: 'SET_TODOS',
-  ADD_TODO: 'ADD_TODO',
-  REMOVE_TODO: 'REMOVE_TODO',
-  REMOVE_TODO_FAILED: 'REMOVE_TODO_FAILED'
-};

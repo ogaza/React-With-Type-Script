@@ -1,12 +1,12 @@
 import * as React from 'react';
-import './TodoList.scss';
+import './ItemList.scss';
 
-export function TodoList({ todos: { collection, state }, onDelete }) {
+export function ItemList({ items: { collection, state }, onDelete }) {
   return (
-    <section className="todo-list">
+    <section className="item-list">
       <h3>Items list</h3>
       {collection.map((x) => (
-        <TodoListElement {...x} onDeleteClick={onDelete} />
+        <ItemListElement {...x} onDeleteClick={onDelete} />
       ))}
     </section>
   );
@@ -23,17 +23,17 @@ export function TodoList({ todos: { collection, state }, onDelete }) {
   // }
 }
 
-function TodoListElement({ id, text, created, onDeleteClick }) {
+function ItemListElement({ id, text, created, onDeleteClick }) {
   const date = created ? new Date(created).toISOString() : '';
   const isPlaceholder = id === 0;
 
-  const cssClass = isPlaceholder ? 'todo--disabled' : '';
+  const cssClass = isPlaceholder ? 'item--disabled' : '';
 
   return (
-    <div className={`todo ${cssClass}`}>
-      <span className="todo__text">{text}</span>
-      <span className="todo__created">{date}</span>
-      <span className="todo__button">
+    <div className={`item ${cssClass}`}>
+      <span className="item__text">{text}</span>
+      <span className="item__created">{date}</span>
+      <span className="item__button">
         <button data-id={id} onClick={handleDeleteClick} disabled={isPlaceholder}>
           delete
         </button>
@@ -46,15 +46,15 @@ function TodoListElement({ id, text, created, onDeleteClick }) {
   }
 }
 
-function TodoListElementPlaceholder() {
+function ItemListElementPlaceholder() {
   // const date = created ? new Date(created).toISOString() : '';
   // const isPlaceholder = id === 0;
 
   return (
-    <div className="todo--placeholder">
-      <span className="todo__text"></span>
-      <span className="todo__created"></span>
-      <span className="todo__button">
+    <div className="item--placeholder">
+      <span className="item__text"></span>
+      <span className="item__created"></span>
+      <span className="item__button">
         <button disabled>delete</button>
       </span>
     </div>
@@ -62,5 +62,5 @@ function TodoListElementPlaceholder() {
 }
 
 function WithPlaceholder({ reactElement, isPlaceholder }) {
-  return isPlaceholder ? <TodoListElementPlaceholder /> : reactElement;
+  return isPlaceholder ? <ItemListElementPlaceholder /> : reactElement;
 }

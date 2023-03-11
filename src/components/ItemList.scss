@@ -1,10 +1,10 @@
-.todo-list {
+.item-list {
   background-color: var(--app-text-color-lightest);
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
 
-.todo {
+.item {
   // display: flex;
   // justify-content: space-between;
   display: grid;

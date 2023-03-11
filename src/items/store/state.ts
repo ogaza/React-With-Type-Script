@@ -1,6 +1,6 @@
-import { ITodo } from '../../models/todo';
+import { IItem } from '../../models/item';
 
-export interface ITodosState extends ICollectionState<ITodo> {}
+export interface IItemsState extends ICollectionState<IItem> {}
 
 export interface ICollectionState<T> {
   collection: T[];

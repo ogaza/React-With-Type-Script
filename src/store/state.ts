@@ -1,5 +1,5 @@
-import { ITodosState } from '../toDos/store/state';
+import { IItemsState } from '../items/store/state';
 
 export interface IAppState {
-  todos: ITodosState;
+  items: IItemsState;
 }

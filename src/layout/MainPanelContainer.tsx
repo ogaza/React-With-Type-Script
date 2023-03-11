@@ -1,31 +1,31 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { Actions } from '../toDos/actions/actionCreators';
+import { Actions } from '../items/actions/actionCreators';
 import { useSelector } from 'react-redux';
 import { IAppState } from '../store/state';
 import { MainPanelLayout } from './MainPanel/MainPanelLayout';
-import { TodoList } from '../components/TodoList';
-import { AddTodoForm } from '../components/AddTodoForm';
+import { ItemList } from '../components/ItemList';
+import { AddItemForm } from '../components/AddItemForm';
 
 export default function MainPanelContainer() {
   const dispatch = useDispatch();
-  const todos = useSelector((state: IAppState) => state.todos);
+  const items = useSelector((state: IAppState) => state.items);
 
-  const { state } = todos;
-  const todosAreBeingLoaded = state === 'LOADING';
+  const { state } = items;
+  const itemsAreBeingLoaded = state === 'LOADING';
 
   return (
     <MainPanelLayout
-      panelLeft={<TodoList todos={todos} onDelete={deleteToDo} />}
-      panelRight={<AddTodoForm onSubmit={addToDo} enabled={!todosAreBeingLoaded} />}
+      panelLeft={<ItemList items={items} onDelete={deleteItem} />}
+      panelRight={<AddItemForm onSubmit={addItem} enabled={!itemsAreBeingLoaded} />}
     />
   );
 
-  function addToDo(text) {
-    dispatch(Actions.addToDo(text));
+  function addItem(text) {
+    dispatch(Actions.addItem(text));
   }
 
-  function deleteToDo(id) {
-    dispatch(Actions.deleteToDo(id));
+  function deleteItem(id) {
+    dispatch(Actions.deleteItem(id));
   }
 }

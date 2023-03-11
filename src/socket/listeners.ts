@@ -1,5 +1,5 @@
-import { registerTodoListeners } from '../toDos/api/listeners';
+import { registerItemListeners } from '../items/api/itemsListeners';
 
 export function registerListeners(store, socket) {
-  registerTodoListeners(store, socket);
+  registerItemListeners(store, socket);
 }

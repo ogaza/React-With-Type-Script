@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import { todos } from '../toDos/reducers/todosReducer';
+import { items } from '../items/reducers/itemsReducer';
 
-export const rootReducer = combineReducers({ todos });
+export const rootReducer = combineReducers({ items });
