@@ -6,7 +6,7 @@ export function ItemList({ items: { collection, state }, onDelete }) {
     <section className="item-list">
       <h3>Items list</h3>
       {collection.map((x) => (
-        <ItemListElement {...x} onDeleteClick={onDelete} />
+        <ItemListElement key={x.id} {...x} onDeleteClick={onDelete} />
       ))}
     </section>
   );
@@ -46,21 +46,27 @@ function ItemListElement({ id, text, created, onDeleteClick }) {
   }
 }
 
-function ItemListElementPlaceholder() {
-  // const date = created ? new Date(created).toISOString() : '';
-  // const isPlaceholder = id === 0;
+export function ItemListPlaceholder() {
+  return (
+    <section className="item-list--placeholder">
+      <h3>Items list</h3>
+      {[1, 2, 3, 4, 5].map((x) => (
+        <ItemListElementPlaceholder key={x} />
+      ))}
+    </section>
+  );
+}
 
+function ItemListElementPlaceholder() {
   return (
     <div className="item--placeholder">
-      <span className="item__text"></span>
-      <span className="item__created"></span>
-      <span className="item__button">
-        <button disabled>delete</button>
-      </span>
+      <span className="item__text">xxx</span>
+      <span className="item__created">xxx</span>
+      <span className="item__button">xxx</span>
     </div>
   );
 }
 
-function WithPlaceholder({ reactElement, isPlaceholder }) {
-  return isPlaceholder ? <ItemListElementPlaceholder /> : reactElement;
+export function WithPlaceholder({ element, placeholder, showPlaceholder }) {
+  return showPlaceholder ? placeholder : element;
 }

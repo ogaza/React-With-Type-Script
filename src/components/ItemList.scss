@@ -1,12 +1,12 @@
-.item-list {
+.item-list,
+.item-list--placeholder {
   background-color: var(--app-text-color-lightest);
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
 
-.item {
-  // display: flex;
-  // justify-content: space-between;
+.item,
+.item--placeholder {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   padding: 0.25rem;
@@ -18,4 +18,16 @@
   &--disabled {
     color: var(--button-disabled);
   }
+}
+
+.item-list--placeholder {
+  color: var(--button-disabled);
+}
+
+.item--placeholder {
+  // background-color: var(--button-disabled);
+  // background-color: var(--app-bg-color);
+  color: var(--app-bg-color);
+  border-radius: 0.25rem;
+  padding: 0.25rem;
 }

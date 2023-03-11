@@ -5,6 +5,13 @@ import { IItemsState } from '../store/state';
 const initialState = <IItemsState>{ collection: [] };
 
 export const items = (state: IItemsState = initialState, action): IItemsState => {
+  if (action.type === actionTypes.GET_ITEMS) {
+    return {
+      collection: [],
+      state: 'LOADING'
+    };
+  }
+
   if (action.type === actionTypes.SET_ITEMS) {
     const {
       payload: { items }

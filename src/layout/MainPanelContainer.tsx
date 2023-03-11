@@ -4,7 +4,7 @@ import { Actions } from '../items/actions/actionCreators';
 import { useSelector } from 'react-redux';
 import { IAppState } from '../store/state';
 import { MainPanelLayout } from './MainPanel/MainPanelLayout';
-import { ItemList } from '../components/ItemList';
+import { ItemList, ItemListPlaceholder, WithPlaceholder } from '../components/ItemList';
 import { AddItemForm } from '../components/AddItemForm';
 
 export default function MainPanelContainer() {
@@ -13,10 +13,17 @@ export default function MainPanelContainer() {
 
   const { state } = items;
   const itemsAreBeingLoaded = state === 'LOADING';
+  const showItemListPlaceholder = itemsAreBeingLoaded;
 
   return (
     <MainPanelLayout
-      panelLeft={<ItemList items={items} onDelete={deleteItem} />}
+      panelLeft={
+        <WithPlaceholder
+          element={<ItemList items={items} onDelete={deleteItem} />}
+          placeholder={<ItemListPlaceholder />}
+          showPlaceholder={showItemListPlaceholder}
+        />
+      }
       panelRight={<AddItemForm onSubmit={addItem} enabled={!itemsAreBeingLoaded} />}
     />
   );
