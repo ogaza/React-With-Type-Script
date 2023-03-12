@@ -34,6 +34,15 @@ export const Actions = {
     };
   },
 
+  itemDeleted: function (id) {
+    return {
+      type: actionTypes.ITEM_REMOVED,
+      payload: {
+        id
+      }
+    };
+  },
+
   operationFailure: function (message) {
     return {
       type: actionTypes.ITEM_OPERATION_FAILED,
