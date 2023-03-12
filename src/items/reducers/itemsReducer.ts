@@ -47,11 +47,25 @@ export const items = (state: IItemsState = initialState, action): IItemsState =>
     const idx = collection.findIndex((x) => x.id === id);
 
     collection.splice(idx, 1, { ...itemToRemove, id: -id });
-    const newItems = collection;
+    const newCollection = collection;
 
     return {
-      collection: newItems,
-      state: 'LOADING'
+      ...state,
+      collection: newCollection
+      // state: 'LOADING'
+    };
+  }
+
+  if (action.type === actionTypes.ITEM_REMOVED) {
+    const {
+      payload: { id }
+    } = action;
+    const { collection } = state;
+    const newCollection = collection.filter((x) => -x.id !== id);
+
+    return {
+      ...state,
+      collection: newCollection
     };
   }
 
