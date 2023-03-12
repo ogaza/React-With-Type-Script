@@ -11,6 +11,7 @@ export function AddItemPanelContainer() {
 
   const { state } = items;
   const itemsAreBeingLoaded = state === 'LOADING';
+  // const itemsAreBeingLoaded = false;
 
   return <AddItemForm onSubmit={addItem} enabled={!itemsAreBeingLoaded} />;
 

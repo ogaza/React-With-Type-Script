@@ -6,4 +6,11 @@ export function registerItemListeners(store, socket) {
 
     store.dispatch(Actions.setItems(data));
   });
+
+  socket.on('item:delete', (data) => {
+    const { itemId } = data;
+    console.log('item deleted from socket connection: ', itemId);
+
+    store.dispatch(Actions.itemDeleted(itemId));
+  });
 }
