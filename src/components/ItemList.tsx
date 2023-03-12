@@ -25,16 +25,16 @@ export function ItemList({ items: { collection, state }, onDelete }) {
 
 function ItemListElement({ id, text, created, onDeleteClick }) {
   const date = created ? new Date(created).toISOString() : '';
-  const isPlaceholder = id <= 0;
+  const disabled = id <= 0;
 
-  const cssClass = isPlaceholder ? 'item--disabled' : '';
+  const cssClass = disabled ? 'item--disabled' : '';
 
   return (
     <div className={`item ${cssClass}`}>
       <span className="item__text">{text}</span>
       <span className="item__created">{date}</span>
       <span className="item__button">
-        <button data-id={id} onClick={handleDeleteClick} disabled={isPlaceholder}>
+        <button data-id={id} onClick={handleDeleteClick} disabled={disabled}>
           delete
         </button>
       </span>
