@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ItemList, ItemListPlaceholder, WithPlaceholder } from '../../components/ItemList';
 import { Actions } from '../actions/actionCreators';
 import { IAppState } from '../../store/state';
+import { ListSelector } from '../../components/ListSelector';
+import './ItemsPanelContainer.scss';
 
 export function ItemsPanelContainer() {
   const dispatch = useDispatch();
@@ -13,11 +15,14 @@ export function ItemsPanelContainer() {
   const showItemListPlaceholder = itemsAreBeingLoaded && !collection.length;
 
   return (
-    <WithPlaceholder
-      element={<ItemList items={items} onDelete={deleteItem} />}
-      placeholder={<ItemListPlaceholder />}
-      showPlaceholder={showItemListPlaceholder}
-    />
+    <div className="iltems-lists--with-selector">
+      <ListSelector />
+      <WithPlaceholder
+        element={<ItemList items={items} onDelete={deleteItem} />}
+        placeholder={<ItemListPlaceholder />}
+        showPlaceholder={showItemListPlaceholder}
+      />
+    </div>
   );
 
   function deleteItem(id) {

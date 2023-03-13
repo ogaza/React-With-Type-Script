@@ -1,0 +1,38 @@
+.list-selector {
+  border-radius: 0.5rem;
+
+  display: flex;
+  gap: 0.25rem;
+
+  &__item {
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+
+    flex-basis: 3rem;
+
+    display: flex;
+    justify-content: center;
+
+    border-color: var(--app-bg-color);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12),
+      0 1px 3px 0 rgba(0, 0, 0, 0.2);
+
+    &--selected {
+      background-color: var(--app-text-color-lightest);
+    }
+  }
+}
+
+.add-list-button {
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+
+  flex-basis: 3rem;
+
+  display: flex;
+  justify-content: center;
+
+  border-color: var(--app-bg-color);
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
