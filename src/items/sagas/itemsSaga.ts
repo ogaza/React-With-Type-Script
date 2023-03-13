@@ -3,8 +3,6 @@ import { Actions } from '../../items/actions/actionCreators';
 import { actionTypes } from '../actions/actionTypes';
 import { itemsApi } from '../api/itemsApi';
 
-const dalayInMs = 500;
-
 function* getItems() {
   try {
     // yield delay(dalayInMs);
