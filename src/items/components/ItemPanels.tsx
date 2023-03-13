@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddItemForm } from '../../components/AddItemForm';
+import { AddItemPanel } from '../../components/AddItemPanel';
 import { ItemList, ItemListPlaceholder, WithPlaceholder } from '../../components/ItemList';
 import { Actions } from '../actions/actionCreators';
 import { IAppState } from '../../store/state';
@@ -13,7 +13,7 @@ export function AddItemPanelContainer() {
   const itemsAreBeingLoaded = state === 'LOADING';
   // const itemsAreBeingLoaded = false;
 
-  return <AddItemForm onSubmit={addItem} enabled={!itemsAreBeingLoaded} />;
+  return <AddItemPanel onSubmit={addItem} enabled={!itemsAreBeingLoaded} />;
 
   function addItem(text) {
     dispatch(Actions.addItem(text));

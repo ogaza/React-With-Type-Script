@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { SubmitButton } from './SubmitButton';
-import './AddItemForm.scss';
+import './AddItemPanel.scss';
 
-export function AddItemForm({ onSubmit, enabled }) {
+export function AddItemPanel({ onSubmit, enabled }) {
   const items = [
     { id: 1, text: 'item 1' },
     { id: 2, text: 'item 2' },
