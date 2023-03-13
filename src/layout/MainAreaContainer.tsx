@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { AddItemPanelContainer, ItemsPanelContainer } from '../items/components/ItemPanels';
+import { ItemsPanelContainer } from '../items/components/ItemsPanelContainer';
+import { AddItemPanelContainer } from '../items/components/AddItemPanelContainer';
 import { MainAreaLayout } from './MainArea/MainAreaLayout';
 
 export default function MainAreaContainer() {
