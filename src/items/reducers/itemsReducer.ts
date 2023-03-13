@@ -61,8 +61,7 @@ export const items = (state: IItemsState = initialState, action): IItemsState =>
       payload: { id }
     } = action;
     const { collection } = state;
-    const newCollection = collection.filter((x) => -x.id !== id);
-
+    const newCollection = collection.filter((x) => Math.abs(x.id) !== id);
     return {
       ...state,
       collection: newCollection
