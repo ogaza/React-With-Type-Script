@@ -1,64 +1,31 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { SubmitButton } from './SubmitButton';
+import { ItemTail } from './ItemTail';
 import './AddItemPanel.scss';
 
 export function AddItemPanel({ onSubmit, enabled }) {
   const items = [
     { id: 1, text: 'item 1' },
     { id: 2, text: 'item 2' },
-    { id: 3, text: 'item 3' }
+    { id: 3, text: 'item 3' },
+    { id: 4, text: 'item 4' }
   ];
 
   return (
     <section className="add-item">
-      <h3>Add Item</h3>
-      {items.map((item) => {
-        return (
-          <SubmitButton
-            key={item.id}
-            onClick={() => handleSubmit(item.text)}
-            label={item.text}
-            enabled={enabled}
-          />
-        );
-      })}
-      {/* <input type="text" value={text} onChange={handleChange} disabled={!enabled} /> */}
+      <h3>Items</h3>
+      <div className="items-container">
+        {items.map((item) => {
+          return (
+            <ItemTail
+              key={item.id}
+              id={item.id}
+              text={item.text}
+              onClick={onSubmit}
+              enabled={enabled}
+            />
+          );
+        })}
+      </div>
     </section>
   );
-
-  function handleSubmit(text) {
-    if (enabled) {
-      onSubmit(text);
-      return;
-    }
-  }
 }
-
-// export function AddItemForm({ onSubmit, enabled }) {
-//   const [text, setText] = useState('');
-//   // const isValid = true;
-//   const isValid = !!text;
-//   const canSubmit = isValid && enabled;
-
-//   return (
-//     <section className="add-item">
-//       <h3>Add item</h3>
-//       <input type="text" value={text} onChange={handleChange} disabled={!enabled} />
-//       <SubmitButton onClick={handleSubmit} label="create" enabled={canSubmit} />
-//     </section>
-//   );
-
-//   function handleSubmit() {
-//     if (canSubmit) {
-//       onSubmit(text);
-//       setText('');
-//       return;
-//     }
-//   }
-
-//   function handleChange(e) {
-//     const value = e.target.value;
-//     setText(value);
-//   }
-// }
