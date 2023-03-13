@@ -13,6 +13,6 @@ export function ItemTail({ id, text, onClick, enabled }) {
   );
 
   function handleClick() {
-    onClick(text);
+    enabled && onClick(text);
   }
 }
