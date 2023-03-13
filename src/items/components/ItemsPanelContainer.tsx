@@ -16,7 +16,7 @@ export function ItemsPanelContainer() {
 
   return (
     <div className="iltems-lists--with-selector">
-      <ListSelector />
+      <ListSelector addButtonEnabled={!itemsAreBeingLoaded} />
       <WithPlaceholder
         element={<ItemList items={items} onDelete={deleteItem} />}
         placeholder={<ItemListPlaceholder />}

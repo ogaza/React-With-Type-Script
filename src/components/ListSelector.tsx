@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './ListSelector.scss';
 
-export function ListSelector() {
+export function ListSelector({ addButtonEnabled = true }) {
   const lists = [{ id: 1, selected: true }, { id: 2 }, { id: 3 }];
 
   return (
@@ -14,11 +14,13 @@ export function ListSelector() {
           {id}
         </span>
       ))}
-      <AddListButton />
+      <AddListButton enabled={addButtonEnabled} />
     </div>
   );
 }
 
-export function AddListButton({ onClick = () => {} }) {
-  return <span className="add-list-button">+</span>;
+export function AddListButton({ onClick = () => {}, enabled = true }) {
+  const cssClass = `add-list-button ${enabled ? '' : 'add-list-button--disabled'}`;
+
+  return <span className={cssClass}>+</span>;
 }
