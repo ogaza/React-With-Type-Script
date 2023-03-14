@@ -43,6 +43,4 @@ function* itemsSaga() {
   yield takeEvery(itemActionTypes.REMOVE, removeItem);
 }
 
-const x = itemsSaga();
-
 export default itemsSaga;

@@ -14,6 +14,23 @@ export function createApi(namespace) {
   };
 }
 
+export function createListenersRegistrator(namespace, actions) {
+  return function registerListeners(store, socket) {
+    socket.on(`${namespace}:get`, (data) => {
+      console.log(`got ${namespace} from socket connection: `, data);
+
+      store.dispatch(actions.setItems(data));
+    });
+
+    socket.on(`${namespace}:delete`, (data) => {
+      const { itemId } = data;
+      console.log(`${namespace} deleted from socket connection: `, itemId);
+
+      store.dispatch(actions.itemDeleted(itemId));
+    });
+  };
+}
+
 export function createReducer(namespace, initialState) {
   const itemActionTypes = getActionTypes(namespace);
 
