@@ -2,7 +2,8 @@ import {
   actionsCreator,
   createApi,
   createListenersRegistrator,
-  createReducer
+  createReducer,
+  getActionTypes
 } from '../models/creators';
 import { IItemsState } from './store/state';
 
@@ -12,6 +13,7 @@ export const itemListsApi = createApi('itemLists');
 
 // actions
 export const ItemActions = actionsCreator('ITEM');
+export const itemListActionTypes = getActionTypes('ITEM_LIST');
 export const ItemListsActions = actionsCreator('ITEM_LIST');
 
 // listeners
