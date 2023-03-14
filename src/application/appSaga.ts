@@ -1,5 +1,5 @@
-import { call, delay, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
-import { ItemActions, ItemListsActions, itemsApi } from '../items';
+import { put, select, take, takeEvery, takeLatest } from 'redux-saga/effects';
+import { ItemListsActions, itemListActionTypes } from '../items';
 import { actionTypes } from './actions';
 // import { getActionTypes } from '../models/creators';
 
@@ -8,7 +8,15 @@ function* start() {
     const action = ItemListsActions.getItems();
 
     yield put(action);
-    // yield put(ItemActions.getItems());
+
+    const response = yield take(itemListActionTypes.SET);
+
+    const {
+      payload: { items }
+    } = response;
+    const [{ id }] = items;
+
+    yield put(ItemListsActions.editItem({ id, selected: true }));
   } catch (e) {
     console.log('error on start application', e);
   }
@@ -16,9 +24,6 @@ function* start() {
 
 function* appSaga() {
   yield takeLatest(actionTypes.START, start);
-  //   yield takeLatest(itemActionTypes.GET, getItems);
-  //   yield takeLatest(itemActionTypes.ADD, addItem);
-  //   yield takeEvery(itemActionTypes.REMOVE, removeItem);
 }
 
 export default appSaga;

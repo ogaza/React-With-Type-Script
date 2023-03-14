@@ -5,11 +5,11 @@ import { getActionTypes } from '../../models/creators';
 
 const itemActionTypes = getActionTypes('ITEM');
 
-function* getItems() {
+function* getItems(action) {
   try {
     // yield delay(dalayInMs);
-
-    yield call(itemsApi.get);
+    const { payload } = action;
+    yield call(itemsApi.get, payload);
   } catch (e) {
     yield put(ItemActions.operationFailure(e.message));
   }
