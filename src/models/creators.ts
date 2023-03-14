@@ -2,8 +2,8 @@ import { sendMessage } from '../socket/socket';
 
 export function createApi(namespace) {
   return {
-    get: function () {
-      return sendMessage(`${namespace}:get`);
+    get: function (options = {}) {
+      return sendMessage(`${namespace}:get`, options);
     },
     post: function (item) {
       return sendMessage(`${namespace}:post`, item);
@@ -67,6 +67,32 @@ export function createReducer(namespace, initialState) {
       };
     }
 
+    if (action.type === itemActionTypes.EDIT || action.type === itemActionTypes.EDITED) {
+      const {
+        payload: { item },
+        payload: {
+          item: { id }
+        }
+      } = action;
+      const { collection } = state;
+
+      const itemToEdit = collection.find((x) => x.id === id);
+      const idx = collection.findIndex((x) => x.id === id);
+
+      const itemState = action.type === itemActionTypes.EDIT ? 'LOADING' : 'LOADED';
+      collection.splice(idx, 1, { ...itemToEdit, ...item, itemState });
+      const newCollection = collection;
+
+      return {
+        ...state,
+        collection: newCollection
+      };
+    }
+
+    if (action.type === itemActionTypes.EDITED) {
+      const { payload: item } = action;
+    }
+
     if (action.type === itemActionTypes.REMOVE) {
       const {
         payload: { id }
@@ -105,9 +131,10 @@ export function actionsCreator(namespace) {
   const actionTypes = getActionTypes(namespace);
 
   return {
-    getItems: function () {
+    getItems: function (options = {}) {
       return {
-        type: actionTypes.GET
+        type: actionTypes.GET,
+        payload: options
       };
     },
 
@@ -125,6 +152,24 @@ export function actionsCreator(namespace) {
           text,
           completed: false,
           created: Date.now()
+        }
+      };
+    },
+
+    editItem: function (item) {
+      return {
+        type: actionTypes.EDIT,
+        payload: {
+          item
+        }
+      };
+    },
+
+    itemEdited: function (item) {
+      return {
+        type: actionTypes.EDITED,
+        payload: {
+          item
         }
       };
     },
@@ -165,6 +210,8 @@ export function getActionTypes(namespace) {
     ADD: `${namespace}_ADD`,
     REMOVE: `${namespace}_REMOVE`,
     REMOVED: `${namespace}_REMOVED`,
+    EDIT: `${namespace}_EDIT`,
+    EDITED: `${namespace}_EDITED`,
     OPERATION_FAILED: `${namespace}_OPERATION_FAILED`
   };
 }
