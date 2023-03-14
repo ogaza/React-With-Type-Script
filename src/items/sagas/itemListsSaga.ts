@@ -6,8 +6,6 @@ const itemListsActionTypes = getActionTypes('ITEM_LIST');
 
 function* get() {
   try {
-    // yield delay(dalayInMs);
-
     yield call(api.get);
   } catch (e) {
     yield put(ItemListsActions.operationFailure(e.message));
