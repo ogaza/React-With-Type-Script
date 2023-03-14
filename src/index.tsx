@@ -1,14 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Actions } from './items/actions/actionCreators';
+import { ItemActions } from './items';
 import App from './App';
 import { registerListeners } from './socket/listeners';
 import { socket } from './socket/socket';
 import store from './store/store';
 
 registerListeners(store, socket);
-store.dispatch(Actions.getItems());
+store.dispatch(ItemActions.getItems());
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddItemPanel } from '../../components/AddItemPanel';
-import { Actions } from '../actions/actionCreators';
+import { ItemActions } from '../../items';
 import { IAppState } from '../../store/state';
 
 export function AddItemPanelContainer() {
@@ -14,6 +14,6 @@ export function AddItemPanelContainer() {
   return <AddItemPanel onSubmit={addItem} enabled={!itemsAreBeingLoaded} />;
 
   function addItem(text) {
-    dispatch(Actions.addItem(text));
+    dispatch(ItemActions.addItem(text));
   }
 }

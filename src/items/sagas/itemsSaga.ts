@@ -1,7 +1,9 @@
-import { put, takeEvery, select, call, takeLatest, delay } from 'redux-saga/effects';
-import { Actions } from '../../items/actions/actionCreators';
-import { actionTypes } from '../actions/actionTypes';
-import { itemsApi } from '../api/itemsApi';
+import { call, delay, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
+import { itemsApi } from '../';
+import { ItemActions } from '../../items';
+import { getActionTypes } from '../../models/creators';
+
+const itemActionTypes = getActionTypes('ITEM');
 
 function* getItems() {
   try {
@@ -9,9 +11,10 @@ function* getItems() {
 
     yield call(itemsApi.get);
   } catch (e) {
-    yield put(Actions.operationFailure(e.message));
+    yield put(ItemActions.operationFailure(e.message));
   }
 }
+
 function* addItem(action) {
   try {
     // const items = yield select((store) => store.items);
@@ -19,7 +22,7 @@ function* addItem(action) {
 
     yield call(itemsApi.post, payload);
   } catch (e) {
-    yield put(Actions.operationFailure(e.message));
+    yield put(ItemActions.operationFailure(e.message));
   }
 }
 
@@ -30,14 +33,14 @@ function* removeItem(action) {
     } = action;
     yield call(itemsApi.delete, id);
   } catch (e) {
-    yield put(Actions.operationFailure(e.message));
+    yield put(ItemActions.operationFailure(e.message));
   }
 }
 
 function* itemsSaga() {
-  yield takeLatest(actionTypes.GET_ITEMS, getItems);
-  yield takeLatest(actionTypes.ADD_ITEM, addItem);
-  yield takeEvery(actionTypes.REMOVE_ITEM, removeItem);
+  yield takeLatest(itemActionTypes.GET, getItems);
+  yield takeLatest(itemActionTypes.ADD, addItem);
+  yield takeEvery(itemActionTypes.REMOVE, removeItem);
 }
 
 const x = itemsSaga();

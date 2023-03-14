@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ItemActions } from '../';
 import { ItemList, ItemListPlaceholder, WithPlaceholder } from '../../components/ItemList';
-import { Actions } from '../actions/actionCreators';
-import { IAppState } from '../../store/state';
 import { ListSelector } from '../../components/ListSelector';
+import { IAppState } from '../../store/state';
 import './ItemsPanelContainer.scss';
 
 export function ItemsPanelContainer() {
@@ -26,6 +26,6 @@ export function ItemsPanelContainer() {
   );
 
   function deleteItem(id) {
-    dispatch(Actions.deleteItem(id));
+    dispatch(ItemActions.deleteItem(id));
   }
 }
