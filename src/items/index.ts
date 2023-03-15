@@ -25,3 +25,10 @@ const itemsInitialState = <IItemsState>{ collection: [] };
 export const items = createReducer('ITEM', itemsInitialState);
 const itemsListsInitialState = { collection: [] };
 export const itemsLists = createReducer('ITEM_LIST', itemsListsInitialState);
+
+// selected itemsList
+const selectedItemListNamespace = 'SELECTED_ITEM_LIST';
+export const selectedItemListActionTypes = getActionTypes(selectedItemListNamespace);
+export const selectedItemListActions = actionsCreator('SELECTED_ITEM_LIST');
+const selectedItemListInitialState = { collection: [] };
+export const selectedItemList = createReducer('ITEM_LIST', selectedItemListInitialState);

@@ -16,10 +16,14 @@ function* start() {
     } = response;
     const [{ id }] = items;
 
-    yield put(ItemListsActions.editItem({ id, selected: true }));
+    yield selectList(id);
   } catch (e) {
     console.log('error on start application', e);
   }
+}
+
+function* selectList(id) {
+  yield put(ItemListsActions.editItem({ id, selected: true }));
 }
 
 function* appSaga() {
