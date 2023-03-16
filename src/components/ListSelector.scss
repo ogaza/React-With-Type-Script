@@ -2,13 +2,15 @@
   border-radius: 0.5rem;
 
   display: flex;
+  flex-flow: row wrap;
   gap: 0.25rem;
 
   &__item {
     border-radius: 0.5rem;
     padding: 0.5rem 0;
+    position: relative;
 
-    flex-basis: 3rem;
+    flex-basis: 6rem;
 
     display: flex;
     justify-content: center;
@@ -19,6 +21,25 @@
     &--selected {
       background-color: var(--app-text-color-lightest);
     }
+
+    &--disabled {
+      color: var(--button-disabled);
+    }
+  }
+
+  &__close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 0.5rem;
+    height: 0.5rem;
+
+    position: absolute;
+    right: 1rem;
+    top: calc(50% - 1.414 * 0.25rem / 2);
+
+    transform: rotate(45deg);
   }
 }
 
@@ -27,7 +48,7 @@
   border-radius: 0.5rem;
   padding: 0.5rem 0;
 
-  flex-basis: 3rem;
+  flex-basis: 6rem;
 
   display: flex;
   justify-content: center;

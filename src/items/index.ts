@@ -12,6 +12,7 @@ export const itemsApi = createApi('item');
 export const itemListsApi = createApi('itemLists');
 
 // actions
+export const itemActionTypes = getActionTypes('ITEM');
 export const ItemActions = actionsCreator('ITEM');
 export const itemListActionTypes = getActionTypes('ITEM_LIST');
 export const ItemListsActions = actionsCreator('ITEM_LIST');

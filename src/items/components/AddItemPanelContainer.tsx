@@ -6,14 +6,29 @@ import { IAppState } from '../../store/state';
 
 export function AddItemPanelContainer() {
   const dispatch = useDispatch();
+
   const items = useSelector((state: IAppState) => state.items);
+  const { state: itemsLoadingState } = items;
+  const itemsAreBeingLoaded = itemsLoadingState === 'LOADING';
 
-  const { state } = items;
-  const itemsAreBeingLoaded = state === 'LOADING';
+  const itemsLists = useSelector((state: IAppState) => state.itemsLists);
+  const { state: itemsListsLoadingState, collection: itemsListsCollection } = itemsLists;
+  const { id: selectedListId, state: selectedListLoadingState } =
+    itemsListsCollection.find((x) => x.selected) || {};
+  const selectedListIsBeingLoaded = selectedListLoadingState === 'LOADING';
 
-  return <AddItemPanel onSubmit={addItem} enabled={!itemsAreBeingLoaded} />;
+  return (
+    <AddItemPanel onSubmit={addItem} enabled={!itemsAreBeingLoaded && !selectedListIsBeingLoaded} />
+  );
 
   function addItem(text) {
-    dispatch(ItemActions.addItem(text));
+    const item = {
+      text,
+      completed: false,
+      created: Date.now(),
+      listId: selectedListId
+    };
+
+    dispatch(ItemActions.addItem(item));
   }
 }

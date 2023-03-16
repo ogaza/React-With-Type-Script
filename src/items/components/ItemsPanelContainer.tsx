@@ -16,13 +16,17 @@ export function ItemsPanelContainer() {
 
   const itemsLists = useSelector((state: IAppState) => state.itemsLists);
   const { state: itemsListsState, collection: itemsListsCollection } = itemsLists;
+  const itemsListsAreBeingLoaded = itemsListsState === 'LOADING';
 
   return (
     <div className="iltems-lists--with-selector">
       <ListSelector
         elements={itemsListsCollection}
         onSelected={selectList}
-        addButtonEnabled={!itemsAreBeingLoaded}
+        addButtonEnabled={!itemsListsAreBeingLoaded}
+        // addButtonEnabled={!itemsAreBeingLoaded}
+        onAddButtonClick={addNewList}
+        onCloseClick={removeList}
       />
       <WithPlaceholder
         element={<ItemList items={items} onDelete={deleteItem} />}
@@ -37,7 +41,16 @@ export function ItemsPanelContainer() {
   }
 
   function selectList(listId) {
-    console.log('selected list: ', listId);
     dispatch(ItemListsActions.editItem({ id: listId, selected: true }));
+  }
+
+  function addNewList() {
+    console.log('adding new list');
+    dispatch(ItemListsActions.addItem({}));
+  }
+
+  function removeList(listId) {
+    console.log('remove list clicked: ', listId);
+    dispatch(ItemListsActions.deleteItem(listId));
   }
 }
