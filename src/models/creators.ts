@@ -22,6 +22,12 @@ export function createListenersRegistrator(namespace, actions) {
       store.dispatch(actions.setItems(data));
     });
 
+    socket.on(`${namespace}:post`, (data) => {
+      console.log(`${namespace} added on the server: `, data);
+
+      store.dispatch(actions.itemAdded(data));
+    });
+
     socket.on(`${namespace}:delete`, (data) => {
       const { itemId } = data;
       console.log(`${namespace} deleted from socket connection: `, itemId);
@@ -37,7 +43,8 @@ export function createReducer(namespace, initialState) {
   return function reducer(state = initialState, action) {
     if (action.type === itemActionTypes.GET) {
       return {
-        collection: [],
+        // collection: [],
+        ...state,
         state: 'LOADING'
       };
     }
@@ -67,6 +74,22 @@ export function createReducer(namespace, initialState) {
       };
     }
 
+    if (action.type === itemActionTypes.ADDED) {
+      const {
+        payload: { newItem }
+      } = action;
+      const { collection } = state;
+
+      const idx = collection.findIndex((x) => x.id === 0);
+      collection.splice(idx, 1, { ...newItem });
+      const newState = [...collection];
+
+      return {
+        collection: newState,
+        state: 'LOADED'
+      };
+    }
+
     if (action.type === itemActionTypes.EDIT || action.type === itemActionTypes.EDITED) {
       const {
         payload: { item },
@@ -80,7 +103,7 @@ export function createReducer(namespace, initialState) {
       const idx = collection.findIndex((x) => x.id === id);
 
       const itemState = action.type === itemActionTypes.EDIT ? 'LOADING' : 'LOADED';
-      collection.splice(idx, 1, { ...itemToEdit, ...item, itemState });
+      collection.splice(idx, 1, { ...itemToEdit, ...item, state: itemState });
       const newCollection = collection;
 
       return {
@@ -102,7 +125,7 @@ export function createReducer(namespace, initialState) {
       const itemToRemove = collection.find((x) => x.id === id);
       const idx = collection.findIndex((x) => x.id === id);
 
-      collection.splice(idx, 1, { ...itemToRemove, id: -id });
+      collection.splice(idx, 1, { ...itemToRemove, id: -id, state: 'LOADING' });
       const newCollection = collection;
 
       return {
@@ -145,14 +168,17 @@ export function actionsCreator(namespace) {
       };
     },
 
-    addItem: function (text) {
+    addItem: function (item) {
       return {
         type: actionTypes.ADD,
-        payload: {
-          text,
-          completed: false,
-          created: Date.now()
-        }
+        payload: item
+      };
+    },
+
+    itemAdded: function (item) {
+      return {
+        type: actionTypes.ADDED,
+        payload: item
       };
     },
 
@@ -208,6 +234,7 @@ export function getActionTypes(namespace) {
     GET: `${namespace}_GET`,
     SET: `${namespace}_SET`,
     ADD: `${namespace}_ADD`,
+    ADDED: `${namespace}_ADDED`,
     REMOVE: `${namespace}_REMOVE`,
     REMOVED: `${namespace}_REMOVED`,
     EDIT: `${namespace}_EDIT`,
