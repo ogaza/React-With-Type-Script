@@ -1,10 +1,11 @@
 import { call, delay, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
-import { ItemActions, ItemListsActions } from '../';
+import { ItemActions, ItemListsActions, itemListActionTypes } from '../';
 import { getActionTypes } from '../../models/creators';
 
-const itemListsActionTypes = getActionTypes('ITEM_LIST');
+// const itemListsActionTypes = getActionTypes('ITEM_LIST');
+const itemActionTypes = getActionTypes('ITEM');
 
-function* edit(action) {
+function* editItemList(action) {
   try {
     const {
       payload: { item }
@@ -16,7 +17,7 @@ function* edit(action) {
   }
 }
 
-function* edited(action) {
+function* itemListEdited(action) {
   try {
     const {
       payload: {
@@ -50,8 +51,32 @@ function* deselect(action) {
   }
 }
 
+function* itemAdded() {
+  const itemsLists = yield select((state) => state.itemsLists);
+  const { collection: itemsListsCollection } = itemsLists;
+  const { id: selectedListId } = itemsListsCollection.find((x) => x.selected) || {};
+
+  console.log(itemsLists);
+
+  if (selectedListId) {
+    yield put(ItemActions.getItems({ listId: selectedListId }));
+  }
+}
+
+function* itemListAdded(action) {
+  const {
+    payload: { newItem }
+  } = action;
+
+  console.log('saga', newItem);
+
+  yield put(ItemListsActions.editItem({ ...newItem, selected: true }));
+}
+
 export default function* itemListsCustomSaga() {
-  yield takeLatest(itemListsActionTypes.EDIT, edit);
-  yield takeLatest(itemListsActionTypes.EDITED, edited);
+  yield takeLatest(itemListActionTypes.EDIT, editItemList);
+  yield takeLatest(itemListActionTypes.EDITED, itemListEdited);
+  yield takeLatest(itemActionTypes.ADDED, itemAdded);
+  yield takeLatest(itemListActionTypes.ADDED, itemListAdded);
   yield takeLatest('DESELECT', deselect);
 }
