@@ -28,7 +28,33 @@ function* remove(action) {
     const {
       payload: { id }
     } = action;
+
     yield call(api.delete, id);
+  } catch (e) {
+    yield put(ItemListsActions.operationFailure(e.message));
+  }
+}
+
+function* removed(action) {
+  try {
+    const {
+      payload: { id }
+    } = action;
+
+    const itemsLists = yield select((state) => state.itemsLists);
+    const { collection: itemsListsCollection } = itemsLists;
+
+    const [firstList] = itemsListsCollection;
+
+    console.log(itemsListsCollection);
+    console.log('first list: ', firstList);
+
+    if (!!firstList) {
+      yield put(ItemListsActions.editItem({ ...firstList, selected: true }));
+      return;
+    }
+
+    yield put(ItemListsActions.addItem({}));
   } catch (e) {
     yield put(ItemListsActions.operationFailure(e.message));
   }
@@ -38,6 +64,7 @@ function* itemListsSaga() {
   yield takeLatest(itemListsActionTypes.GET, get);
   yield takeLatest(itemListsActionTypes.ADD, add);
   yield takeEvery(itemListsActionTypes.REMOVE, remove);
+  yield takeEvery(itemListsActionTypes.REMOVED, removed);
 }
 
 export default itemListsSaga;
