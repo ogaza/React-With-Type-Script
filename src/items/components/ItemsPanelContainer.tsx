@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ItemActions, ItemListsActions } from '../';
+import WithClickIndication from '../../components/clickIndication';
 import { ItemList, ItemListPlaceholder, WithPlaceholder } from '../../components/ItemList';
 import { ListSelector } from '../../components/ListSelector';
 import { IAppState } from '../../store/state';

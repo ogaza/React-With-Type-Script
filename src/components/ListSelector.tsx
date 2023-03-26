@@ -1,4 +1,5 @@
 import * as React from 'react';
+import WithClickIndication, { ClickWrapper } from './clickIndication';
 import './ListSelector.scss';
 
 export function ListSelector({
@@ -11,21 +12,38 @@ export function ListSelector({
   return (
     <div className="list-selector">
       {elements.map(({ id, selected, state }) => {
+        const enabled = state !== 'LOADING';
+
+        // return (
+        //   <ListButton
+        //     key={id}
+        //     onClick={onSelected}
+        //     onClose={onCloseClick}
+        //     closeButtonEnabled={selected}
+        //     id={id}
+        //     selected={selected}
+        //     enabled={enabled}
+        //   />
+        // );
         return (
-          <ListButton
+          <ListButtonWithIndication
             key={id}
             onClick={onSelected}
             onClose={onCloseClick}
             closeButtonEnabled={selected}
-            {...{ id, selected }}
-            enabled={state !== 'LOADING'}
+            id={id}
+            selected={selected}
+            enabled={enabled}
           />
         );
       })}
-      <AddListButton enabled={addButtonEnabled} onClick={onAddButtonClick} />
+      <AddListButtonWithIndication enabled={addButtonEnabled} onClick={onAddButtonClick} />
+      {/* <AddListButton enabled={addButtonEnabled} onClick={onAddButtonClick} /> */}
     </div>
   );
 }
+
+const ListButtonWithIndication = ClickWrapper(ListButton, 'custom');
 
 export function ListButton({ id, selected, onClick, onClose, enabled, closeButtonEnabled }) {
   const cssClass = `list-selector__item ${selected ? 'list-selector__item--selected' : ''} ${
@@ -33,14 +51,14 @@ export function ListButton({ id, selected, onClick, onClose, enabled, closeButto
   }`;
 
   return (
-    <span role="button" onClick={handleClick} className={cssClass}>
+    <div role="button" onClick={handleClick} className={cssClass}>
       {id}
       {closeButtonEnabled && (
         <span className="list-selector__close" onClick={handleClose}>
           +
         </span>
       )}
-    </span>
+    </div>
   );
 
   function handleClick() {
@@ -53,13 +71,15 @@ export function ListButton({ id, selected, onClick, onClose, enabled, closeButto
   }
 }
 
+const AddListButtonWithIndication = ClickWrapper(AddListButton, 'custom');
+
 export function AddListButton({ onClick = () => {}, enabled = true }) {
   const cssClass = `add-list-button ${enabled ? '' : 'add-list-button--disabled'}`;
 
   return (
-    <span role="button" onClick={handleClick} className={cssClass}>
+    <div role="button" onClick={handleClick} className={cssClass}>
       +
-    </span>
+    </div>
   );
 
   function handleClick() {
