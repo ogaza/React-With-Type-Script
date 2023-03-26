@@ -8,7 +8,7 @@
   &__item {
     border-radius: 0.5rem;
     padding: 0.5rem 0;
-    position: relative;
+    // position: relative;
 
     flex-basis: 6rem;
 
@@ -60,5 +60,22 @@
   &--disabled {
     background-color: var(--app-bg-color);
     color: var(--button-disabled);
+  }
+}
+
+.add-list-button--with-click-indicator {
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 6rem;
+}
+
+.list-selector__item--with-react-click-indicator {
+  width: 6rem;
+
+  & .list-selector__item {
+    position: relative;
+    overflow: hidden;
   }
 }

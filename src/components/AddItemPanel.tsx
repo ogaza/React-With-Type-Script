@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ItemTail } from './ItemTail';
+import { ReactClickIndicator } from './clickIndication';
 import './AddItemPanel.scss';
 
 export function AddItemPanel({ onSubmit, enabled }) {
@@ -16,7 +17,7 @@ export function AddItemPanel({ onSubmit, enabled }) {
       <div className="items-container">
         {items.map((item) => {
           return (
-            <ItemTail
+            <ItemTailWithReactClickIndicator
               key={item.id}
               id={item.id}
               text={item.text}
@@ -29,3 +30,8 @@ export function AddItemPanel({ onSubmit, enabled }) {
     </section>
   );
 }
+
+const ItemTailWithReactClickIndicator = ReactClickIndicator(
+  ItemTail,
+  'item-tail--with-click-indicator'
+);

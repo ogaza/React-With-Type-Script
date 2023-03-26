@@ -22,3 +22,23 @@
   height: 1px;
   background-color: var(--divider-bg-color);
 }
+
+.item-tail--with-click-indicator {
+  width: 9rem;
+  height: 9.5rem;
+
+  & .item-tail {
+    position: relative;
+    overflow: hidden;
+  }
+
+  & .react-click-indicator__circle {
+    width: 9rem;
+    height: 9rem;
+
+    &--disabled {
+      width: 0;
+      height: 0;
+    }
+  }
+}
