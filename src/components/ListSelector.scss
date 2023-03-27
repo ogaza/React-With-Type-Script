@@ -32,14 +32,24 @@
     justify-content: center;
     align-items: center;
 
-    width: 0.5rem;
-    height: 0.5rem;
+    border: solid 1px var(--divider-bg-color);
+    border-radius: 50%;
+    color: var(--divider-bg-color);
+
+    width: 1.5rem;
+    height: 1.5rem;
 
     position: absolute;
-    right: 1rem;
-    top: calc(50% - 1.414 * 0.25rem / 2);
 
     transform: rotate(45deg);
+
+    &--with-react-close-indicator {
+      position: static;
+
+      & .react-click-indicator {
+        border-radius: 50%;
+      }
+    }
   }
 }
 
@@ -60,22 +70,5 @@
   &--disabled {
     background-color: var(--app-bg-color);
     color: var(--button-disabled);
-  }
-}
-
-.add-list-button--with-click-indicator {
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12),
-    0 1px 3px 0 rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  width: 6rem;
-}
-
-.list-selector__item--with-react-click-indicator {
-  width: 6rem;
-
-  & .list-selector__item {
-    position: relative;
-    overflow: hidden;
   }
 }

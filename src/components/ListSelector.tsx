@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { ClickIndicator, ReactClickIndicator } from './clickIndication';
+import { WithSimpleClickIndicator } from './clickIndication';
 import './ListSelector.scss';
 
-const ListButtonWithReactClickIndicator = ReactClickIndicator(
+const ListButtonWithClickIndicator = WithSimpleClickIndicator(
   ListButton,
-  'list-selector__item--with-react-click-indicator'
+  'list-selector__item--with-simple-click-indicator'
 );
 
 export function ListSelector({
@@ -20,7 +20,7 @@ export function ListSelector({
         const enabled = state !== 'LOADING';
 
         return (
-          <ListButtonWithReactClickIndicator
+          <ListButtonWithClickIndicator
             key={id}
             onClick={onSelected}
             onClose={onCloseClick}
@@ -53,10 +53,8 @@ export function ListButton({
     <div role="button" onClick={handleClick} className={cssClass}>
       {id}
       {clickIndicator}
-      {closeButtonEnabled && (
-        <span className="list-selector__close" onClick={handleClose}>
-          +
-        </span>
+      {closeButtonEnabled && closeButtonEnabled && (
+        <ButtonCloseWithReactClickIndicator id={id} enabled={enabled} onClick={handleClose} />
       )}
     </div>
   );
@@ -71,9 +69,24 @@ export function ListButton({
   }
 }
 
-const AddListButtonWithIndication = ClickIndicator(
+const ButtonCloseWithReactClickIndicator = WithSimpleClickIndicator(
+  ListButtonClose,
+  'list-selector__close--with-simple-close-indicator'
+);
+
+function ListButtonClose({ onClick }) {
+  return (
+    <div className="list-selector__close" onClick={onClick}>
+      <span>
+        <span>+</span>
+      </span>
+    </div>
+  );
+}
+
+const AddListButtonWithIndication = WithSimpleClickIndicator(
   AddListButton,
-  'add-list-button--with-click-indicator'
+  'add-list-button--with-simple-click-indicator'
 );
 
 export function AddListButton({ onClick = () => {}, enabled = true }) {
@@ -81,7 +94,7 @@ export function AddListButton({ onClick = () => {}, enabled = true }) {
 
   return (
     <div role="button" onClick={handleClick} className={cssClass}>
-      +
+      <span>+</span>
     </div>
   );
 

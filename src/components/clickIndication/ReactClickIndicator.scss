@@ -19,6 +19,9 @@
     position: absolute;
     position: relative;
 
+    width: 7rem;
+    height: 7rem;
+
     transform: translate(-50%, -50%);
 
     transition-duration: 0.2s;
@@ -26,6 +29,123 @@
     transition-timing-function: cubic-bezier(0, 0.94, 0, 1.02);
 
     &--disabled {
+      width: 0;
+      height: 0;
+    }
+  }
+}
+
+.list-selector__close--with-simple-close-indicator {
+  position: absolute;
+  right: calc(1.5rem + 4px);
+  top: 2px;
+
+  .list-selector__close {
+    box-sizing: content-box;
+
+    &:active::after {
+      width: 1.5rem;
+      height: 1.5rem;
+
+      transition-duration: 0.2s;
+      transition-property: opacity, width, height;
+      // transition-timing-function: cubic-bezier(0, 0.94, 0, 1.02);
+      transition-timing-function: ease-in;
+    }
+
+    &::after {
+      background-color: var(--button-clicked-before-bg);
+      border-radius: 50%;
+      content: '';
+      display: inline-block;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      width: 0;
+      height: 0;
+    }
+  }
+}
+
+.add-list-button--with-simple-click-indicator {
+  & .add-list-button {
+    width: 6rem;
+    overflow: hidden;
+  }
+}
+
+.add-list-button--with-simple-click-indicator {
+  .add-list-button {
+    &:active::after {
+      width: 7rem;
+      height: 7rem;
+
+      transition-duration: 0.2s;
+      transition-property: opacity, width, height;
+      // transition-timing-function: cubic-bezier(0, 0.94, 0, 1.02);
+      transition-timing-function: ease-in;
+    }
+
+    &::after {
+      background-color: var(--button-clicked-before-bg);
+      border-radius: 50%;
+      content: '';
+      display: inline-block;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      width: 0;
+      height: 0;
+    }
+  }
+}
+
+.list-selector__item--with-simple-click-indicator {
+  & .list-selector__item {
+    overflow: hidden;
+    position: relative;
+    width: 6rem;
+  }
+}
+
+parent:active:not(:has(:active)) {
+  color: red;
+}
+
+.list-selector__item--with-simple-click-indicator {
+  & .list-selector__item {
+    &:active::after {
+      transition-duration: 0.2s;
+      transition-property: opacity, width, height;
+      // transition-timing-function: cubic-bezier(0, 0.94, 0, 1.02);
+      transition-timing-function: ease-in;
+    }
+
+    &:active:not(:has(:active))::after {
+      width: 7rem;
+      height: 7rem;
+    }
+
+    &::after {
+      background-color: var(--button-clicked-before-bg);
+      border-radius: 50%;
+      content: '';
+      display: inline-block;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
       width: 0;
       height: 0;
     }
