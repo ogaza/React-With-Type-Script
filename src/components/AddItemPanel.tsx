@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ItemTail } from './ItemTail';
-import { ReactClickIndicator } from './clickIndication';
+import { ReactClickIndicator, WithSimpleClickIndicator } from './clickIndication';
 import './AddItemPanel.scss';
 
 export function AddItemPanel({ onSubmit, enabled }) {
@@ -31,7 +31,7 @@ export function AddItemPanel({ onSubmit, enabled }) {
   );
 }
 
-const ItemTailWithReactClickIndicator = ReactClickIndicator(
+const ItemTailWithReactClickIndicator = WithSimpleClickIndicator(
   ItemTail,
-  'item-tail--with-click-indicator'
+  'item-tail--with-simple-click-indicator'
 );
