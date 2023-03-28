@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useRef, useState } from 'react';
-import { compose } from 'redux';
 import './ReactClickIndicator.scss';
 
 export function ReactClickIndicator(Component, additionalCssClass = '') {
@@ -9,8 +8,6 @@ export function ReactClickIndicator(Component, additionalCssClass = '') {
     const [position, setPosition] = useState([0, 0]);
     const clickIndication = ClickIndicator({ isShown: showIndicator, position: position });
     const wrapperRef = useRef(null);
-
-    const NewComponent = WithIndicator(Component, clickIndication);
 
     return (
       <div
@@ -23,7 +20,6 @@ export function ReactClickIndicator(Component, additionalCssClass = '') {
         ref={wrapperRef}
       >
         <Component {...props} clickIndicator={clickIndication} />
-        {/* <NewComponent {...props} /> */}
       </div>
     );
 
