@@ -2,6 +2,12 @@ import * as React from 'react';
 import { useRef } from 'react';
 import './ClickIndicator.scss';
 
+/**
+ * this component is not used
+ * click indication can be done simplier with
+ * just css defined for a component
+ * wrapped with some div for example
+ */
 export function ClickIndicator(WrappedComponent, additionalCssClass = '') {
   return function (props) {
     const wrapperRef = useRef(null);

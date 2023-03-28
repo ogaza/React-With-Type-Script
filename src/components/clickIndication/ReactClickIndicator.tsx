@@ -2,6 +2,12 @@ import * as React from 'react';
 import { useRef, useState } from 'react';
 import './ReactClickIndicator.scss';
 
+/**
+ * this component is not used
+ * click indication can be done simplier with
+ * just css defined for a component
+ * wrapped with some div for example
+ */
 export function ReactClickIndicator(Component, additionalCssClass = '') {
   return function (props) {
     const [showIndicator, setShowIndicator] = useState(false);
