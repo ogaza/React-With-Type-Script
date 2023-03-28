@@ -23,9 +23,9 @@ export function ItemList({ items: { collection, state }, onDelete }) {
   // }
 }
 
-function ItemListElement({ id, text, created, onDeleteClick }) {
+function ItemListElement({ id, text, state, created, onDeleteClick }) {
   const date = created ? new Date(created).toISOString() : '';
-  const disabled = id <= 0;
+  const disabled = state === 'LOADING';
 
   const cssClass = disabled ? 'item--disabled' : '';
 

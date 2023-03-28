@@ -64,7 +64,8 @@ export function createReducer(namespace, initialState) {
 
       const placeholder = {
         id: 0,
-        ...item
+        ...item,
+        state: 'LOADING'
       };
       const newState = [...state.collection, placeholder];
 
@@ -125,7 +126,8 @@ export function createReducer(namespace, initialState) {
       const itemToRemove = collection.find((x) => x.id === id);
       const idx = collection.findIndex((x) => x.id === id);
 
-      collection.splice(idx, 1, { ...itemToRemove, id: -id, state: 'LOADING' });
+      collection.splice(idx, 1, { ...itemToRemove, state: 'LOADING' });
+      // collection.splice(idx, 1, { ...itemToRemove, id: -id, state: 'LOADING' });
       const newCollection = collection;
 
       return {
