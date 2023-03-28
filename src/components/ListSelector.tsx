@@ -51,7 +51,7 @@ export function ListButton({
 
   return (
     <div role="button" onClick={handleClick} className={cssClass}>
-      {id}
+      {id !== 0 ? id : '...'}
       {clickIndicator}
       {closeButtonEnabled && closeButtonEnabled && (
         <ButtonCloseWithReactClickIndicator id={id} enabled={enabled} onClick={handleClose} />

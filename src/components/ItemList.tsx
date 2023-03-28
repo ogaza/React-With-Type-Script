@@ -2,39 +2,29 @@ import * as React from 'react';
 import './ItemList.scss';
 
 export function ItemList({ items: { collection, state }, onDelete }) {
+  console.log(collection, state);
+
   return (
     <section className="item-list">
       <h3>Items list</h3>
-      {collection.map((x) => (
-        <ItemListElement key={x.id} {...x} onDeleteClick={onDelete} />
-      ))}
+      {collection.map((x) => {
+        const disabled = x.state === 'LOADING';
+        return <ItemListElement key={x.id} {...x} enabled={!disabled} onDeleteClick={onDelete} />;
+      })}
     </section>
   );
-
-  // function handleDeleteClick(e) {
-  //   const {
-  //     target: { dataset: { id: stingId = undefined } = {} }
-  //   } = e;
-
-  //   const id = Number(stingId);
-  //   if (!id) return;
-
-  //   onDelete(id);
-  // }
 }
 
-function ItemListElement({ id, text, state, created, onDeleteClick }) {
+function ItemListElement({ id, text, enabled, created, onDeleteClick }) {
   const date = created ? new Date(created).toISOString() : '';
-  const disabled = state === 'LOADING';
-
-  const cssClass = disabled ? 'item--disabled' : '';
+  const cssClass = !enabled ? 'item--disabled' : '';
 
   return (
     <div className={`item ${cssClass}`}>
       <span className="item__text">{text}</span>
       <span className="item__created">{date}</span>
       <span className="item__button">
-        <button data-id={id} onClick={handleDeleteClick} disabled={disabled}>
+        <button data-id={id} onClick={handleDeleteClick} disabled={!enabled}>
           delete
         </button>
       </span>
