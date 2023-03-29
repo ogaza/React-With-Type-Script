@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ItemTail } from './ItemTail';
-import { WithSimpleClickIndicator } from './clickIndication';
+import { WithSimpleClickIndicator, WithSimpleClickIndicator2 } from './clickIndication';
 import './AddItemPanel.scss';
 
 export function AddItemPanel({ onSubmit, enabled }) {
@@ -16,15 +16,15 @@ export function AddItemPanel({ onSubmit, enabled }) {
       <h3>Items</h3>
       <div className="items-container">
         {items.map((item) => {
-          return (
-            <ItemTailWithReactClickIndicator
+          return item.id === 4 ? (
+            <ItemTailWithReactClickIndicator2
               key={item.id}
               id={item.id}
               text={item.text}
               onClick={onSubmit}
               enabled={enabled}
             />
-          );
+          ) : null;
         })}
       </div>
     </section>
@@ -34,4 +34,9 @@ export function AddItemPanel({ onSubmit, enabled }) {
 const ItemTailWithReactClickIndicator = WithSimpleClickIndicator(
   ItemTail,
   'item-tail--with-simple-click-indicator'
+);
+
+const ItemTailWithReactClickIndicator2 = WithSimpleClickIndicator2(
+  ItemTail,
+  'item-tail--with-simple-click-indicator-2'
 );

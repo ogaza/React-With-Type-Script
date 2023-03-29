@@ -5,7 +5,12 @@ export function ItemTail({ id, text, onClick, enabled, clickIndicator = null }) 
   const cssClass = enabled ? '' : 'item-tail--disabled';
 
   return (
-    <figure className={`item-tail ${cssClass}`} role="button" onClick={handleClick}>
+    <figure
+      className={`item-tail ${cssClass}`}
+      role="button"
+      onClick={handleClick}
+      onAnimationEnd={handleEvent}
+    >
       <img className="item-tail__picture" src="" />
       <div className="divider"></div>
       <figcaption className="item-tail__caption">{text}</figcaption>
@@ -15,5 +20,9 @@ export function ItemTail({ id, text, onClick, enabled, clickIndicator = null }) 
 
   function handleClick() {
     enabled && onClick(text);
+  }
+
+  function handleEvent(e) {
+    console.log('\n------------------\n', e.type, '\n------------------\n');
   }
 }

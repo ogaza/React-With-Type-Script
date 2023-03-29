@@ -93,3 +93,78 @@ export function WithSimpleClickIndicator(Component, additionalCssClass = '') {
     );
   };
 }
+
+export function WithSimpleClickIndicator2(Component, additionalCssClass = '') {
+  return function (props) {
+    const wrapperRef = useRef(null);
+
+    const css = `simple-click-indicator__container ${additionalCssClass}`;
+    // const css = `simple-click-indicator__container ${isSth ? 'mystyle' : ''} ${additionalCssClass}`;
+
+    return (
+      <div className={css} ref={wrapperRef} onMouseDown={handleMouseDown} onClick={handleClick}>
+        <Component {...props} />
+      </div>
+    );
+
+    function handleClick(e) {
+      const ripple = wrapperRef.current.getElementsByClassName('ripple')[0];
+
+      if (ripple) {
+        ripple.remove();
+      }
+
+      const x = e.clientX;
+      const y = e.clientY;
+      const boundingClientRect = wrapperRef.current.getBoundingClientRect();
+
+      const circle = document.createElement('span');
+      circle.classList.add('ripple');
+
+      wrapperRef.current.style.setProperty('--top', `${y - boundingClientRect.top}px`);
+      wrapperRef.current.style.setProperty('--left', `${x - boundingClientRect.left}px`);
+
+      const child = wrapperRef.current.children[0];
+
+      child.appendChild(circle);
+    }
+
+    function handleMouseDown(e) {
+      const x = e.clientX;
+      const y = e.clientY;
+      const boundingClientRect = wrapperRef.current.getBoundingClientRect();
+      wrapperRef.current.style.setProperty('--top', `${y - boundingClientRect.top}px`);
+      wrapperRef.current.style.setProperty('--left', `${x - boundingClientRect.left}px`);
+    }
+
+    function handleEvent(e) {
+      // const x = e.clientX;
+      // const y = e.clientY;
+      // const boundingClientRect = wrapperRef.current.getBoundingClientRect();
+      // wrapperRef.current.style.top = `${y - boundingClientRect.top}px`;
+      // wrapperRef.current.style.left = `${x - boundingClientRect.left}px`;
+      // wrapperRef.current.style.setProperty('--top', `${y - boundingClientRect.top}px`);
+      // wrapperRef.current.style.setProperty('--left', `${x - boundingClientRect.left}px`);
+      // const tile = wrapperRef.current.getElementsByClassName('item-tile');
+      // const child = wrapperRef.current.children[0];
+      // console.log(tile);
+      // console.log('\n------------------\n', e.type, '\n------------------\n');
+      // if (e.type === 'mousedown') {
+      //   // console.log('\n------------------\n', 'MOUSEDOWN', '\n------------------\n');
+      //   // console.log('\n------------------\n', e.type, '\n------------------\n', e);
+      //   // wrapperRef.current.classList.add('mystyle');
+      //   // setIsSth(true);
+      // }
+      // if (e.type === 'animationend') {
+      //   // console.log('\n------------------\n', e.type, '\n------------------\n', e);
+      //   // wrapperRef.current.classList.remove('mystyle');
+      //   // setIsSth(false);
+      // }
+      // if (e.type === 'click') {
+      //   // console.log('\n------------------\n', e.type, '\n------------------\n', e);
+      //   // wrapperRef.current.classList.remove('mystyle');
+      //   // setIsSth(false);
+      // }
+    }
+  };
+}

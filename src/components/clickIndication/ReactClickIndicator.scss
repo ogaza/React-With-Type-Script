@@ -154,15 +154,15 @@
     overflow: hidden;
 
     &:active::after {
-      transition-duration: 0.2s;
+      transition-duration: 0.3s;
       transition-property: opacity, width, height;
-      // transition-timing-function: cubic-bezier(0, 0.94, 0, 1.02);
-      transition-timing-function: ease-in;
+      transition-timing-function: cubic-bezier(0, 0.94, 0, 1.02);
+      // transition-timing-function: ease-in;
     }
 
     &:not(.item-tail--disabled):active::after {
-      width: 13rem;
-      height: 13rem;
+      width: 15rem;
+      height: 15rem;
     }
 
     &::after {
@@ -180,5 +180,96 @@
       width: 0;
       height: 0;
     }
+  }
+}
+
+@keyframes slidein {
+  0% {
+    width: 0;
+    height: 0;
+    // left: 0;
+  }
+  30% {
+    width: 15rem;
+    height: 15rem;
+  }
+  68%,
+  72% {
+    width: 15rem;
+    height: 15rem;
+  }
+  // 100% {
+  //   width: 0;
+  //   height: 0;
+  // }
+  // from {
+  //   transform: translateX(0%);
+  // }
+
+  // to {
+  //   transform: translateX(100%);
+  // }
+}
+
+.item-tail--with-simple-click-indicator-2 {
+  & .item-tail {
+    position: relative;
+    overflow: hidden;
+
+    &:active::after {
+      transition-duration: 0.3s;
+      transition-property: opacity, width, height;
+      transition-timing-function: cubic-bezier(0, 0.94, 0, 1.02);
+      // transition-timing-function: ease-in;
+    }
+
+    &:not(.item-tail--disabled):active::after {
+      width: 15rem;
+      height: 15rem;
+    }
+
+    &::after {
+      background-color: var(--button-clicked-before-bg);
+      border-radius: 50%;
+      content: '';
+      display: inline-block;
+
+      position: absolute;
+      top: var(--top);
+      left: var(--left);
+
+      transform: translate(-50%, -50%);
+
+      width: 0;
+      height: 0;
+    }
+  }
+}
+
+.item-tail--with-simple-click-indicator-2 {
+  & .item-tail {
+    position: relative;
+    overflow: hidden;
+  }
+}
+
+span.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 500ms linear;
+  background-color: var(--button-clicked-before-bg);
+
+  top: var(--top);
+  left: var(--left);
+
+  width: 10px;
+  height: 10px;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
   }
 }
