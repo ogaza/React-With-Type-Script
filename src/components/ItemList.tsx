@@ -50,9 +50,9 @@ export function ItemListPlaceholder() {
 function ItemListElementPlaceholder() {
   return (
     <div className="item--placeholder">
-      <span className="item__text">xxx</span>
-      <span className="item__created">xxx</span>
-      <span className="item__button">xxx</span>
+      <span className="item__text"></span>
+      <span className="item__created"></span>
+      <span className="item__button"></span>
     </div>
   );
 }
