@@ -1,8 +1,8 @@
 import {
   ReactClickIndicator,
   WithSimpleClickIndicator,
-  WithSimpleClickIndicator2
+  WithRipleClickIndicator
 } from './ReactClickIndicator';
 import { ClickIndicator } from './ClickIndicator';
 
-export { ClickIndicator, ReactClickIndicator, WithSimpleClickIndicator, WithSimpleClickIndicator2 };
+export { ClickIndicator, ReactClickIndicator, WithSimpleClickIndicator, WithRipleClickIndicator };

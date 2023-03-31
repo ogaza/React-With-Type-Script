@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ItemTail } from './ItemTail';
-import { WithSimpleClickIndicator, WithSimpleClickIndicator2 } from './clickIndication';
+import { WithSimpleClickIndicator, WithRipleClickIndicator } from './clickIndication';
 import './AddItemPanel.scss';
 
 export function AddItemPanel({ onSubmit, enabled }) {
@@ -17,7 +17,7 @@ export function AddItemPanel({ onSubmit, enabled }) {
       <div className="items-container">
         {items.map((item) => {
           return item.id === 4 ? (
-            <ItemTailWithReactClickIndicator2
+            <ItemTailWithRippleClickIndicator
               key={item.id}
               id={item.id}
               text={item.text}
@@ -36,7 +36,7 @@ const ItemTailWithReactClickIndicator = WithSimpleClickIndicator(
   'item-tail--with-simple-click-indicator'
 );
 
-const ItemTailWithReactClickIndicator2 = WithSimpleClickIndicator2(
+const ItemTailWithRippleClickIndicator = WithRipleClickIndicator(
   ItemTail,
-  'item-tail--with-simple-click-indicator-2'
+  'item-tail--with-ripple-click-indicator'
 );
