@@ -6,6 +6,10 @@
   flex-flow: column nowrap;
   gap: 0.625rem;
 
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+
   &__left {
   }
   &__right {

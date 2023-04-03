@@ -2,3 +2,8 @@
   color: var(--app-text-color);
   margin: 0;
 }
+
+.main-area {
+  position: relative;
+  height: calc(100vh - 58px);
+}

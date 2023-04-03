@@ -2,4 +2,7 @@
   background-color: var(--status-panel-bg-color);
   color: var(--app-text-color-lightest);
   padding: 0.625rem 1.125rem;
+
+  display: grid;
+  grid-template-columns: 5fr 1fr;
 }
