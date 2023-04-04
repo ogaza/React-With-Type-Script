@@ -105,14 +105,21 @@ export function WithRipleClickIndicator(Component, additionalCssClass = '') {
         className={css}
         ref={wrapperRef}
         onMouseDown={handleMouseDown}
+        onMouseUp={() => {
+          wrapperRef.current.classList.remove('active');
+        }}
         onTouchStart={handleTouchStart}
+        onTouchEnd={(e) => {
+          wrapperRef.current.classList.remove('active');
+          console.log('touch end', e);
+        }}
         onClick={handleClick}
       >
         <Component {...props} />
       </div>
     );
 
-    function handleClick() {
+    function handleClick(e) {
       const ripple = wrapperRef.current.getElementsByClassName('ripple')[0];
 
       console.log(ripple);
@@ -127,6 +134,8 @@ export function WithRipleClickIndicator(Component, additionalCssClass = '') {
       const child = wrapperRef.current.children[0];
 
       child.appendChild(circle);
+
+      e.preventDefault();
     }
 
     function handleMouseDown(e) {
@@ -135,6 +144,8 @@ export function WithRipleClickIndicator(Component, additionalCssClass = '') {
       const boundingClientRect = wrapperRef.current.getBoundingClientRect();
       wrapperRef.current.style.setProperty('--top', `${y - boundingClientRect.top}px`);
       wrapperRef.current.style.setProperty('--left', `${x - boundingClientRect.left}px`);
+
+      wrapperRef.current.classList.add('active');
     }
 
     function handleTouchStart(e) {
@@ -144,6 +155,8 @@ export function WithRipleClickIndicator(Component, additionalCssClass = '') {
 
       wrapperRef.current.style.setProperty('--top', `${y - boundingClientRect.top}px`);
       wrapperRef.current.style.setProperty('--left', `${x - boundingClientRect.left}px`);
+
+      wrapperRef.current.classList.add('active');
     }
   };
 }

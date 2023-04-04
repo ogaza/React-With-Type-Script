@@ -183,22 +183,28 @@
   }
 }
 
-.item-tail--with-ripple-click-indicator {
-  & .item-tail {
+@mixin pressed-effect(
+  $elementClassName,
+  $circleBgColor,
+  $circleWidth: 5rem,
+  $circleHeight: 5rem,
+  $animationName: tap_ripple_keyframes,
+  $animationDuration: 500ms
+) {
+  &.active :not(.#{$elementClassName}--disabled)::after {
+    width: $circleWidth;
+    height: $circleHeight;
+    animation: $animationName $animationDuration;
+  }
+
+  & .#{$elementClassName} {
     position: relative;
     overflow: hidden;
-
-    &:active::after {
-    }
-
-    &:not(.item-tail--disabled):active::after {
-      width: 5rem;
-      height: 5rem;
-      animation: tap_ripple_keyframes 500ms;
-    }
+    // cursor default to disable default blue overlay that chrome displays on tap
+    cursor: default;
 
     &::after {
-      background-color: var(--button-clicked-before-bg);
+      background-color: $circleBgColor;
       border-radius: 50%;
       content: '';
       display: inline-block;
@@ -211,19 +217,38 @@
       width: 0;
       height: 0;
     }
-
-    .ripple {
-      border-radius: 50%;
-      background-color: var(--button-clicked-before-bg);
-
-      position: absolute;
-      top: var(--top);
-      left: var(--left);
-      transform: translate(-50%, -50%);
-
-      animation: clicked_ripple_keyframes 600ms;
-    }
   }
+}
+
+@mixin ripple-effect(
+  $elementClassName,
+  $bgColor,
+  $animationName: clicked_ripple_keyframes,
+  $animationDuration: 600ms
+) {
+  & .#{$elementClassName} {
+    position: relative;
+    overflow: hidden;
+    // cursor default to disable default blue overlay that chrome displays on tap
+    cursor: default;
+  }
+
+  .ripple {
+    border-radius: 50%;
+    background-color: $bgColor;
+
+    position: absolute;
+    top: var(--top);
+    left: var(--left);
+    transform: translate(-50%, -50%);
+
+    animation: $animationName $animationDuration;
+  }
+}
+
+.item-tail--with-ripple-click-indicator {
+  @include pressed-effect(item-tail, var(--button-clicked-before-bg));
+  @include ripple-effect(item-tail, var(--button-clicked-before-bg));
 }
 
 @keyframes tap_ripple_keyframes {
