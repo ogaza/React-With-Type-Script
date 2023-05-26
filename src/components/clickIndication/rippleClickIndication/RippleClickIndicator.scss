@@ -1,0 +1,84 @@
+@mixin pressed-effect(
+  $elementClassName,
+  $circleBgColor,
+  $circleWidth: 5rem,
+  $circleHeight: 5rem,
+  $animationName: tap_ripple_keyframes,
+  $animationDuration: 500ms
+) {
+  &.active :not(.#{$elementClassName}--disabled)::after {
+    width: $circleWidth;
+    height: $circleHeight;
+    animation: $animationName $animationDuration;
+  }
+
+  & .#{$elementClassName} {
+    position: relative;
+    overflow: hidden;
+    // cursor default to disable default blue overlay that chrome displays on tap
+    cursor: default;
+
+    &::after {
+      background-color: $circleBgColor;
+      border-radius: 50%;
+      content: '';
+      display: inline-block;
+
+      position: absolute;
+      top: var(--top);
+      left: var(--left);
+      transform: translate(-50%, -50%);
+
+      width: 0;
+      height: 0;
+    }
+  }
+}
+
+@mixin ripple-effect(
+  $elementClassName,
+  $bgColor,
+  $animationName: clicked_ripple_keyframes,
+  $animationDuration: 600ms
+) {
+  & .#{$elementClassName} {
+    position: relative;
+    overflow: hidden;
+    // cursor default to disable default blue overlay that chrome displays on tap
+    cursor: default;
+  }
+
+  .ripple {
+    border-radius: 50%;
+    background-color: $bgColor;
+
+    position: absolute;
+    top: var(--top);
+    left: var(--left);
+    transform: translate(-50%, -50%);
+
+    animation: $animationName $animationDuration;
+  }
+}
+
+@keyframes tap_ripple_keyframes {
+  0% {
+    width: 0;
+    height: 0;
+  }
+}
+
+@keyframes clicked_ripple_keyframes {
+  0% {
+    opacity: 1;
+    width: 5rem;
+    height: 5rem;
+  }
+  50% {
+    width: 25rem;
+    height: 25rem;
+  }
+  100% {
+    opacity: 0;
+  }
+}

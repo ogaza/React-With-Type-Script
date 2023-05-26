@@ -1,0 +1,36 @@
+.react-click-indicator__container {
+  position: relative;
+}
+
+.react-click-indicator {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  &__circle {
+    background-color: var(--button-clicked-before-bg);
+    border-radius: 50%;
+    content: '';
+    width: 5em;
+    height: 5em;
+    position: absolute;
+    position: relative;
+
+    width: 7rem;
+    height: 7rem;
+
+    transform: translate(-50%, -50%);
+
+    transition-duration: 0.2s;
+    transition-property: opacity, width, height;
+    transition-timing-function: cubic-bezier(0, 0.94, 0, 1.02);
+
+    &--disabled {
+      width: 0;
+      height: 0;
+    }
+  }
+}
