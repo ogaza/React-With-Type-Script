@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { WithSimpleClickIndicator } from './clickIndication';
+import { WithRipleClickIndicator, WithSimpleClickIndicator } from './clickIndication';
 import './ListSelector.scss';
 
 const ListButtonWithClickIndicator = WithSimpleClickIndicator(
@@ -16,6 +16,7 @@ export function ListSelector({
 }) {
   return (
     <div className="list-selector">
+      <AddListButtonWithIndication enabled={addButtonEnabled} onClick={onAddButtonClick} />
       {elements.map(({ id, selected, state }) => {
         const enabled = state !== 'LOADING';
 
@@ -31,7 +32,6 @@ export function ListSelector({
           />
         );
       })}
-      <AddListButtonWithIndication enabled={addButtonEnabled} onClick={onAddButtonClick} />
     </div>
   );
 }
@@ -84,10 +84,14 @@ function ListButtonClose({ onClick }) {
   );
 }
 
-const AddListButtonWithIndication = WithSimpleClickIndicator(
+const AddListButtonWithIndication = WithRipleClickIndicator(
   AddListButton,
-  'add-list-button--with-simple-click-indicator'
+  'add-list-button--with-ripple-click-indicator'
 );
+// const AddListButtonWithIndication = WithSimpleClickIndicator(
+//   AddListButton,
+//   'add-list-button--with-simple-click-indicator'
+// );
 
 export function AddListButton({ onClick = () => {}, enabled = true }) {
   const cssClass = `add-list-button ${enabled ? '' : 'add-list-button--disabled'}`;

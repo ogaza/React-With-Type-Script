@@ -1,4 +1,5 @@
 @import './clickIndication/simpleClickIndicator/SimpleClickIndicator.scss';
+@import './clickIndication/rippleClickIndication/RippleClickIndicator.scss';
 
 .list-selector {
   border-radius: 0.5rem;
@@ -78,17 +79,7 @@
   }
 }
 
-.list-selector__close--with-simple-close-indicator {
-  @include simple-click-indicator(list-selector__close, var(--button-clicked-before-bg));
-
-  position: absolute;
-  right: 4px;
-  top: 4px;
-}
-
-.add-list-button--with-simple-click-indicator {
-  @include simple-click-indicator(add-list-button, var(--button-clicked-before-bg));
-}
+// pressed effects
 .list-selector__item--with-simple-click-indicator {
   @include simple-click-indicator(list-selector__item, var(--button-clicked-before-bg));
 
@@ -99,3 +90,20 @@
     }
   }
 }
+
+.list-selector__close--with-simple-close-indicator {
+  @include simple-click-indicator(list-selector__close, var(--button-clicked-before-bg));
+
+  position: absolute;
+  right: 4px;
+  top: 4px;
+}
+
+.add-list-button--with-ripple-click-indicator {
+  @include pressed-effect(add-list-button, var(--button-clicked-before-bg));
+  @include ripple-effect(add-list-button, var(--button-clicked-before-bg));
+}
+
+// .add-list-button--with-simple-click-indicator {
+//   @include simple-click-indicator(add-list-button, var(--button-clicked-before-bg));
+// }
