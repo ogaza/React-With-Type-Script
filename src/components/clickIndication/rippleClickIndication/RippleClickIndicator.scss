@@ -1,14 +1,13 @@
 @mixin pressed-effect(
   $elementClassName,
   $circleBgColor,
-  $circleWidth: 5rem,
-  $circleHeight: 5rem,
+  $circleSize: 5rem,
   $animationName: tap_ripple_keyframes,
   $animationDuration: 500ms
 ) {
-  &.active :not(.#{$elementClassName}--disabled)::after {
-    width: $circleWidth;
-    height: $circleHeight;
+  &.active .#{$elementClassName}::after {
+    width: $circleSize;
+    height: $circleSize;
     animation: $animationName $animationDuration;
   }
 

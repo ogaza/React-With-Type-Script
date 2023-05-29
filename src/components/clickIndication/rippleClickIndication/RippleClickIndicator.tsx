@@ -13,14 +13,9 @@ export function WithRipleClickIndicator(Component, additionalCssClass = '') {
         className={css}
         ref={wrapperRef}
         onMouseDown={handleMouseDown}
-        onMouseUp={() => {
-          wrapperRef.current.classList.remove('active');
-        }}
+        onMouseUp={handleMouseUp}
         onTouchStart={handleTouchStart}
-        onTouchEnd={(e) => {
-          wrapperRef.current.classList.remove('active');
-          console.log('touch end', e);
-        }}
+        onTouchEnd={handleTouchEnd}
         onClick={handleClick}
       >
         <Component {...props} />
@@ -28,9 +23,8 @@ export function WithRipleClickIndicator(Component, additionalCssClass = '') {
     );
 
     function handleClick(e) {
+      e.stopPropagation();
       const ripple = wrapperRef.current.getElementsByClassName('ripple')[0];
-
-      console.log(ripple);
 
       if (ripple) {
         ripple.remove();
@@ -42,11 +36,10 @@ export function WithRipleClickIndicator(Component, additionalCssClass = '') {
       const child = wrapperRef.current.children[0];
 
       child.appendChild(circle);
-
-      e.preventDefault();
     }
 
     function handleMouseDown(e) {
+      e.stopPropagation();
       const x = e.clientX;
       const y = e.clientY;
       const boundingClientRect = wrapperRef.current.getBoundingClientRect();
@@ -56,7 +49,13 @@ export function WithRipleClickIndicator(Component, additionalCssClass = '') {
       wrapperRef.current.classList.add('active');
     }
 
+    function handleMouseUp(e) {
+      e.stopPropagation();
+      wrapperRef.current.classList.remove('active');
+    }
+
     function handleTouchStart(e) {
+      e.stopPropagation();
       const x = e.touches[0].clientX;
       const y = e.touches[0].clientY;
       const boundingClientRect = wrapperRef.current.getBoundingClientRect();
@@ -65,6 +64,11 @@ export function WithRipleClickIndicator(Component, additionalCssClass = '') {
       wrapperRef.current.style.setProperty('--left', `${x - boundingClientRect.left}px`);
 
       wrapperRef.current.classList.add('active');
+    }
+
+    function handleTouchEnd(e) {
+      e.stopPropagation();
+      wrapperRef.current.classList.remove('active');
     }
   };
 }
