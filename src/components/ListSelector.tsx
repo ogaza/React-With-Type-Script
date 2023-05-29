@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { WithRipleClickIndicator, WithSimpleClickIndicator } from './clickIndication';
+import { WithRipleClickIndicator } from './clickIndication';
 import './ListSelector.scss';
 
-const ListButtonWithClickIndicator = WithSimpleClickIndicator(
+const ListButtonWithClickIndicator = WithRipleClickIndicator(
   ListButton,
-  'list-selector__item--with-simple-click-indicator'
+  'list-selector__item--with-ripple-click-indicator'
 );
 
 export function ListSelector({
@@ -36,15 +36,7 @@ export function ListSelector({
   );
 }
 
-export function ListButton({
-  id,
-  selected,
-  onClick,
-  onClose,
-  enabled,
-  closeButtonEnabled,
-  clickIndicator = null
-}) {
+export function ListButton({ id, selected, onClick, onClose, enabled, closeButtonEnabled }) {
   const cssClass = `list-selector__item ${selected ? 'list-selector__item--selected' : ''} ${
     enabled ? '' : 'list-selector__item--disabled'
   }`;
@@ -52,7 +44,6 @@ export function ListButton({
   return (
     <div role="button" onClick={handleClick} className={cssClass}>
       {id !== 0 ? id : '...'}
-      {clickIndicator}
       {closeButtonEnabled && closeButtonEnabled && (
         <ButtonCloseWithReactClickIndicator id={id} enabled={enabled} onClick={handleClose} />
       )}
@@ -64,14 +55,13 @@ export function ListButton({
   }
 
   function handleClose(e) {
-    e.stopPropagation();
     enabled && onClose(id);
   }
 }
 
-const ButtonCloseWithReactClickIndicator = WithSimpleClickIndicator(
+const ButtonCloseWithReactClickIndicator = WithRipleClickIndicator(
   ListButtonClose,
-  'list-selector__close--with-simple-close-indicator'
+  'list-selector__close--with-ripple-click-indicator'
 );
 
 function ListButtonClose({ onClick }) {
@@ -88,10 +78,6 @@ const AddListButtonWithIndication = WithRipleClickIndicator(
   AddListButton,
   'add-list-button--with-ripple-click-indicator'
 );
-// const AddListButtonWithIndication = WithSimpleClickIndicator(
-//   AddListButton,
-//   'add-list-button--with-simple-click-indicator'
-// );
 
 export function AddListButton({ onClick = () => {}, enabled = true }) {
   const cssClass = `add-list-button ${enabled ? '' : 'add-list-button--disabled'}`;

@@ -1,4 +1,4 @@
-@import './clickIndication/simpleClickIndicator/SimpleClickIndicator.scss';
+// @import './clickIndication/simpleClickIndicator/SimpleClickIndicator.scss';
 @import './clickIndication/rippleClickIndication/RippleClickIndicator.scss';
 
 .list-selector {
@@ -80,19 +80,14 @@
 }
 
 // pressed effects
-.list-selector__item--with-simple-click-indicator {
-  @include simple-click-indicator(list-selector__item, var(--button-clicked-before-bg));
-
-  .list-selector__item {
-    &:active:has(:active)::after {
-      width: 0;
-      height: 0;
-    }
-  }
+.list-selector__item--with-ripple-click-indicator {
+  @include pressed-effect(list-selector__item, var(--button-clicked-before-bg));
+  @include ripple-effect(list-selector__item, var(--button-clicked-before-bg));
 }
 
-.list-selector__close--with-simple-close-indicator {
-  @include simple-click-indicator(list-selector__close, var(--button-clicked-before-bg));
+.list-selector__close--with-ripple-click-indicator {
+  @include pressed-effect(list-selector__close, var(--button-clicked-before-bg), 24px);
+  @include ripple-effect(list-selector__close, var(--button-clicked-before-bg));
 
   position: absolute;
   right: 4px;
@@ -103,7 +98,3 @@
   @include pressed-effect(add-list-button, var(--button-clicked-before-bg));
   @include ripple-effect(add-list-button, var(--button-clicked-before-bg));
 }
-
-// .add-list-button--with-simple-click-indicator {
-//   @include simple-click-indicator(add-list-button, var(--button-clicked-before-bg));
-// }
