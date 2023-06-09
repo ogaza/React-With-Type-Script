@@ -2,11 +2,48 @@ import * as React from 'react';
 import { useRef } from 'react';
 import './RippleClickIndicator.scss';
 
+export function RippleEffect({ additionalCssClass, children }) {
+  const wrapperRef = useRef(null);
+  const css = `ripple-click-indicator__container ${additionalCssClass}`;
+  const {
+    handleClick,
+    handleMouseDown,
+    handleMouseUp,
+    handleMouseLeave,
+    handleTouchStart,
+    handleTouchEnd
+  } = useRippleEventHandlers(wrapperRef);
+
+  return (
+    <div
+      className={css}
+      ref={wrapperRef}
+      onClick={handleClick}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseLeave}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      role="button"
+    >
+      {children}
+    </div>
+  );
+}
+
 export function WithRipleClickIndicator(Component, additionalCssClass = '') {
   return function (props) {
     const wrapperRef = useRef(null);
 
     const css = `ripple-click-indicator__container ${additionalCssClass}`;
+    const {
+      handleClick,
+      handleMouseDown,
+      handleMouseUp,
+      handleMouseLeave,
+      handleTouchStart,
+      handleTouchEnd
+    } = useRippleEventHandlers(wrapperRef);
 
     return (
       <div
@@ -14,6 +51,7 @@ export function WithRipleClickIndicator(Component, additionalCssClass = '') {
         ref={wrapperRef}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
         onClick={handleClick}
@@ -21,54 +59,68 @@ export function WithRipleClickIndicator(Component, additionalCssClass = '') {
         <Component {...props} />
       </div>
     );
+  };
+}
 
-    function handleClick(e) {
-      e.stopPropagation();
-      const ripple = wrapperRef.current.getElementsByClassName('ripple')[0];
+function useRippleEventHandlers(ref) {
+  function handleClick(e) {
+    const ripple = ref.current.getElementsByClassName('ripple')[0];
 
-      if (ripple) {
-        ripple.remove();
-      }
-
-      const circle = document.createElement('span');
-      circle.classList.add('ripple');
-
-      const child = wrapperRef.current.children[0];
-
-      child.appendChild(circle);
+    if (ripple) {
+      ripple.remove();
     }
 
-    function handleMouseDown(e) {
-      e.stopPropagation();
-      const x = e.clientX;
-      const y = e.clientY;
-      const boundingClientRect = wrapperRef.current.getBoundingClientRect();
-      wrapperRef.current.style.setProperty('--top', `${y - boundingClientRect.top}px`);
-      wrapperRef.current.style.setProperty('--left', `${x - boundingClientRect.left}px`);
+    const circle = document.createElement('span');
 
-      wrapperRef.current.classList.add('active');
-    }
+    circle.classList.add('ripple');
 
-    function handleMouseUp(e) {
-      e.stopPropagation();
-      wrapperRef.current.classList.remove('active');
-    }
+    const child = ref.current.children[0];
 
-    function handleTouchStart(e) {
-      e.stopPropagation();
-      const x = e.touches[0].clientX;
-      const y = e.touches[0].clientY;
-      const boundingClientRect = wrapperRef.current.getBoundingClientRect();
+    child.appendChild(circle);
 
-      wrapperRef.current.style.setProperty('--top', `${y - boundingClientRect.top}px`);
-      wrapperRef.current.style.setProperty('--left', `${x - boundingClientRect.left}px`);
+    e.preventDefault();
+  }
 
-      wrapperRef.current.classList.add('active');
-    }
+  function handleMouseDown(e) {
+    const x = e.clientX;
+    const y = e.clientY;
+    const boundingClientRect = ref.current.getBoundingClientRect();
 
-    function handleTouchEnd(e) {
-      e.stopPropagation();
-      wrapperRef.current.classList.remove('active');
-    }
+    ref.current.style.setProperty('--top', `${y - boundingClientRect.top}px`);
+    ref.current.style.setProperty('--left', `${x - boundingClientRect.left}px`);
+
+    ref.current.classList.add('active');
+  }
+
+  function handleMouseUp() {
+    ref.current.classList.remove('active');
+  }
+
+  function handleTouchStart(e) {
+    const x = e.touches[0].clientX;
+    const y = e.touches[0].clientY;
+    const boundingClientRect = ref.current.getBoundingClientRect();
+
+    ref.current.style.setProperty('--top', `${y - boundingClientRect.top}px`);
+    ref.current.style.setProperty('--left', `${x - boundingClientRect.left}px`);
+
+    ref.current.classList.add('active');
+  }
+
+  function handleTouchEnd() {
+    ref.current.classList.remove('active');
+  }
+
+  function handleMouseLeave() {
+    ref.current.classList.remove('active');
+  }
+
+  return {
+    handleClick,
+    handleMouseDown,
+    handleMouseUp,
+    handleTouchStart,
+    handleTouchEnd,
+    handleMouseLeave
   };
 }

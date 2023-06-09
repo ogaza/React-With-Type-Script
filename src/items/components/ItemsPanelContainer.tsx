@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ItemActions, ItemListsActions } from '../';
+import { CreateBasketButton } from '../../components/Button';
 import { ItemList, ItemListPlaceholder, WithPlaceholder } from '../../components/ItemList';
 import { ListSelector } from '../../components/ListSelector';
 import { IAppState } from '../../store/state';
@@ -33,6 +34,7 @@ export function ItemsPanelContainer() {
         placeholder={<ItemListPlaceholder />}
         showPlaceholder={showItemListPlaceholder}
       />
+      <CreateBasketButton onClick={() => {}} isSpinnerShown={false} />
     </div>
   );
 
