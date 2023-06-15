@@ -1,7 +1,8 @@
 import { debounce } from 'lodash';
 import * as React from 'react';
 import './Button.scss';
-import { RippleEffect } from './clickIndication/rippleClickIndication/RippleClickIndicator';
+import { RippleUsingTransitions } from './clickIndication';
+// import { RippleEffect } from './clickIndication/rippleClickIndication/RippleClickIndicator';
 
 export default function SimpleButton({
   label = '',
@@ -38,7 +39,8 @@ export function WithSpinner({ spinnerIsShown, children, cssClassName = '' }) {
 // eslint-disable-next-line no-magic-numbers
 export function CreateBasketButton({ onClick, isSpinnerShown, debounceWait = 100 }) {
   return (
-    <RippleEffect additionalCssClass="create-basket__click-indicator">
+    // <RippleEffect additionalCssClass="create-basket__click-indicator">
+    <RippleUsingTransitions>
       <WithSpinner spinnerIsShown={isSpinnerShown} cssClassName="create-basket__spinner">
         <SimpleButton
           onClick={debounce(() => onClick(), debounceWait)}
@@ -46,7 +48,8 @@ export function CreateBasketButton({ onClick, isSpinnerShown, debounceWait = 100
           label="+"
         />
       </WithSpinner>
-    </RippleEffect>
+    </RippleUsingTransitions>
+    // </RippleEffect>
   );
 }
 
