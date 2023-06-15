@@ -8,12 +8,12 @@ export function RippleUsingTransitions({ children }) {
   return (
     <div
       className="ripple-using-after"
-      data-state="pressed"
       onMouseDown={handleEvent}
       onMouseUp={handleEvent}
       onMouseLeave={handleEvent}
       onTouchStart={handleEvent}
       onTouchEnd={handleEvent}
+      onClick={handleEvent}
       ref={wrapperRef}
     >
       {children}

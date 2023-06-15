@@ -1,4 +1,5 @@
 import { WithRipleClickIndicator } from './rippleClickIndication/RippleClickIndicator';
 import { WithSimpleClickIndicator } from './simpleClickIndicator/SimpleClickIndicator';
+import { RippleUsingTransitions } from './rippleUsingTransitions/RippleUsingTransitions';
 
-export { WithSimpleClickIndicator, WithRipleClickIndicator };
+export { RippleUsingTransitions, WithSimpleClickIndicator, WithRipleClickIndicator };
