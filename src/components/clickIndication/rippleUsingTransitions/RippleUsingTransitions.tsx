@@ -23,7 +23,7 @@ export function RippleUsingTransitions({ children }) {
   function handleEvent(e) {
     setElementDataStateAttributeBasedOnEventType(wrapperRef.current, e.type);
 
-    if (e.type === 'mouseup' || e.type === 'touchend') {
+    if (e.type === 'mouseup') {
       return;
     }
 
