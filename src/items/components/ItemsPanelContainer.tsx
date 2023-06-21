@@ -1,3 +1,4 @@
+import { BasketItems, ItemWithMenu } from '../../components/itemWithMenu';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ItemActions, ItemListsActions } from '../';
@@ -35,6 +36,14 @@ export function ItemsPanelContainer() {
         showPlaceholder={showItemListPlaceholder}
       />
       <CreateBasketButton onClick={() => {}} isSpinnerShown={false} />
+
+      <BasketItems
+        items={[
+          { id: 1, name: 'Item 1', price: '9$', quantity: 1, value: 1 },
+          { id: 2, name: 'Item 2', price: '9$', quantity: 1, value: 1 },
+          { id: 3, name: 'Item 3', price: '9$', quantity: 1, value: 1 }
+        ]}
+      />
     </div>
   );
 
