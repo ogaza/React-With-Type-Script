@@ -24,12 +24,6 @@
 }
 
 .create-basket {
-  &__click-indicator {
-    // width: 100%;
-
-    // @include pressed-effect(create-basket__button, #00498529);
-    // @include ripple-effect(create-basket__button, #00498529);
-  }
   &__button.simple-button {
     --bg-color: white;
     --border-radius: 0.5rem;

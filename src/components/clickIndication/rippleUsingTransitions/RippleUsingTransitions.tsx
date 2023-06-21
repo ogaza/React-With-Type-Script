@@ -23,7 +23,7 @@ export function RippleUsingTransitions({ children }) {
   function handleEvent(e) {
     setElementDataStateAttributeBasedOnEventType(wrapperRef.current, e.type);
 
-    if (e.type === 'mouseup' || e.type === 'mouseup') {
+    if (e.type === 'mouseup' || e.type === 'touchend') {
       return;
     }
 
@@ -33,6 +33,11 @@ export function RippleUsingTransitions({ children }) {
 
 //=================================================================================================
 
+const dataStateFor = {
+  mousedown: 'pressed',
+  touchstart: 'pressed',
+  click: 'clicked'
+};
 function setElementDataStateAttributeBasedOnEventType(htmlElement, eventType) {
   if (!htmlElement) return;
 
@@ -46,12 +51,6 @@ function setElementDataStateAttributeBasedOnEventType(htmlElement, eventType) {
 
   htmlElement.removeAttribute('data-state');
 }
-
-const dataStateFor = {
-  mousedown: 'pressed',
-  touchstart: 'pressed',
-  click: 'clicked'
-};
 
 export function setEventCoordinatesInElementProperties(htmlElement, eventCoordinates) {
   if (!htmlElement) return;

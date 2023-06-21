@@ -2,7 +2,6 @@ import { debounce } from 'lodash';
 import * as React from 'react';
 import './Button.scss';
 import { RippleUsingTransitions } from './clickIndication';
-// import { RippleEffect } from './clickIndication/rippleClickIndication/RippleClickIndicator';
 
 export default function SimpleButton({
   label = '',
@@ -10,11 +9,6 @@ export default function SimpleButton({
   onClick = () => {},
   cssClassName = null
 }) {
-  // const cssClasses = classNames(
-  //   'simple-button',
-  //   { 'simple-button--disabled': disabled },
-  //   cssClassName
-  // );
   const cssClasses = `simple-button ${cssClassName} ${disabled ? 'simple-button--disabled' : ''}`;
 
   return (
@@ -36,10 +30,8 @@ export function WithSpinner({ spinnerIsShown, children, cssClassName = '' }) {
   return children;
 }
 
-// eslint-disable-next-line no-magic-numbers
 export function CreateBasketButton({ onClick, isSpinnerShown, debounceWait = 100 }) {
   return (
-    // <RippleEffect additionalCssClass="create-basket__click-indicator">
     <RippleUsingTransitions>
       <WithSpinner spinnerIsShown={isSpinnerShown} cssClassName="create-basket__spinner">
         <SimpleButton
@@ -49,7 +41,6 @@ export function CreateBasketButton({ onClick, isSpinnerShown, debounceWait = 100
         />
       </WithSpinner>
     </RippleUsingTransitions>
-    // </RippleEffect>
   );
 }
 
