@@ -42,7 +42,7 @@ function ItemMenu({ label, onCloseButtonClick, isOpen }) {
       >
         <div className="basket-item-menu__icon--close">+</div>
       </div>
-      <div className="basket-item-menu__element basket-item-menu__element">{label}</div>
+      <div className="basket-item-menu__element">{label}</div>
     </div>
   );
 }
