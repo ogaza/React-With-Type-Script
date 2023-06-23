@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ItemTail } from './ItemTail';
-import { WithRipleClickIndicator } from './clickIndication';
+import { WithRipleClickIndicator } from '../componentsCommon/clickIndication';
 import './AddItemPanel.scss';
 
 export function AddItemPanel({ onSubmit, enabled }) {

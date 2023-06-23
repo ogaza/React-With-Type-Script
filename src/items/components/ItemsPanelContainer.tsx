@@ -1,4 +1,4 @@
-import { BasketItems, ItemWithMenu } from '../../components/itemWithMenu';
+import { BasketItems, ItemWithMenu } from '../../componentsCommon/itemWithMenu';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ItemActions, ItemListsActions } from '../';

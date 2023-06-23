@@ -1,7 +1,7 @@
 import { debounce } from 'lodash';
 import * as React from 'react';
 import './Button.scss';
-import { RippleUsingTransitions } from './clickIndication';
+import { RippleUsingTransitions } from '../componentsCommon/clickIndication';
 
 export default function SimpleButton({
   label = '',
