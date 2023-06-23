@@ -1,5 +1,6 @@
-import { BasketItems, ItemWithMenu } from '../../componentsCommon/itemWithMenu';
+import { BasketItems, ItemWithMenu, ItemDivider } from '../../componentsCommon/itemWithMenu';
 import * as React from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ItemActions, ItemListsActions } from '../';
 import { CreateBasketButton } from '../../components/Button';
@@ -20,6 +21,8 @@ export function ItemsPanelContainer() {
   const { state: itemsListsState, collection: itemsListsCollection } = itemsLists;
   const itemsListsAreBeingLoaded = itemsListsState === 'LOADING';
 
+  const { getBasketItems, changeBasketItem } = useBasketItems();
+
   return (
     <div className="iltems-lists--with-selector">
       <ListSelector
@@ -37,15 +40,29 @@ export function ItemsPanelContainer() {
       />
       <CreateBasketButton onClick={() => {}} isSpinnerShown={false} />
 
-      <BasketItems
-        items={[
-          { id: 1, name: 'Item 1', price: '9$', quantity: 1, value: 1 },
-          { id: 2, name: 'Item 2', price: '9$', quantity: 1, value: 1 },
-          { id: 3, name: 'Item 3', price: '9$', quantity: 1, value: 1 }
-        ]}
-      />
+      <BasketItems>
+        {getBasketItems().map((x) => (
+          <>
+            <ItemWithMenu
+              key={x.id}
+              onChange={handleBasketItemChange}
+              id={x.id}
+              name={x.name}
+              price={x.price}
+              quantity={x.quantity}
+              value={x.value}
+            />
+            <ItemDivider key={`divider-${x.id}`} />
+          </>
+        ))}
+      </BasketItems>
     </div>
   );
+
+  function handleBasketItemChange(changedItem) {
+    console.log('handleBasketItemChange, changedItem: ', changedItem);
+    changeBasketItem(changedItem);
+  }
 
   function deleteItem(id) {
     dispatch(ItemActions.deleteItem(id));
@@ -63,5 +80,35 @@ export function ItemsPanelContainer() {
   function removeList(listId) {
     console.log('remove list clicked: ', listId);
     dispatch(ItemListsActions.deleteItem(listId));
+  }
+}
+
+function useBasketItems() {
+  const [basketItems, setBasketItems] = useState([
+    { id: 1, name: 'Item 1', price: 19.99, quantity: 1 },
+    { id: 2, name: 'Item 2', price: 14.99, quantity: 1 },
+    { id: 3, name: 'Item 3', price: 4.99, quantity: 1 }
+  ]);
+
+  return { getBasketItems, changeBasketItem };
+
+  function getBasketItems() {
+    return basketItems.map((x) => ({ ...x, value: (x.price * x.quantity).toFixed(2) }));
+  }
+
+  function changeBasketItem(changedItem) {
+    if (changedItem.quantity < 0) {
+      return;
+    }
+
+    setBasketItems(
+      basketItems.map((x) => {
+        if (x.id !== changedItem.id) {
+          return x;
+        }
+
+        return { ...x, ...changedItem };
+      })
+    );
   }
 }

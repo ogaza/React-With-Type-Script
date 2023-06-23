@@ -33,12 +33,37 @@
   &__value {
     font-weight: 600;
     grid-column: 5/6;
+
+    justify-content: end;
   }
   &__actions {
     grid-column: 6/7;
   }
 
   position: relative;
+}
+
+.basket-item__price {
+  display: grid;
+  gap: 4px;
+  justify-content: end;
+
+  &-icon {
+    grid-row: 1/2;
+
+    cursor: default;
+    width: 16px;
+    height: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transform: rotateZ(45deg);
+  }
+  &-value {
+    grid-row: 1/2;
+  }
 }
 
 .divider--item {

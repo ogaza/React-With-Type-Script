@@ -1,16 +1,22 @@
 import { RippleUsingTransitions } from '../clickIndication';
+import { Quantity } from './components';
 import * as React from 'react';
 import { useState } from 'react';
 import './ItemWithMenu.scss';
 
-export function ItemWithMenu({ name, price, quantity, value }) {
+export function ItemWithMenu({ id, name, price, quantity, value, onChange }) {
   const [menuIsShown, setShowMenu] = useState(false);
 
   return (
     <div className={'basket-item'}>
       <div className="basket-item__element basket-item__name">{name}</div>
-      <div className="basket-item__element basket-item__price">{price}</div>
-      <div className="basket-item__element basket-item__quantity">{quantity}</div>
+      <div className="basket-item__element basket-item__price">
+        <div className="basket-item__price-value">{price}</div>
+        <div className="basket-item__price-icon">+</div>
+      </div>
+      <div className="basket-item__element basket-item__quantity">
+        <Quantity value={quantity} onChange={handleQuantityChange} />
+      </div>
       <div className="basket-item__element basket-item__value">{value}</div>
       <div className="basket-item__element basket-item__actions"></div>
       {
@@ -27,6 +33,11 @@ export function ItemWithMenu({ name, price, quantity, value }) {
       }
     </div>
   );
+
+  function handleQuantityChange(newQuantity) {
+    console.log('value changed to:', newQuantity);
+    onChange({ id, quantity: newQuantity });
+  }
 
   function handleActiionsButtonClick() {
     setShowMenu(!menuIsShown);
@@ -92,19 +103,10 @@ function CloseMenuButton({ onClick, menuIsOpen }) {
   }
 }
 
-export function BasketItems({ items }) {
-  return (
-    <div className="basket-items">
-      {items.map((x) => (
-        <>
-          <ItemWithMenu {...x} key={x.id} />
-          <ItemDivider key={`divider-${x.id}`} />
-        </>
-      ))}
-    </div>
-  );
+export function BasketItems({ children }) {
+  return <div className="basket-items">{children}</div>;
 }
 
-function ItemDivider() {
+export function ItemDivider() {
   return <hr className="divider--item"></hr>;
 }
