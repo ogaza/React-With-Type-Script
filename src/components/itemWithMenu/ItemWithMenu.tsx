@@ -12,16 +12,17 @@ export function ItemWithMenu({ name, price, quantity, value }) {
       <div className="basket-item__element basket-item__price">{price}</div>
       <div className="basket-item__element basket-item__quantity">{quantity}</div>
       <div className="basket-item__element basket-item__value">{value}</div>
-      <div className="basket-item__element basket-item__actions">
-        <ActionsButton onClick={handleActiionsButtonClick} />
-      </div>
+      <div className="basket-item__element basket-item__actions"></div>
       {
         <ItemMenu
-          label={'menu option 1'}
           isOpen={menuIsShown}
-          onCloseButtonClick={() => {
-            setShowMenu(false);
-          }}
+          onCloseButtonClick={handleActiionsButtonClick}
+          menuItems={[
+            {
+              id: 1,
+              label: 'menu option 1'
+            }
+          ]}
         />
       }
     </div>
@@ -32,24 +33,37 @@ export function ItemWithMenu({ name, price, quantity, value }) {
   }
 }
 
-function ItemMenu({ label, onCloseButtonClick, isOpen }) {
+function ItemMenu({ onCloseButtonClick, isOpen, menuItems = [] }) {
   return (
-    <div className={'basket-item-menu'} data-state={isOpen ? 'open' : 'closed'}>
-      <div
-        className="basket-item-menu__element basket-item-menu__button--close"
-        role="button"
-        onClick={onCloseButtonClick}
-      >
-        <div className="basket-item-menu__icon--close">+</div>
+    <div className={'item-menu'} data-state={isOpen ? 'open' : 'closed'}>
+      <CloseMenuButton onClick={onCloseButtonClick} menuIsOpen={isOpen} />
+      <OpenMenuButton onClick={onCloseButtonClick} menuIsOpen={isOpen} />
+      <div className="item-menu__content">
+        {menuItems.map((x) => (
+          <MenuButton {...x} />
+        ))}
       </div>
-      <div className="basket-item-menu__element">{label}</div>
     </div>
   );
 }
 
-function ActionsButton({ onClick }) {
+function MenuButton({ id, label }) {
   return (
-    <div className={'button--item-actions'} role="button" onClick={handleClick}>
+    <div key={id} className="button--basket-item">
+      {/* <div key={id} className="item-menu__element"> */}
+      {label}
+    </div>
+  );
+}
+
+function OpenMenuButton({ onClick, menuIsOpen }) {
+  return (
+    <div
+      className={'item-menu__button--open'}
+      role="button"
+      onClick={handleClick}
+      data-state={menuIsOpen ? 'open' : 'closed'}
+    >
       <div key={1} className="dot"></div>
       <div key={2} className="dot"></div>
       <div key={3} className="dot"></div>
@@ -57,7 +71,23 @@ function ActionsButton({ onClick }) {
   );
 
   function handleClick() {
-    console.log('clicked');
+    onClick();
+  }
+}
+
+function CloseMenuButton({ onClick, menuIsOpen }) {
+  return (
+    <div
+      className="item-menu__button--close"
+      role="button"
+      onClick={handleClick}
+      data-state={menuIsOpen ? 'open' : 'closed'}
+    >
+      <div className="item-menu__icon--close">+</div>
+    </div>
+  );
+
+  function handleClick() {
     onClick();
   }
 }

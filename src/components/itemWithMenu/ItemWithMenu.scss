@@ -41,29 +41,6 @@
   position: relative;
 }
 
-//==========================================================
-// button opening the menu
-
-.button--item-actions {
-  border-radius: 4px;
-  width: 32px;
-  height: 48px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-
-  .dot {
-    width: 4px;
-    height: 4px;
-    background-color: rgb(32, 40, 50);
-    opacity: 0.5;
-    border-radius: 50%;
-  }
-}
-
 .divider--item {
   background-color: #a6adb5;
   width: 100%;
@@ -75,15 +52,16 @@
 //==========================================================
 // Menu
 
-.basket-item-menu {
+.item-menu {
   color: #fff;
   // color: #ffffff;
   height: 100%;
 
   position: relative;
   right: 0;
-  transform: translateX(calc(100% + 1px));
-  transition: transform 0.5s;
+  // transform: translateX(calc(100% + 1px));
+  transform: translateX(calc(100% - 32px));
+  transition: transform 0.4s;
 
   grid-row: 1/2;
   grid-column: 2/7;
@@ -96,22 +74,76 @@
   }
 
   display: grid;
-  grid-template-columns: 32px 4fr;
+  grid-template-columns: 32px 1fr;
+  // grid-template-columns: 32px repeat(5, 1fr);
+  // gap: 4px;
 
-  &__element {
+  &__content {
+    grid-column: 2 / 7;
     background-color: #555;
-    // background-color: #0053b8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+  }
+}
+
+//==========================================================
+// button opening the menu
+
+.item-menu__button--open {
+  border-radius: 4px;
+  width: 32px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  grid-column: 1/2;
+  grid-row: 1/2;
+
+  transition: opacity 0.4s;
+
+  &[data-state='open'] {
+    opacity: 0;
   }
 
-  &__button--close {
-    opacity: 0.78;
-    // opacity: 0.48;
+  &[data-state='closed'] {
+    opacity: 1;
   }
 
-  &__icon--close {
+  .dot {
+    width: 4px;
+    height: 4px;
+    background-color: rgb(32, 40, 50);
+    opacity: 0.5;
+    border-radius: 50%;
+  }
+}
+
+.item-menu__button--close {
+  background-color: #555;
+  opacity: 0.78;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  grid-column: 1/2;
+  grid-row: 1/2;
+
+  transition: opacity 0.4s;
+
+  &[data-state='open'] {
+  }
+
+  &[data-state='closed'] {
+    opacity: 0;
+  }
+
+  .item-menu__icon--close {
     cursor: default;
     width: 16px;
     height: 16px;
@@ -122,4 +154,15 @@
 
     transform: rotateZ(45deg);
   }
+}
+
+//=================================================
+// menu button
+
+.button--basket-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 4px;
 }
