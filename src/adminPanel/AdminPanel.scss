@@ -7,4 +7,35 @@
 
   background-color: var(--admin-panel-bg-color);
   color: var(--app-text-color-lightest);
+
+  // animation-duration: 0.3s;
+  // animation-fill-mode: both;
+
+  transform: translateY(calc(-100% - 64px));
+  transition: transform;
+  transition-duration: 0.4s;
+
+  &[data-state='open'] {
+    transform: none;
+  }
+  &[data-state='closed'] {
+  }
+}
+
+@keyframes appear {
+  from {
+    transform: translateY(calc(-100% - 64px));
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes disappear {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateY(calc(-100% - 64px));
+  }
 }

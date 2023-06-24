@@ -12,7 +12,7 @@ export default function MainAreaContainer() {
   return (
     <>
       <MainAreaLayout panelLeft={<ItemsPanelContainer />} panelRight={<AddItemPanelContainer />} />
-      {showAdminPanel && <AdminPanel />}
+      {<AdminPanel isShown={showAdminPanel} />}
     </>
   );
 }

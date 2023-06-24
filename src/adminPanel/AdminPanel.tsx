@@ -1,14 +1,6 @@
 import * as React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
 import './AdminPanel.scss';
 
-export function AdminPanel() {
-  // const dispatch = useDispatch();
-  // const adminPanel = useSelector((state: { adminPanel }) => state.adminPanel);
-
-  return <div className="admin-panel">admin panel</div>;
-
-  // function addItem(text) {
-  //   dispatch({});
-  // }
+export function AdminPanel({ isShown = false }) {
+  return <div className="admin-panel" data-state={isShown ? 'open' : 'closed'}></div>;
 }
