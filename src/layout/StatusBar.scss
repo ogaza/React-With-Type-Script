@@ -20,6 +20,33 @@
   }
 
   &__actions {
-    text-align: right;
+    display: flex;
+    justify-content: end;
+  }
+}
+
+.app-menu-button {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .squares {
+    width: 20px;
+    height: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+  }
+
+  .square {
+    width: 8px;
+    height: 8px;
+    border: 1px solid;
+
+    display: flex;
   }
 }
