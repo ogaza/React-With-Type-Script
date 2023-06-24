@@ -33,12 +33,12 @@ export function ItemsPanelContainer() {
         onAddButtonClick={addNewList}
         onCloseClick={removeList}
       />
-      <WithPlaceholder
+      {/* <WithPlaceholder
         element={<ItemList items={items} onDelete={deleteItem} />}
         placeholder={<ItemListPlaceholder />}
         showPlaceholder={showItemListPlaceholder}
-      />
-      <CreateBasketButton onClick={() => {}} isSpinnerShown={false} />
+      /> */}
+      {/* <CreateBasketButton onClick={() => {}} isSpinnerShown={false} /> */}
 
       <BasketItems>
         {getBasketItems().map((x) => (
