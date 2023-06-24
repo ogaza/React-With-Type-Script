@@ -14,6 +14,10 @@
   }
   &__right {
     order: -1;
+
+    // background-color: var(--app-text-color-lightest);
+    // border-radius: 0.625rem;
+    // padding: 0.5rem;
   }
 }
 
@@ -27,6 +31,8 @@
     &__right {
       grid-column: 2/3;
       order: initial;
+
+      display: flex;
     }
   }
 }
