@@ -1,8 +1,25 @@
+.status-bar__container {
+  height: 64px;
+}
+
 .status-bar {
   background-color: var(--status-panel-bg-color);
   color: var(--app-text-color-lightest);
+  height: 100%;
   padding: 0.625rem 1.125rem;
 
   display: grid;
-  grid-template-columns: 5fr 1fr;
+  grid-template-columns: 2fr 4fr 2fr;
+
+  &__info {
+    text-align: left;
+  }
+
+  &__items {
+    text-align: center;
+  }
+
+  &__actions {
+    text-align: right;
+  }
 }

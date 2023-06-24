@@ -9,7 +9,7 @@ interface IMainLayoutProps {
 export default function MainLayout({ statusBar, mainArea }: IMainLayoutProps) {
   return (
     <main className="main-layout">
-      <div className="status-bar">{statusBar}</div>
+      <div className="status-bar__container">{statusBar}</div>
       <div className="main-area">{mainArea}</div>
     </main>
   );

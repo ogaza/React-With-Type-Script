@@ -1,9 +1,9 @@
 import * as React from 'react';
 import MainLayout from './layout/MainLayout';
-import StatusBarContainer from './layout/StatusBarContainer';
+import StatusBar from './layout/StatusBar';
 import MainAreaContainer from './layout/MainAreaContainer';
 import './App.scss';
 
 export default function App() {
-  return <MainLayout statusBar={<StatusBarContainer />} mainArea={<MainAreaContainer />} />;
+  return <MainLayout statusBar={<StatusBar />} mainArea={<MainAreaContainer />} />;
 }
