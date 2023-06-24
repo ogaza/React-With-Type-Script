@@ -23,10 +23,26 @@ export function ItemWithMenu({ id, name, price, quantity, value, onChange }) {
         <ItemMenu
           isOpen={menuIsShown}
           onCloseButtonClick={handleActiionsButtonClick}
-          menuItems={[
+          menuOptions={[
             {
               id: 1,
-              label: 'menu option 1'
+              label: 'menu option one'
+            },
+            {
+              id: 2,
+              label: 'menu option two'
+            },
+            {
+              id: 3,
+              label: 'menu option three'
+            },
+            {
+              id: 4,
+              label: 'menu option four'
+            },
+            {
+              id: 5,
+              label: 'menu option five'
             }
           ]}
         />
@@ -44,27 +60,33 @@ export function ItemWithMenu({ id, name, price, quantity, value, onChange }) {
   }
 }
 
-function ItemMenu({ onCloseButtonClick, isOpen, menuItems = [] }) {
+function ItemMenu({ onCloseButtonClick, isOpen, menuOptions = [] }) {
   return (
     <div className={'item-menu'} data-state={isOpen ? 'open' : 'closed'}>
       <CloseMenuButton onClick={onCloseButtonClick} menuIsOpen={isOpen} />
       <OpenMenuButton onClick={onCloseButtonClick} menuIsOpen={isOpen} />
       <div className="item-menu__content">
-        {menuItems.map((x) => (
-          <MenuButton {...x} />
+        {menuOptions.map((x) => (
+          <div className="item-menu__element-wrapper">
+            <MenuButton key={x.id} {...x} />
+            <div className="item-menu__divider"></div>
+          </div>
         ))}
       </div>
     </div>
   );
 }
 
-function MenuButton({ id, label }) {
+function MenuButton({ id, label, onClick = () => {} }) {
   return (
-    <div key={id} className="button--basket-item">
-      {/* <div key={id} className="item-menu__element"> */}
+    <div key={id} className="button--basket-item" role="button" onClick={handleClick}>
       {label}
     </div>
   );
+
+  function handleClick() {
+    onClick();
+  }
 }
 
 function OpenMenuButton({ onClick, menuIsOpen }) {

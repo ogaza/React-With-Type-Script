@@ -106,10 +106,11 @@
   &__content {
     grid-column: 2 / 7;
     background-color: #555;
+    background-color: #aab2bb;
 
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 4px;
+    // gap: 4px;
   }
 }
 
@@ -181,13 +182,37 @@
   }
 }
 
+.item-menu {
+  &__element-wrapper {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+
+    grid-row: 1/2;
+
+    & > * {
+      height: 100%;
+    }
+  }
+
+  &__divider {
+    width: 1px;
+    background-color: white;
+  }
+}
+
 //=================================================
 // menu button
 
 .button--basket-item {
+  --_bg-color: var(--bg-color, #0053b8);
+
+  background-color: var(--_bg-color);
   display: flex;
   justify-content: center;
   align-items: center;
 
   padding: 4px;
+  text-align: center;
 }
