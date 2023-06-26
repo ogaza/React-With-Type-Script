@@ -1,11 +1,11 @@
-import { BasketItems, ItemWithMenu, ItemDivider } from '../../componentsCommon/itemWithMenu';
+import { BasketItems, ItemWithMenu, ItemDivider } from '../../common/components/itemWithMenu';
 import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ItemActions, ItemListsActions } from '../';
-import { CreateBasketButton } from '../../componentsCommon/buttons';
+import { CreateBasketButton } from '../../common/components/buttons';
 import { ItemList, ItemListPlaceholder, WithPlaceholder } from '../../items/components/ItemList';
-import { ListSelector } from '../../componentsCommon/listSelectors';
+import { ListSelector } from '../../common/components/listSelectors';
 import { IAppState } from '../../store/state';
 import './ItemsPanelContainer.scss';
 

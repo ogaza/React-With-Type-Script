@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { WithRipleClickIndicator } from '../../componentsCommon/clickIndication';
+import { WithRipleClickIndicator } from '../clickIndication';
 import './ListSelector.scss';
 
 const ListButtonWithClickIndicator = WithRipleClickIndicator(
