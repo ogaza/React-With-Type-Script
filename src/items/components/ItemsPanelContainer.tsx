@@ -3,9 +3,9 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ItemActions, ItemListsActions } from '../';
-import { CreateBasketButton } from '../../components/Button';
-import { ItemList, ItemListPlaceholder, WithPlaceholder } from '../../components/ItemList';
-import { ListSelector } from '../../components/ListSelector';
+import { CreateBasketButton } from '../../componentsCommon/buttons';
+import { ItemList, ItemListPlaceholder, WithPlaceholder } from '../../items/components/ItemList';
+import { ListSelector } from '../../componentsCommon/listSelectors';
 import { IAppState } from '../../store/state';
 import './ItemsPanelContainer.scss';
 

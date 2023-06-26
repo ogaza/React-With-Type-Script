@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import './StatusBar.scss';
-import { toggleAdminPanel } from '../adminPanel/actions';
+import { toggleAdminPanel } from '../../adminPanel/actions';
 import { useDispatch } from 'react-redux';
 
 export default function StatusBar() {

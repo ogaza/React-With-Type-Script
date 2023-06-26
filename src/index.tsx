@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import App from './App';
+import App from './application/components/App';
 import { actions as appActions } from './application/actions';
 // import { ItemActions } from './items';
 import { registerListeners } from './socket/listeners';
