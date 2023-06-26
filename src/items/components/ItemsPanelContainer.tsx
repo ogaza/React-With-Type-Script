@@ -1,4 +1,4 @@
-import { BasketItems, ItemWithMenu, ItemDivider } from '../../common/components/itemWithMenu';
+import { BasketItems, ItemWithMenu } from '../../common/components/itemWithMenu';
 import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -52,7 +52,6 @@ export function ItemsPanelContainer() {
               quantity={x.quantity}
               value={x.value}
             />
-            <ItemDivider key={`divider-${x.id}`} />
           </>
         ))}
       </BasketItems>
@@ -88,6 +87,13 @@ function useBasketItems() {
     { id: 1, name: 'Item 1', price: 19.99, quantity: 1 },
     { id: 2, name: 'Item 2', price: 14.99, quantity: 1 },
     { id: 3, name: 'Item 3', price: 4.99, quantity: 1 }
+    // { id: 4, name: 'Item 4', price: 4.99, quantity: 1 },
+    // { id: 5, name: 'Item 5', price: 4.99, quantity: 1 },
+    // { id: 6, name: 'Item 6', price: 4.99, quantity: 1 },
+    // { id: 7, name: 'Item 7', price: 4.99, quantity: 1 },
+    // { id: 8, name: 'Item 8', price: 4.99, quantity: 1 },
+    // { id: 9, name: 'Item 9', price: 4.99, quantity: 1 },
+    // { id: 10, name: 'Item 10', price: 4.99, quantity: 1 }
   ]);
 
   return { getBasketItems, changeBasketItem };

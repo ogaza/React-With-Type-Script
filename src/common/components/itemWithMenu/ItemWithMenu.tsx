@@ -69,7 +69,7 @@ function ItemMenu({ onCloseButtonClick, isOpen, menuOptions = [] }) {
         {menuOptions.map((x) => (
           <div className="item-menu__element-wrapper">
             <MenuButton key={x.id} {...x} />
-            <div className="item-menu__divider"></div>
+            <VerticalDivider />
           </div>
         ))}
       </div>
@@ -129,6 +129,6 @@ export function BasketItems({ children }) {
   return <div className="basket-items">{children}</div>;
 }
 
-export function ItemDivider() {
-  return <hr className="divider--item"></hr>;
+export function VerticalDivider() {
+  return <div className="vertical-divider"></div>;
 }

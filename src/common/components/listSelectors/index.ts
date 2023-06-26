@@ -1,3 +1,3 @@
-import { AddListButton, ListButton, ListSelector } from './ListSelector';
+import { AddListButton, ListButton, ListSelector } from './ListSelectorNew';
 
 export { AddListButton, ListButton, ListSelector };

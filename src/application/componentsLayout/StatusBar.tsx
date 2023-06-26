@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import './StatusBar.scss';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleAdminPanel } from '../../adminPanel/actions';
-import { useDispatch } from 'react-redux';
+import './StatusBar.scss';
 
 export default function StatusBar() {
   const dispatch = useDispatch();
+  const adminPanel = useSelector((state: { adminPanel }) => state.adminPanel);
+  const { showAdminPanel: adminPanelIsShown } = adminPanel;
 
   return (
     <div className="status-bar">
@@ -15,7 +17,10 @@ export default function StatusBar() {
       </section>
       <section className="status-bar__items"></section>
       <section className="status-bar__actions">
-        <AppMenuButton onClick={handleMenuButtonClick} />
+        <AppMenuButton
+          onClick={handleMenuButtonClick}
+          dataState={adminPanelIsShown ? 'open' : 'closed'}
+        />
       </section>
     </div>
   );
@@ -25,9 +30,9 @@ export default function StatusBar() {
   }
 }
 
-function AppMenuButton({ onClick }) {
+function AppMenuButton({ onClick, dataState }) {
   return (
-    <div role="button" className="app-menu-button" onClick={handleClick}>
+    <div role="button" className="app-menu-button" onClick={handleClick} data-state={dataState}>
       <div className="squares">
         <div className="square__container">
           <div className="square"></div>

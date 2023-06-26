@@ -1,3 +1,3 @@
-import { BasketItems, ItemWithMenu, ItemDivider } from './ItemWithMenu';
+import { BasketItems, ItemWithMenu } from './ItemWithMenu';
 
-export { BasketItems, ItemWithMenu, ItemDivider };
+export { BasketItems, ItemWithMenu };

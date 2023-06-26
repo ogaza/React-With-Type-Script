@@ -40,6 +40,8 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 4px;
+
+    transition: all 0.5s;
   }
 
   .square {
@@ -48,5 +50,19 @@
     border: 1px solid;
 
     display: flex;
+
+    transition: all 0.5s;
+  }
+
+  &[data-state='open'] {
+    & .squares {
+      gap: 1px;
+    }
+
+    & .square {
+      // transform: scaleY(0.2);
+      transform: rotateZ(-45deg);
+      // transform: rotateZ(-45deg) translateY(50%);
+    }
   }
 }

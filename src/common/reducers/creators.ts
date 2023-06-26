@@ -1,4 +1,3 @@
-import { sendMessage } from '../../socket/socket';
 import { getActionTypes } from '../actions/creators';
 
 export function createReducer(namespace, initialState) {

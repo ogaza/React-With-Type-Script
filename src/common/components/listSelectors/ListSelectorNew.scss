@@ -1,0 +1,79 @@
+// @import './clickIndication/simpleClickIndicator/SimpleClickIndicator.scss';
+
+.list-selector {
+  display: grid;
+  border-bottom: 1px solid #a6adb5;
+  border-radius: 0.5rem 0.5rem 0 0;
+  overflow: hidden;
+
+  &__content {
+    display: grid;
+    overflow-x: scroll;
+    grid-row: 1/2;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__item {
+    grid-row: 1/2;
+    // border-radius: 0.5rem;
+    padding: 0.5rem 0;
+    position: relative;
+    min-width: 6rem;
+
+    display: flex;
+    justify-content: center;
+
+    &--selected {
+      background-color: var(--app-text-color-lightest);
+    }
+
+    &--disabled {
+      color: var(--button-disabled);
+    }
+  }
+
+  .add-list-button {
+    grid-row: 1/2;
+  }
+
+  &__close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: solid 1px var(--divider-bg-color);
+    border-radius: 50%;
+    box-sizing: content-box;
+    color: var(--divider-bg-color);
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    position: absolute;
+    right: 4px;
+    top: 4px;
+
+    transform: rotate(45deg);
+  }
+}
+
+.add-list-button {
+  background-color: var(--app-text-color-lightest);
+  padding: 0.5rem 0;
+
+  min-width: 6rem;
+
+  display: flex;
+  justify-content: center;
+
+  // box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12),
+  //   0 1px 3px 0 rgba(0, 0, 0, 0.2);
+
+  &--disabled {
+    background-color: var(--app-bg-color);
+    color: var(--button-disabled);
+  }
+}
