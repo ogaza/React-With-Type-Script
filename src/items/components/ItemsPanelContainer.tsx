@@ -6,7 +6,7 @@ import { ItemActions, ItemListsActions } from '../';
 import { CreateBasketButton } from '../../common/components/buttons';
 import { ItemList, ItemListPlaceholder, WithPlaceholder } from '../../items/components/ItemList';
 import { ListSelector } from '../../common/components/listSelectors';
-import { IAppState } from '../../store/state';
+import { IAppState } from '../../application/store/state';
 import './ItemsPanelContainer.scss';
 
 export function ItemsPanelContainer() {

@@ -1,10 +1,7 @@
-import {
-  actionsCreator,
-  createApi,
-  createListenersRegistrator,
-  createReducer,
-  getActionTypes
-} from '../models/creators';
+import { actionsCreator, getActionTypes } from '../common/actions/creators';
+import { createApi } from '../common/api/creators';
+import { createListenersRegistrator } from '../common/listeners/creators';
+import { createReducer } from '../common/reducers/creators';
 import { IItemsState } from './store/state';
 
 // APIs

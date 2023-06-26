@@ -1,4 +1,4 @@
-import { IItem } from '../../models/item';
+import { IItem } from '../models/item';
 
 export interface IItemsState extends ICollectionState<IItem> {}
 

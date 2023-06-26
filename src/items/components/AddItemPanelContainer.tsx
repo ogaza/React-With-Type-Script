@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddItemPanel } from '../../items/components/AddItemPanel';
 import { ItemActions } from '../../items';
-import { IAppState } from '../../store/state';
+import { IAppState } from '../../application/store/state';
 
 export function AddItemPanelContainer() {
   const dispatch = useDispatch();
