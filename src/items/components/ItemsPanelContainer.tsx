@@ -1,10 +1,17 @@
-import { BasketItems, ItemWithMenu } from '../../common/components/itemWithMenu';
+import {
+  BasketItems,
+  ItemWithMenu
+} from '../../common/components/itemWithMenu';
 import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ItemActions, ItemListsActions } from '../';
 import { CreateBasketButton } from '../../common/components/buttons';
-import { ItemList, ItemListPlaceholder, WithPlaceholder } from '../../items/components/ItemList';
+import {
+  ItemList,
+  ItemListPlaceholder,
+  WithPlaceholder
+} from '../../items/components/ItemList';
 import { ListSelector } from '../../common/components/listSelectors';
 import { IAppState } from '../../application/store/state';
 import './ItemsPanelContainer.scss';
@@ -15,10 +22,12 @@ export function ItemsPanelContainer() {
   const items = useSelector((state: IAppState) => state.items);
   const { state: itemsState, collection: itemsCollection } = items;
   const itemsAreBeingLoaded = itemsState === 'LOADING';
-  const showItemListPlaceholder = itemsAreBeingLoaded && !itemsCollection.length;
+  const showItemListPlaceholder =
+    itemsAreBeingLoaded && !itemsCollection.length;
 
   const itemsLists = useSelector((state: IAppState) => state.itemsLists);
-  const { state: itemsListsState, collection: itemsListsCollection } = itemsLists;
+  const { state: itemsListsState, collection: itemsListsCollection } =
+    itemsLists;
   const itemsListsAreBeingLoaded = itemsListsState === 'LOADING';
 
   const { getBasketItems, changeBasketItem } = useBasketItems();
@@ -99,7 +108,10 @@ function useBasketItems() {
   return { getBasketItems, changeBasketItem };
 
   function getBasketItems() {
-    return basketItems.map((x) => ({ ...x, value: (x.price * x.quantity).toFixed(2) }));
+    return basketItems.map((x) => ({
+      ...x,
+      value: (x.price * x.quantity).toFixed(2)
+    }));
   }
 
   function changeBasketItem(changedItem) {

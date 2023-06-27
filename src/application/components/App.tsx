@@ -5,5 +5,7 @@ import MainAreaContainer from '../componentsLayout/MainAreaContainer';
 import './App.scss';
 
 export default function App() {
-  return <MainLayout statusBar={<StatusBar />} mainArea={<MainAreaContainer />} />;
+  return (
+    <MainLayout statusBar={<StatusBar />} mainArea={<MainAreaContainer />} />
+  );
 }

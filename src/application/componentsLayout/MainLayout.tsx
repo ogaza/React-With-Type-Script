@@ -7,7 +7,11 @@ interface IMainLayoutProps {
   adminPanel?: JSX.Element;
 }
 
-export default function MainLayout({ statusBar, mainArea, adminPanel = null }: IMainLayoutProps) {
+export default function MainLayout({
+  statusBar,
+  mainArea,
+  adminPanel = null
+}: IMainLayoutProps) {
   return (
     <main className="main-layout">
       <div className="status-bar__container">{statusBar}</div>
