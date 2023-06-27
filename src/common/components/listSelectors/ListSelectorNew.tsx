@@ -32,15 +32,24 @@ export function ListSelector({
   );
 }
 
-export function ListButton({ id, selected, onClick, onClose, enabled, closeButtonEnabled }) {
-  const cssClass = `list-selector__item ${selected ? 'list-selector__item--selected' : ''} ${
-    enabled ? '' : 'list-selector__item--disabled'
-  }`;
+export function ListButton({
+  id,
+  selected,
+  onClick,
+  onClose,
+  enabled,
+  closeButtonEnabled
+}) {
+  const cssClass = `list-selector__item ${
+    selected ? 'list-selector__item--selected' : ''
+  } ${enabled ? '' : 'list-selector__item--disabled'}`;
 
   return (
     <div role="button" onClick={handleClick} className={cssClass}>
-      {id !== 0 ? id : '...'}
-      {closeButtonEnabled && closeButtonEnabled && <ListButtonClose onClick={handleClose} />}
+      <span className="list-selector__value">{id !== 0 ? id : '...'}</span>
+      {closeButtonEnabled && closeButtonEnabled && (
+        <ListButtonClose onClick={handleClose} />
+      )}
     </div>
   );
 

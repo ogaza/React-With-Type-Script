@@ -1,4 +1,5 @@
 .basket-items {
+  background-color: #ffffff;
   overflow-y: auto;
   grid-row: 2/3;
 }
@@ -8,7 +9,7 @@
   grid-template-columns: 2fr 2fr repeat(3, 2fr) 32px;
   column-gap: 4px;
 
-  background-color: white;
+  background-color: #ffffff;
   border-bottom: 1px solid #a6adb5;
   height: 72px;
   overflow: hidden;
