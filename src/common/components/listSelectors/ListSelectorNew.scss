@@ -1,8 +1,8 @@
 // @import './clickIndication/simpleClickIndicator/SimpleClickIndicator.scss';
 
 .list-selector {
-  display: grid;
-  grid-template-columns: 1fr 96px;
+  display: flex;
+
   height: 40px;
   overflow: hidden;
 
@@ -10,7 +10,9 @@
   border-bottom: 1px solid #a6adb5;
 
   &__content {
-    grid-row: 1/2;
+    flex-basis: calc(var(--n) * 100% / (var(--n) + 1));
+
+    border-right: 1px solid #a6adb5;
 
     display: flex;
     overflow-x: auto;
@@ -21,19 +23,16 @@
   }
 
   .add-list-button {
-    grid-row: 1/2;
+    flex-basis: calc(100% / (var(--n) + 1));
   }
 
   &__item {
-    grid-row: 1/2;
-    flex-basis: 50%;
+    flex: 1;
 
     border-left: 1px solid #a6adb5;
+
     &:first-child {
       border: 0;
-    }
-    &:only-child {
-      border-right: 1px solid #a6adb5;
     }
 
     height: 40px;
@@ -85,10 +84,8 @@
 
 .add-list-button {
   background-color: var(--app-text-color-lightest);
-  border-left: 1px solid #a6adb5;
   height: 40px;
   min-width: 6rem;
-  flex-basis: 50%;
 
   display: flex;
   justify-content: center;

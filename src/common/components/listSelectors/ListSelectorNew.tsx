@@ -8,8 +8,10 @@ export function ListSelector({
   onAddButtonClick,
   onCloseClick
 }) {
+  const style = { '--n': elements.length } as React.CSSProperties;
+
   return (
-    <div className="list-selector">
+    <div className="list-selector" style={style}>
       <div className="list-selector__content">
         {elements.map(({ id, selected, state }) => {
           const enabled = state !== 'LOADING';
