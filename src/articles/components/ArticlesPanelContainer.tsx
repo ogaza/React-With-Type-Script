@@ -2,9 +2,11 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddItemPanel } from '../../items/components/AddItemPanel';
 import { ItemActions } from '../../items';
+import { actions } from '../../articles';
 import { IAppState } from '../../application/store/state';
-import { useArticles } from '../../articles';
+import { useArticles, ArticlesPanel } from '../';
 
+/*
 export function AddItemPanelContainer() {
   const dispatch = useDispatch();
 
@@ -37,7 +39,16 @@ export function AddItemPanelContainer() {
     dispatch(ItemActions.addItem(item));
   }
 }
+*/
 
-export function ArticlesContainer() {
+export function ArticlesPanelContainer() {
+  const dispatch = useDispatch();
   const { get } = useArticles();
+
+  return <ArticlesPanel items={get()} onItemSelected={addArticle} />;
+
+  function addArticle(article) {
+    console.log('ArticlesPanelContainer:addArticle', article);
+    dispatch(actions.addItem(article));
+  }
 }
