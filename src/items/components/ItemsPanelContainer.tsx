@@ -1,7 +1,4 @@
-import {
-  BasketItems,
-  ItemWithMenu
-} from '../../common/components/itemWithMenu';
+import { BasketItems, ItemWithMenu } from '../../common/components/itemWithMenu';
 import * as React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,15 +19,14 @@ export function ItemsPanelContainer() {
   const items = useSelector((state: IAppState) => state.items);
   const { state: itemsState, collection: itemsCollection } = items;
   const itemsAreBeingLoaded = itemsState === 'LOADING';
-  const showItemListPlaceholder =
-    itemsAreBeingLoaded && !itemsCollection.length;
+  const showItemListPlaceholder = itemsAreBeingLoaded && !itemsCollection.length;
 
   const itemsLists = useSelector((state: IAppState) => state.itemsLists);
-  const { state: itemsListsState, collection: itemsListsCollection } =
-    itemsLists;
+  const { state: itemsListsState, collection: itemsListsCollection } = itemsLists;
   const itemsListsAreBeingLoaded = itemsListsState === 'LOADING';
 
   const { getBasketItems, changeBasketItem } = useBasketItems();
+  const newBasketItems = getBasketItems();
 
   return (
     <div className="iltems-lists--with-selector">
@@ -50,18 +46,16 @@ export function ItemsPanelContainer() {
       {/* <CreateBasketButton onClick={() => {}} isSpinnerShown={false} /> */}
 
       <BasketItems>
-        {getBasketItems().map((x) => (
-          <>
-            <ItemWithMenu
-              key={x.id}
-              onChange={handleBasketItemChange}
-              id={x.id}
-              name={x.name}
-              price={x.price}
-              quantity={x.quantity}
-              value={x.value}
-            />
-          </>
+        {newBasketItems.map((x) => (
+          <ItemWithMenu
+            key={x.id}
+            onChange={handleBasketItemChange}
+            id={x.id}
+            name={x.name}
+            price={x.price}
+            quantity={x.quantity}
+            value={x.value}
+          />
         ))}
       </BasketItems>
     </div>
