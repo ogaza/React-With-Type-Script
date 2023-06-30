@@ -1,6 +1,7 @@
 // @import './clickIndication/simpleClickIndicator/SimpleClickIndicator.scss';
 
 .list-selector {
+  --n: 1;
   --base-width: calc(100% / (var(--n) + 1));
 
   display: flex;
