@@ -1,8 +1,5 @@
 import { put, select, take, takeEvery, takeLatest } from 'redux-saga/effects';
-import {
-  actions as basketsActions,
-  actionTypes as basketsActionTypes
-} from '../../baskets';
+import { actions as basketsActions } from '../../baskets';
 import { actionTypes } from '../actions/actions';
 
 function* start() {

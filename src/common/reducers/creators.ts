@@ -54,11 +54,14 @@ export function createReducer(namespace, initialState) {
       };
     }
 
-    if (action.type === itemActionTypes.EDIT || action.type === itemActionTypes.EDITED) {
+    if (
+      action.type === itemActionTypes.EDIT ||
+      action.type === itemActionTypes.EDITED
+    ) {
       const {
         payload: { item },
         payload: {
-          item: { id }
+          item: { id, selected }
         }
       } = action;
       const { collection } = state;
@@ -69,6 +72,15 @@ export function createReducer(namespace, initialState) {
       const itemState = action.type === itemActionTypes.EDIT ? 'LOADING' : 'LOADED';
       collection.splice(idx, 1, { ...itemToEdit, ...item, state: itemState });
       const newCollection = collection;
+
+      if (!!selected && action.type === itemActionTypes.EDIT) {
+        collection.forEach((x) => {
+          if (x.id === id) {
+            return;
+          }
+          x.selected = undefined;
+        });
+      }
 
       return {
         ...state,
