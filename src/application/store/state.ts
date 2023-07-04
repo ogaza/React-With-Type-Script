@@ -1,8 +1,9 @@
-import { IItemsState, IArticlessState } from '../../items/store/state';
+import { IItemsState, IArticlesState, IBasketsState } from '../../items/store/state';
 
 export interface IAppState {
   items: IItemsState;
-  articles: IArticlessState;
+  articles: IArticlesState;
+  baskets: IBasketsState;
   itemsLists: any;
   articleLists: any;
 }
