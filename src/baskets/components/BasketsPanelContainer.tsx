@@ -1,10 +1,10 @@
-import { BasketItems, ItemWithMenu } from '../../common/components/itemWithMenu';
 import * as React from 'react';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../';
-import { ListSelector } from '../../common/components/listSelectors';
 import { IAppState } from '../../application/store/state';
+import { useBasketItems } from '../../basketItems';
+import { BasketItems, ItemWithMenu } from '../../common/components/itemWithMenu';
+import { ListSelector } from '../../common/components/listSelectors';
 import './BasketsPanelContainer.scss';
 
 export function BasketsPanelContainer() {
@@ -69,38 +69,5 @@ export function BasketsPanelContainer() {
   function deleteBasket(listId) {
     console.log('remove basket clicked: ', listId);
     dispatch(actions.deleteItem(listId));
-  }
-}
-
-function useBasketItems() {
-  const [basketItems, setBasketItems] = useState([
-    { id: 1, name: 'Item 1', price: 19.99, quantity: 1 },
-    { id: 2, name: 'Item 2', price: 14.99, quantity: 1 },
-    { id: 3, name: 'Item 3', price: 4.99, quantity: 1 }
-  ]);
-
-  return { getBasketItems, changeBasketItem };
-
-  function getBasketItems() {
-    return basketItems.map((x) => ({
-      ...x,
-      value: (x.price * x.quantity).toFixed(2)
-    }));
-  }
-
-  function changeBasketItem(changedItem) {
-    if (changedItem.quantity < 0) {
-      return;
-    }
-
-    setBasketItems(
-      basketItems.map((x) => {
-        if (x.id !== changedItem.id) {
-          return x;
-        }
-
-        return { ...x, ...changedItem };
-      })
-    );
   }
 }
