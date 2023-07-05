@@ -1,4 +1,4 @@
-import { getActionTypes } from '../actions/creators';
+import { getActionTypes } from './actions';
 
 export function createReducer(namespace, initialState) {
   const itemActionTypes = getActionTypes(namespace);
