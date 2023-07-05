@@ -22,7 +22,7 @@ export function BasketsPanelContainer() {
   const { state: basketsLoadingState, collection: basketsCollection } = basketsState;
   const basketsAreBeingLoaded = basketsLoadingState === 'LOADING';
 
-  const { getBasketItems, changeBasketItem } = useBasketItems();
+  const { getBasketItems, changeBasketItem, removeBasketItem } = useBasketItems();
   const basketItems = getBasketItems();
 
   return (
@@ -46,6 +46,14 @@ export function BasketsPanelContainer() {
             price={x.price}
             quantity={x.quantity}
             value={x.value}
+            menuOptions={[
+              {
+                id: 1,
+                label: 'remove item',
+                onClick: getDeleteBasketItemClickedHandler(x.id),
+                closeMenuOnClick: true
+              }
+            ]}
           />
         ))}
       </BasketItems>
@@ -69,5 +77,11 @@ export function BasketsPanelContainer() {
   function deleteBasket(listId) {
     console.log('remove basket clicked: ', listId);
     dispatch(actions.deleteItem(listId));
+  }
+
+  function getDeleteBasketItemClickedHandler(basketItemId) {
+    return function handleDeleteBasketItemButtonClicked() {
+      removeBasketItem(basketItemId);
+    };
   }
 }

@@ -4,7 +4,15 @@ import * as React from 'react';
 import { useState } from 'react';
 import './ItemWithMenu.scss';
 
-export function ItemWithMenu({ id, name, price, quantity, value, onChange }) {
+export function ItemWithMenu({
+  id,
+  name,
+  price,
+  quantity,
+  value,
+  onChange,
+  menuOptions = []
+}) {
   const [menuIsShown, setShowMenu] = useState(false);
 
   return (
@@ -23,28 +31,7 @@ export function ItemWithMenu({ id, name, price, quantity, value, onChange }) {
         <ItemMenu
           isOpen={menuIsShown}
           onCloseButtonClick={handleActiionsButtonClick}
-          menuOptions={[
-            {
-              id: 1,
-              label: 'menu option one'
-            },
-            {
-              id: 2,
-              label: 'menu option two'
-            },
-            {
-              id: 3,
-              label: 'menu option three'
-            },
-            {
-              id: 4,
-              label: 'menu option four'
-            },
-            {
-              id: 5,
-              label: 'menu option five'
-            }
-          ]}
+          menuOptions={menuOptions}
         />
       }
     </div>
@@ -68,18 +55,34 @@ function ItemMenu({ onCloseButtonClick, isOpen, menuOptions = [] }) {
       <div className="item-menu__content">
         {menuOptions.map((x) => (
           <div className="item-menu__element-wrapper">
-            <MenuButton key={x.id} {...x} />
+            <MenuButton
+              key={x.id}
+              {...x}
+              onClick={getMenuButtonClickHandlerFor(x.onClick, x.closeMenuOnClick)}
+            />
             <VerticalDivider />
           </div>
         ))}
       </div>
     </div>
   );
+
+  function getMenuButtonClickHandlerFor(onClick, closeMenuOnClick) {
+    return function handleMenuButtonClick() {
+      onClick();
+      !!closeMenuOnClick && onCloseButtonClick();
+    };
+  }
 }
 
 function MenuButton({ id, label, onClick = () => {} }) {
   return (
-    <div key={id} className="button--basket-item" role="button" onClick={handleClick}>
+    <div
+      key={id}
+      className="button--basket-item"
+      role="button"
+      onClick={handleClick}
+    >
       {label}
     </div>
   );
