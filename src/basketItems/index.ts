@@ -1,7 +1,8 @@
 // components =====================================================================
 
 // hooks =====================================================================
-export { useBasketItems } from './hooks/useBasketItems';
+import { useBasketItems } from './hooks/useBasketItems';
+export { useBasketItems };
 
 // export { useBasketItems };
 
