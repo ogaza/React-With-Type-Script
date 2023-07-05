@@ -12,6 +12,12 @@ export function createListenersRegistrator(namespace, actions) {
       store.dispatch(actions.itemAdded(data));
     });
 
+    socket.on(`${namespace}:update`, ({ updatedItem }) => {
+      console.log(`${namespace} updated on the server: `, updatedItem);
+
+      store.dispatch(actions.itemEdited(updatedItem));
+    });
+
     socket.on(`${namespace}:delete`, (data) => {
       const { itemId } = data;
       console.log(`${namespace} deleted from socket connection: `, itemId);
