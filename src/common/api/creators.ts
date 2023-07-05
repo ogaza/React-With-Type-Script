@@ -8,6 +8,9 @@ export function createApi(namespace) {
     post: function (item) {
       return sendMessage(`${namespace}:post`, item);
     },
+    update: function (item) {
+      return sendMessage(`${namespace}:update`, item);
+    },
     delete: function (itemId) {
       return sendMessage(`${namespace}:delete`, itemId);
     }
