@@ -32,8 +32,7 @@ export function useBasketItems() {
   //   }));
   // }
 
-  function addBasketItem({ id, name, price }) {
-    // console.log('useBasketItems:addBasketItem', { id, name, price });
+  function addBasketItem({ id: articleId, name, price }) {
     const { id: selectedBasketId } = getSelectedBasket() || {};
 
     const existingBasketItem = basketItems.find(
@@ -43,7 +42,6 @@ export function useBasketItems() {
     if (!existingBasketItem) {
       dispatch(
         basketItemsActions.addItem({
-          id,
           name,
           price,
           quantity: 1,
@@ -59,7 +57,7 @@ export function useBasketItems() {
 
     dispatch(
       basketItemsActions.editItem({
-        id,
+        id: existingBasketItem.id,
         name,
         price,
         quantity: newQuantity,
@@ -69,9 +67,25 @@ export function useBasketItems() {
   }
 
   function changeBasketItem(changedItem) {
+    console.log('useBasketItems::changeBasketItem, changedItem:', changedItem);
+
     if (changedItem.quantity < 0) {
       return;
     }
+
+    // const existingBasketItem = basketItems.find(
+    //   (x) => x.name === name && x.basketId === selectedBasketId
+    // );
+
+    // dispatch(
+    //   basketItemsActions.editItem({
+    //     id,
+    //     name,
+    //     price,
+    //     quantity: newQuantity,
+    //     basketId: selectedBasketId
+    //   })
+    // );
 
     // setBasketItems(
     //   basketItems.map((x) => {
