@@ -48,7 +48,7 @@ export function ArticlesPanelContainer() {
   return <ArticlesPanel items={get()} onItemSelected={addArticle} />;
 
   function addArticle(article) {
-    console.log('ArticlesPanelContainer:addArticle', article);
-    dispatch(actions.addItem(article));
+    console.log('ArticlesPanelContainer:addArticleToTheBasket', article);
+    // dispatch(actions.addItem(article));
   }
 }

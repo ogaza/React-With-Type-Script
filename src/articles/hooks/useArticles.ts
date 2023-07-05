@@ -1,11 +1,14 @@
+import { useSelector } from 'react-redux';
+import { IAppState } from '../../application/store/state';
 import { IArticle } from '../models/article';
 
 export function useArticles(): IArticles {
-  const articles: IArticle[] = [
-    { id: 1, name: 'Article 1', price: 19.99 },
-    { id: 2, name: 'Article 2', price: 14.99 },
-    { id: 3, name: 'Article 3', price: 4.99 }
-  ];
+  const { state, collection: articles } = useSelector(
+    (state: IAppState) => state.articles
+  ) || {
+    state: null,
+    collection: []
+  };
 
   return { get: getArticles };
 

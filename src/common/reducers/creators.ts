@@ -54,10 +54,7 @@ export function createReducer(namespace, initialState) {
       };
     }
 
-    if (
-      action.type === itemActionTypes.EDIT ||
-      action.type === itemActionTypes.EDITED
-    ) {
+    if (action.type === itemActionTypes.EDIT) {
       const {
         payload: { item },
         payload: {
@@ -69,7 +66,7 @@ export function createReducer(namespace, initialState) {
       const itemToEdit = collection.find((x) => x.id === id);
       const idx = collection.findIndex((x) => x.id === id);
 
-      const itemState = action.type === itemActionTypes.EDIT ? 'LOADING' : 'LOADED';
+      const itemState = 'LOADING';
       collection.splice(idx, 1, { ...itemToEdit, ...item, state: itemState });
       const newCollection = collection;
 
@@ -89,7 +86,25 @@ export function createReducer(namespace, initialState) {
     }
 
     if (action.type === itemActionTypes.EDITED) {
-      const { payload: item } = action;
+      const {
+        payload: { item },
+        payload: {
+          item: { id }
+        }
+      } = action;
+      const { collection } = state;
+
+      const itemToEdit = collection.find((x) => x.id === id);
+      const idx = collection.findIndex((x) => x.id === id);
+
+      const itemState = 'LOADED';
+      collection.splice(idx, 1, { ...itemToEdit, ...item, state: itemState });
+      const newCollection = collection;
+
+      return {
+        ...state,
+        collection: newCollection
+      };
     }
 
     if (action.type === itemActionTypes.REMOVE) {
