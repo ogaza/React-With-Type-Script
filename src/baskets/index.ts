@@ -3,6 +3,9 @@ import { BasketsPanelContainer } from './components/BasketsPanelContainer';
 
 export { BasketsPanelContainer };
 
+// hooks =====================================================================
+export { useBaskets } from './hooks/useBaskets';
+
 // sagas =====================================================================
 import customSaga from './sagas/basketsCustomSaga';
 import saga from './sagas/basketsSaga';

@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AddItemPanel } from '../../items/components/AddItemPanel';
 import { ItemActions } from '../../items';
 import { actions } from '../../articles';
+import { actions as basketItemsActions } from '../../basketItems';
 import { IAppState } from '../../application/store/state';
 import { useArticles, ArticlesPanel } from '../';
+import { useBaskets } from '../../baskets';
 
 /*
 export function AddItemPanelContainer() {
@@ -14,12 +16,6 @@ export function AddItemPanelContainer() {
   const { state: itemsLoadingState } = items;
   const itemsAreBeingLoaded = itemsLoadingState === 'LOADING';
 
-  const itemsLists = useSelector((state: IAppState) => state.itemsLists);
-  const { state: itemsListsLoadingState, collection: itemsListsCollection } =
-    itemsLists;
-  const { id: selectedListId, state: selectedListLoadingState } =
-    itemsListsCollection.find((x) => x.selected) || {};
-  const selectedListIsBeingLoaded = selectedListLoadingState === 'LOADING';
 
   return (
     <AddItemPanel
@@ -27,17 +23,6 @@ export function AddItemPanelContainer() {
       enabled={!itemsAreBeingLoaded && !selectedListIsBeingLoaded}
     />
   );
-
-  function addItem(text) {
-    const item = {
-      text,
-      completed: false,
-      created: Date.now(),
-      listId: selectedListId
-    };
-
-    dispatch(ItemActions.addItem(item));
-  }
 }
 */
 
@@ -45,10 +30,22 @@ export function ArticlesPanelContainer() {
   const dispatch = useDispatch();
   const { get } = useArticles();
 
-  return <ArticlesPanel items={get()} onItemSelected={addArticle} />;
+  const { getSelectedBasket } = useBaskets();
+  const { id: selectedBasketId } = getSelectedBasket() || {};
 
-  function addArticle(article) {
-    console.log('ArticlesPanelContainer:addArticleToTheBasket', article);
-    // dispatch(actions.addItem(article));
+  return <ArticlesPanel items={get()} onItemSelected={addArticleToTheBasket} />;
+
+  function addArticleToTheBasket({ id, name, price }) {
+    console.log('ArticlesPanelContainer:addArticleToTheBasket', selectedBasketId);
+
+    dispatch(
+      basketItemsActions.addItem({
+        id,
+        name,
+        price,
+        quantity: 1,
+        basketId: selectedBasketId
+      })
+    );
   }
 }
