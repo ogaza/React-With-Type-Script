@@ -15,7 +15,7 @@ export function useBasketItems() {
     collection: []
   };
 
-  return { getBasketItems, changeBasketItem, addBasketItem };
+  return { getBasketItems, addBasketItem, changeBasketItem, removeBasketItem };
 
   function getBasketItems() {
     return basketItems.map((x) => ({
@@ -74,5 +74,11 @@ export function useBasketItems() {
         ...changedItem
       })
     );
+  }
+
+  function removeBasketItem(basketItemId) {
+    console.log('removeBasketItem, id: ', basketItemId);
+
+    dispatch(basketItemsActions.deleteItem(basketItemId));
   }
 }
