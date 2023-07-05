@@ -6,7 +6,6 @@ export function createReducer(namespace, initialState) {
   return function reducer(state = initialState, action) {
     if (action.type === itemActionTypes.GET) {
       return {
-        // collection: [],
         ...state,
         state: 'LOADING'
       };
@@ -117,7 +116,6 @@ export function createReducer(namespace, initialState) {
       const idx = collection.findIndex((x) => x.id === id);
 
       collection.splice(idx, 1, { ...itemToRemove, state: 'LOADING' });
-      // collection.splice(idx, 1, { ...itemToRemove, id: -id, state: 'LOADING' });
       const newCollection = collection;
 
       return {
