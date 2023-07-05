@@ -28,7 +28,6 @@ export function AddItemPanelContainer() {
 */
 
 export function ArticlesPanelContainer() {
-  // const dispatch = useDispatch();
   const { get } = useArticles();
 
   const { addBasketItem } = useBasketItems();
@@ -36,29 +35,6 @@ export function ArticlesPanelContainer() {
   return <ArticlesPanel items={get()} onItemSelected={handleArticleItemSelected} />;
 
   function handleArticleItemSelected(article) {
-    console.log(
-      'ArticlesPanelContainer:handleArticleItemSelected'
-      // selectedBasketId
-    );
-
     addBasketItem(article);
-
-    // addBasketItem({
-    //   id,
-    //   name,
-    //   price
-    //   // quantity: 1,
-    //   // basketId: selectedBasketId
-    // });
-
-    // dispatch(
-    //   basketItemsActions.addItem({
-    //     id,
-    //     name,
-    //     price,
-    //     quantity: 1,
-    //     basketId: selectedBasketId
-    //   })
-    // );
   }
 }
