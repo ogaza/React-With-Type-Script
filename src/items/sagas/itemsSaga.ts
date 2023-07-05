@@ -1,6 +1,6 @@
 import { call, delay, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import { itemsApi } from '../';
-import { getActionTypes } from '../../common/actions/creators';
+import { getActionTypes } from '../../common';
 import { ItemActions } from '../../items';
 
 const itemActionTypes = getActionTypes('ITEM');
