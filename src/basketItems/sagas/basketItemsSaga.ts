@@ -20,6 +20,18 @@ function* addItem(action) {
   }
 }
 
+function* editBasketItem(action) {
+  try {
+    const {
+      payload: { item }
+    } = action;
+
+    yield call(api.update, item);
+  } catch (e) {
+    yield put(actions.operationFailure(e.message));
+  }
+}
+
 function* removeItem(action) {
   try {
     const {
@@ -34,6 +46,7 @@ function* removeItem(action) {
 function* saga() {
   yield takeLatest(actionTypes.GET, getItems);
   yield takeLatest(actionTypes.ADD, addItem);
+  yield takeLatest(actionTypes.EDIT, editBasketItem);
   yield takeEvery(actionTypes.REMOVE, removeItem);
 }
 
