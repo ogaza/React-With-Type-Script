@@ -1,5 +1,6 @@
 import { put, select, takeLatest } from 'redux-saga/effects';
 import { actions, actionTypes } from '../';
+import { actions as basketItemsActions } from '../../basketItems';
 
 function* selectFirstBasket(action) {
   const { collection: [firstBasket] = [] } = yield select(
@@ -37,9 +38,22 @@ function* selectAddedBasket(action) {
   yield put(actions.editItem({ ...newItem, selected: true }));
 }
 
+function* getBasketItems(action) {
+  console.log('basketsCustomSaga:getBasketItems', action);
+
+  const {
+    payload: {
+      item: { id: basketId }
+    }
+  } = action;
+
+  yield put(basketItemsActions.getItems({ basketId }));
+}
+
 export default function* customSaga() {
   yield takeLatest(actionTypes.SET, selectFirstBasket);
   yield takeLatest(actionTypes.EDIT, editItem);
   yield takeLatest(actionTypes.ADDED, selectAddedBasket);
   yield takeLatest(actionTypes.REMOVED, selectFirstBasket);
+  yield takeLatest(actionTypes.EDITED, getBasketItems);
 }
