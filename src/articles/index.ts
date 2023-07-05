@@ -7,10 +7,13 @@ export { ArticlesPanel, ArticlesPanelContainer, useArticles };
 //============================================================================
 // generate namespace
 
-import { actionsCreator, getActionTypes } from '../common/actions/creators';
-import { createApi } from '../common/api/creators';
-import { createListenersRegistrator } from '../common/listeners/creators';
-import { createReducer } from '../common/reducers/creators';
+import {
+  actionsCreator,
+  getActionTypes,
+  createApi,
+  createListenersRegistrator,
+  createReducer
+} from '../common';
 // import { IItemsState } from './store/state';
 
 const namespace = 'articles';

@@ -1,6 +1,6 @@
 import { call, delay, put, select, takeEvery, takeLatest } from 'redux-saga/effects';
 import { ItemActions, itemListActionTypes, ItemListsActions } from '../';
-import { getActionTypes } from '../../common/actions/creators';
+import { getActionTypes } from '../../common';
 
 // const itemListsActionTypes = getActionTypes('ITEM_LIST');
 const itemActionTypes = getActionTypes('ITEM');
@@ -47,7 +47,9 @@ function* deselect(action) {
   });
 
   if (!!previouslySelectedList) {
-    yield put(ItemListsActions.editItem({ ...previouslySelectedList, selected: undefined }));
+    yield put(
+      ItemListsActions.editItem({ ...previouslySelectedList, selected: undefined })
+    );
   }
 }
 

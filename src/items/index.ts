@@ -1,7 +1,10 @@
-import { actionsCreator, getActionTypes } from '../common/actions/creators';
-import { createApi } from '../common/api/creators';
-import { createListenersRegistrator } from '../common/listeners/creators';
-import { createReducer } from '../common/reducers/creators';
+import {
+  actionsCreator,
+  getActionTypes,
+  createApi,
+  createListenersRegistrator,
+  createReducer
+} from '../common';
 import { IItemsState } from './store/state';
 
 // APIs
@@ -16,7 +19,10 @@ export const ItemListsActions = actionsCreator('ITEM_LIST');
 
 // listeners
 export const registerItemListeners = createListenersRegistrator('item', ItemActions);
-export const registerItemListListeners = createListenersRegistrator('itemLists', ItemListsActions);
+export const registerItemListListeners = createListenersRegistrator(
+  'itemLists',
+  ItemListsActions
+);
 
 // reducers
 const itemsInitialState = <IItemsState>{ collection: [] };
@@ -29,4 +35,7 @@ const selectedItemListNamespace = 'SELECTED_ITEM_LIST';
 export const selectedItemListActionTypes = getActionTypes(selectedItemListNamespace);
 export const selectedItemListActions = actionsCreator('SELECTED_ITEM_LIST');
 const selectedItemListInitialState = { collection: [] };
-export const selectedItemList = createReducer('ITEM_LIST', selectedItemListInitialState);
+export const selectedItemList = createReducer(
+  'ITEM_LIST',
+  selectedItemListInitialState
+);

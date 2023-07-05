@@ -14,10 +14,13 @@ export { saga as basketsSaga, customSaga as customBasketsSaga };
 //============================================================================
 // generate actions, api, reducer, socket listener
 
-import { actionsCreator, getActionTypes } from '../common/actions/creators';
-import { createApi } from '../common/api/creators';
-import { createListenersRegistrator } from '../common/listeners/creators';
-import { createReducer } from '../common/reducers/creators';
+import {
+  actionsCreator,
+  getActionTypes,
+  createApi,
+  createListenersRegistrator,
+  createReducer
+} from '../common';
 
 const namespace = 'baskets';
 const namespaceUpperCase = namespace.toUpperCase();
