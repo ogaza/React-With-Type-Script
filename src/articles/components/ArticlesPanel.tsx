@@ -24,7 +24,6 @@ export function ArticlesPanel({ items, onItemSelected, enabled = true }) {
 
   function getTailClickedHandler(item) {
     return function handleClick() {
-      // console.log('ArticlesPanel:handleClick', id);
       onItemSelected(item);
     };
   }

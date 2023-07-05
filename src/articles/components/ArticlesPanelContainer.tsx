@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddItemPanel } from '../../items/components/AddItemPanel';
-import { ItemActions } from '../../items';
+import { ArticlesPanel, useArticles } from '../';
+import { IAppState } from '../../application/store/state';
 import { actions } from '../../articles';
 import { actions as basketItemsActions } from '../../basketItems';
-import { IAppState } from '../../application/store/state';
-import { useArticles, ArticlesPanel } from '../';
 import { useBaskets } from '../../baskets';
+import { useBasketItems } from '../../basketItems';
+import { ItemActions } from '../../items';
+import { AddItemPanel } from '../../items/components/AddItemPanel';
 
 /*
 export function AddItemPanelContainer() {
@@ -27,25 +28,37 @@ export function AddItemPanelContainer() {
 */
 
 export function ArticlesPanelContainer() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { get } = useArticles();
 
-  const { getSelectedBasket } = useBaskets();
-  const { id: selectedBasketId } = getSelectedBasket() || {};
+  const { addBasketItem } = useBasketItems();
 
-  return <ArticlesPanel items={get()} onItemSelected={addArticleToTheBasket} />;
+  return <ArticlesPanel items={get()} onItemSelected={handleArticleItemSelected} />;
 
-  function addArticleToTheBasket({ id, name, price }) {
-    console.log('ArticlesPanelContainer:addArticleToTheBasket', selectedBasketId);
-
-    dispatch(
-      basketItemsActions.addItem({
-        id,
-        name,
-        price,
-        quantity: 1,
-        basketId: selectedBasketId
-      })
+  function handleArticleItemSelected(article) {
+    console.log(
+      'ArticlesPanelContainer:handleArticleItemSelected'
+      // selectedBasketId
     );
+
+    addBasketItem(article);
+
+    // addBasketItem({
+    //   id,
+    //   name,
+    //   price
+    //   // quantity: 1,
+    //   // basketId: selectedBasketId
+    // });
+
+    // dispatch(
+    //   basketItemsActions.addItem({
+    //     id,
+    //     name,
+    //     price,
+    //     quantity: 1,
+    //     basketId: selectedBasketId
+    //   })
+    // );
   }
 }
