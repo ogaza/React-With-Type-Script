@@ -3,32 +3,38 @@ import { useRef } from 'react';
 import './RippleUsingTransitions.scss';
 
 export function RippleUsingTransitions({ children }) {
-  const wrapperRef = useRef(null);
+  const ref = useRef(null);
+
+  const handleEvent = getEventHandler(ref.current);
 
   return (
     <div
-      className="ripple-using-after"
+      className="ripple"
       onMouseDown={handleEvent}
       onMouseUp={handleEvent}
       onMouseLeave={handleEvent}
       onTouchStart={handleEvent}
       onTouchEnd={handleEvent}
       onClick={handleEvent}
-      ref={wrapperRef}
+      ref={ref}
     >
       {children}
     </div>
   );
+}
 
-  function handleEvent(e) {
-    setElementDataStateAttributeBasedOnEventType(wrapperRef.current, e.type);
+function getEventHandler(htmlElem) {
+  return function handleEvent(e) {
+    e.stopPropagation();
+
+    setElementDataStateAttributeBasedOnEventType(htmlElem, e.type);
 
     if (e.type === 'mouseup') {
       return;
     }
 
-    setEventCoordinatesInElementProperties(wrapperRef.current, getEventCoordinates(e));
-  }
+    setEventCoordinatesInElementProperties(htmlElem, getEventCoordinates(e));
+  };
 }
 
 //=================================================================================================
@@ -52,7 +58,10 @@ function setElementDataStateAttributeBasedOnEventType(htmlElement, eventType) {
   htmlElement.removeAttribute('data-state');
 }
 
-export function setEventCoordinatesInElementProperties(htmlElement, eventCoordinates) {
+export function setEventCoordinatesInElementProperties(
+  htmlElement,
+  eventCoordinates
+) {
   if (!htmlElement) return;
 
   const [x, y] = eventCoordinates;
