@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { RippleUsingTransitions } from '../../common';
 import { Tail } from '../../common/components/tails/Tail';
 import './ArticlesPanel.scss';
 
@@ -12,13 +13,15 @@ export function ArticlesPanel({ items, onItemSelected, enabled = true }) {
 
   function mapItemToTail({ id, name, price }) {
     return (
-      <Tail
-        key={id}
-        id={id}
-        label={name}
-        onClick={getTailClickedHandler({ id, name, price })}
-        enabled={true}
-      />
+      <RippleUsingTransitions>
+        <Tail
+          key={id}
+          id={id}
+          label={name}
+          onClick={getTailClickedHandler({ id, name, price })}
+          enabled={true}
+        />
+      </RippleUsingTransitions>
     );
   }
 

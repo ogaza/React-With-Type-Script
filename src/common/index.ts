@@ -10,3 +10,8 @@ export {
   createListenersRegistrator,
   createReducer
 };
+
+//==== components ===============
+
+import { RippleUsingTransitions } from './components/clickIndication/rippleUsingTransitions/RippleUsingTransitions';
+export { RippleUsingTransitions };
