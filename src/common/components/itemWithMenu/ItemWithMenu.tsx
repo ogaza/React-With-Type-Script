@@ -1,7 +1,9 @@
-import { RippleUsingTransitions } from '../clickIndication';
-import { Quantity } from './components';
+import { debounce } from 'lodash';
 import * as React from 'react';
 import { useState } from 'react';
+import { RippleUsingTransitions } from '../..';
+import { Quantity } from './components';
+
 import './ItemWithMenu.scss';
 
 export function ItemWithMenu({
@@ -54,13 +56,13 @@ function ItemMenu({ onCloseButtonClick, isOpen, menuOptions = [] }) {
       <OpenMenuButton onClick={onCloseButtonClick} menuIsOpen={isOpen} />
       <div className="item-menu__content">
         {menuOptions.map((x) => (
-          <div className="item-menu__element-wrapper">
-            <MenuButton
-              key={x.id}
-              {...x}
-              onClick={getMenuButtonClickHandlerFor(x.onClick, x.closeMenuOnClick)}
-            />
-            <VerticalDivider />
+          <div className="item-menu__element-wrapper" key={x.id}>
+            <RippleUsingTransitions>
+              <MenuButton
+                {...x}
+                onClick={getMenuButtonClickHandlerFor(x.onClick, x.closeMenuOnClick)}
+              />
+            </RippleUsingTransitions>
           </div>
         ))}
       </div>
@@ -68,21 +70,18 @@ function ItemMenu({ onCloseButtonClick, isOpen, menuOptions = [] }) {
   );
 
   function getMenuButtonClickHandlerFor(onClick, closeMenuOnClick) {
-    return function handleMenuButtonClick() {
+    return debounce(function handleMenuButtonClick() {
       onClick();
       !!closeMenuOnClick && onCloseButtonClick();
-    };
+    }, 200);
   }
 }
 
-function MenuButton({ id, label, onClick = () => {} }) {
+function MenuButton({ id, label, onClick = () => {}, additionalCssClass = '' }) {
+  const cssClasses = `button--basket-item ${additionalCssClass}`;
+
   return (
-    <div
-      key={id}
-      className="button--basket-item"
-      role="button"
-      onClick={handleClick}
-    >
+    <div key={id} className={cssClasses} role="button" onClick={handleClick}>
       {label}
     </div>
   );
