@@ -1,6 +1,23 @@
 import * as React from 'react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import './RippleUsingTransitions.scss';
+
+export function useRippleEventHandlers(ref) {
+  const handleEvent = getEventHandler(ref.current);
+
+  useEffect(function () {
+    ref.current.classList.add('ripple_');
+  });
+
+  return {
+    onMouseDown: handleEvent,
+    onMouseUp: handleEvent,
+    onMouseLeave: handleEvent,
+    onTouchStart: handleEvent,
+    onTouchEnd: handleEvent,
+    onClick: handleEvent
+  };
+}
 
 export function RippleUsingTransitions({ children }) {
   const ref = useRef(null);

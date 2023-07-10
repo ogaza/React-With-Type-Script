@@ -1,4 +1,9 @@
 import * as React from 'react';
+import { useRef } from 'react';
+import {
+  RippleUsingTransitions,
+  useRippleEventHandlers
+} from '../clickIndication/rippleUsingTransitions/RippleUsingTransitions';
 import './ListSelectorNew.scss';
 
 export function ListSelector({
@@ -17,7 +22,7 @@ export function ListSelector({
           const enabled = state !== 'LOADING';
 
           return (
-            <ListButton
+            <ListButtonWithRipple
               key={id}
               onClick={onSelected}
               onClose={onCloseClick}
@@ -29,7 +34,10 @@ export function ListSelector({
           );
         })}
       </div>
-      <AddListButton enabled={addButtonEnabled} onClick={onAddButtonClick} />
+      <AddListButtonWithRipple
+        enabled={addButtonEnabled}
+        onClick={onAddButtonClick}
+      />
     </div>
   );
 }
@@ -50,12 +58,52 @@ export function ListButton({
     <div role="button" onClick={handleClick} className={cssClass}>
       <span className="list-selector__value">{id !== 0 ? id : '...'}</span>
       {closeButtonEnabled && closeButtonEnabled && (
-        <ListButtonClose onClick={handleClose} />
+        <ListButtonCloseWithRipple onClick={handleClose} />
       )}
     </div>
   );
 
   function handleClick(e) {
+    enabled && onClick(id);
+  }
+
+  function handleClose(e) {
+    enabled && onClose(id);
+  }
+}
+
+export function ListButtonWithRipple({
+  id,
+  selected,
+  onClick,
+  onClose,
+  enabled,
+  closeButtonEnabled
+}) {
+  const ref = useRef(null);
+  const { onClick: onClickRipple, ...rest } = useRippleEventHandlers(ref);
+
+  const cssClass = `list-selector__item ${
+    selected ? 'list-selector__item--selected' : ''
+  } ${enabled ? '' : 'list-selector__item--disabled'}`;
+
+  return (
+    <div
+      role="button"
+      onClick={handleClick}
+      className={cssClass}
+      ref={ref}
+      {...rest}
+    >
+      <span className="list-selector__value">{id !== 0 ? id : '...'}</span>
+      {closeButtonEnabled && closeButtonEnabled && (
+        <ListButtonCloseWithRipple onClick={handleClose} />
+      )}
+    </div>
+  );
+
+  function handleClick(e) {
+    enabled && onClickRipple(e);
     enabled && onClick(id);
   }
 
@@ -74,6 +122,24 @@ function ListButtonClose({ onClick }) {
   );
 }
 
+function ListButtonCloseWithRipple({ onClick }) {
+  const ref = useRef(null);
+  const { onClick: onClickRipple, ...rest } = useRippleEventHandlers(ref);
+
+  return (
+    <div className="list-selector__close" onClick={handleClick} {...rest} ref={ref}>
+      <span>
+        <span>+</span>
+      </span>
+    </div>
+  );
+
+  function handleClick(e) {
+    onClickRipple(e);
+    onClick();
+  }
+}
+
 export function AddListButton({ onClick = () => {}, enabled = true }) {
   const cssClass = `add-list-button ${enabled ? '' : 'add-list-button--disabled'}`;
 
@@ -84,6 +150,30 @@ export function AddListButton({ onClick = () => {}, enabled = true }) {
   );
 
   function handleClick() {
+    enabled && onClick();
+  }
+}
+
+export function AddListButtonWithRipple({ onClick = () => {}, enabled = true }) {
+  const ref = useRef(null);
+  const { onClick: onClickRipple, ...rest } = useRippleEventHandlers(ref);
+
+  const cssClass = `add-list-button ${enabled ? '' : 'add-list-button--disabled'}`;
+
+  return (
+    <div
+      role="button"
+      onClick={handleClick}
+      className={cssClass}
+      ref={ref}
+      {...rest}
+    >
+      <span>+</span>
+    </div>
+  );
+
+  function handleClick(e) {
+    enabled && onClickRipple(e);
     enabled && onClick();
   }
 }

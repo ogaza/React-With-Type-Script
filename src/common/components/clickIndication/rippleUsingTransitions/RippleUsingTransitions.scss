@@ -1,4 +1,44 @@
 [data-state='pressed'] {
+  &.ripple_:after {
+    animation-name: pressed;
+  }
+}
+
+[data-state='clicked'] {
+  &.ripple_:after {
+    animation-name: ripple;
+  }
+}
+
+.ripple_ {
+  --duration: 0.5s;
+  --ripple-color: rgba(0, 0, 0, 0.4);
+  --size: 48px;
+  --ripple-size: 5;
+
+  overflow: hidden;
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: ' ';
+    left: var(--x, 0);
+    top: var(--y, 0);
+
+    background-color: var(--ripple-color);
+    border-radius: 50%;
+    width: var(--size);
+    height: var(--size);
+    opacity: 0;
+
+    animation-duration: var(--duration);
+    animation-fill-mode: both;
+  }
+}
+
+//==================================
+
+[data-state='pressed'] {
   &.ripple > :after {
     animation-name: pressed;
   }

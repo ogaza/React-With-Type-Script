@@ -13,5 +13,8 @@ export {
 
 //==== components ===============
 
-import { RippleUsingTransitions } from './components/clickIndication/rippleUsingTransitions/RippleUsingTransitions';
-export { RippleUsingTransitions };
+import {
+  RippleUsingTransitions,
+  useRippleEventHandlers
+} from './components/clickIndication/rippleUsingTransitions/RippleUsingTransitions';
+export { RippleUsingTransitions, useRippleEventHandlers };
