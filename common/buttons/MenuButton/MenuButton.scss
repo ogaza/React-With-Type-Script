@@ -3,30 +3,38 @@
 
 .button--basket-item {
   --_bg-color: var(--bg-color, #0053b8);
+  --_color: var(--bg-color, #ffffff);
+  --_font-family: var(--font-family, 'Open Sans', Arial, Helvetica, sans-serif);
+  --_width: var(--width, 2rem);
+  --_height: var(--height, 2rem);
 
   background-color: var(--_bg-color);
+  color: var(--_color);
+  font-family: var(--_font-family);
+
   display: flex;
   justify-content: center;
   align-items: center;
 
+  width: var(--_width);
+  height: var(--_height);
   padding: 4px;
-  text-align: center;
 }
 
 //==================================================
 // ripple effect
 
-.item-menu__element-wrapper > div {
-  display: flex;
-}
+// .item-menu__element-wrapper > div {
+//   display: flex;
+// }
 
-.item-menu .ripple {
-  display: flex;
-  grid-row: 1/2;
-  grid-column: 1/2;
+// .item-menu .ripple {
+//   display: flex;
+//   grid-row: 1/2;
+//   grid-column: 1/2;
 
-  & > * {
-    flex: 1;
-  }
-  // }
-}
+//   & > * {
+//     flex: 1;
+//   }
+//   // }
+// }
