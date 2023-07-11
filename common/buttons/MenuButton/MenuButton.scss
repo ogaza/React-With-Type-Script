@@ -1,0 +1,32 @@
+//=================================================
+// menu button
+
+.button--basket-item {
+  --_bg-color: var(--bg-color, #0053b8);
+
+  background-color: var(--_bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 4px;
+  text-align: center;
+}
+
+//==================================================
+// ripple effect
+
+.item-menu__element-wrapper > div {
+  display: flex;
+}
+
+.item-menu .ripple {
+  display: flex;
+  grid-row: 1/2;
+  grid-column: 1/2;
+
+  & > * {
+    flex: 1;
+  }
+  // }
+}
