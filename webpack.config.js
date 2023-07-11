@@ -6,13 +6,20 @@ const cssModuleRegex = /\.module\.css$/;
 
 const parts = ['buttons'];
 let entry = {
-  index: './src/index.tsx'
+  index: './src/index.tsx',
+  common: './common/index.ts'
 };
 const plugins = [
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: path.resolve(__dirname, 'src/index.html'),
     chunks: ['index'],
+    inject: true
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'common/index.html',
+    template: path.resolve(__dirname, 'common/index.html'),
+    chunks: ['common'],
     inject: true
   })
 ];
@@ -23,7 +30,7 @@ function createHtmlPluginsAndEntries(entry, parts) {
     entry = { ...entry, [part]: `./common/${part}/index.tsx` };
     plugins.push(
       new HtmlWebpackPlugin({
-        filename: `${part}/index.html`,
+        filename: `common/${part}/index.html`,
         template: `common/${part}/index.html`,
         chunks: [`${part}`],
         inject: true
@@ -46,7 +53,9 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: (pathData) => {
-      return pathData.chunk.name === 'index' ? '[name].js' : '[name]/[name].js';
+      return pathData.chunk.name === 'index' || pathData.chunk.name === 'common'
+        ? '[name].js'
+        : '[name]/[name].js';
     }
   },
   resolve: {
