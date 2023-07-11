@@ -4,11 +4,39 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 
+const parts = ['buttons'];
+let entry = {
+  index: './src/index.tsx'
+};
+const plugins = [
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: path.resolve(__dirname, 'src/index.html'),
+    chunks: ['index'],
+    inject: true
+  })
+];
+createHtmlPluginsAndEntries(entry, parts);
+
+function createHtmlPluginsAndEntries(entry, parts) {
+  parts.forEach((part) => {
+    entry = { ...entry, [part]: `./common/${part}/index.tsx` };
+    plugins.push(
+      new HtmlWebpackPlugin({
+        filename: `${part}/index.html`,
+        template: `common/${part}/index.html`,
+        chunks: [`${part}`],
+        inject: true
+      })
+    );
+  });
+}
+
 module.exports = {
   mode: 'development',
   // a string here because there is one file as an entry point
   // if there is more than one, then use an array
-  entry: './src/index.tsx',
+  entry,
   //  tell webpack to extract source maps and into our final bundle
   devtool: 'inline-source-map',
   // devServer: {
@@ -16,23 +44,30 @@ module.exports = {
   // },
   // the path and name of the file that will be generated, and to be referenced in the html file
   output: {
-    // path: __dirname + '/dist',
     path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js'
+    filename: (pathData) => {
+      return pathData.chunk.name === 'index' ? '[name].js' : '[name]/[name].js';
+    }
   },
   resolve: {
     alias: {
       _src: path.resolve(__dirname, '/src')
     },
     //   // by default Webpack does no load .ts and .tsx files so it needs to be told
-    extensions: ['*', '.js', '.jsx', '.ts', '.tsx', '.css', '.less', '.png', '.svg', '.json']
+    extensions: [
+      '*',
+      '.js',
+      '.jsx',
+      '.ts',
+      '.tsx',
+      '.css',
+      '.less',
+      '.png',
+      '.svg',
+      '.json'
+    ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src/index.html'),
-      inject: true
-    })
-  ],
+  plugins,
   module: {
     rules: [
       {
