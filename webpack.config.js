@@ -4,12 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 
-const parts = ['buttons'];
+// const parts = ['buttons'];
 let entry = {
   index: './src/index.tsx',
-  common: './common/index.ts'
+  common: './common/index.ts',
+  buttons: './common/buttons/index.tsx'
 };
-const plugins = [
+let plugins = [
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: path.resolve(__dirname, 'src/index.html'),
@@ -21,23 +22,30 @@ const plugins = [
     template: path.resolve(__dirname, 'common/index.html'),
     chunks: ['common'],
     inject: true
+  }),
+  new HtmlWebpackPlugin({
+    filename: 'common/buttons/index.html',
+    template: path.resolve(__dirname, 'common/buttons/index.html'),
+    chunks: ['buttons'],
+    inject: true
   })
 ];
-createHtmlPluginsAndEntries(entry, parts);
+// createHtmlPluginsAndEntries(entry, parts);
 
-function createHtmlPluginsAndEntries(entry, parts) {
-  parts.forEach((part) => {
-    entry = { ...entry, [part]: `./common/${part}/index.tsx` };
-    plugins.push(
-      new HtmlWebpackPlugin({
-        filename: `common/${part}/index.html`,
-        template: `common/${part}/index.html`,
-        chunks: [`${part}`],
-        inject: true
-      })
-    );
-  });
-}
+// function createHtmlPluginsAndEntries(entry, parts) {
+//   parts.forEach((part) => {
+//     entry = { ...entry, [part]: `./common/${part}/index.tsx` };
+//     plugins.push(
+//       new HtmlWebpackPlugin({
+//         filename: `common/${part}/index.html`,
+//         // template: `common/${part}/index.html`,
+//         template: path.resolve(__dirname, `common/${part}/index.html`),
+//         chunks: [`${part}`],
+//         inject: true
+//       })
+//     );
+//   });
+// }
 
 module.exports = {
   mode: 'development',
@@ -53,9 +61,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: (pathData) => {
-      return pathData.chunk.name === 'index' || pathData.chunk.name === 'common'
-        ? '[name].js'
-        : '[name]/[name].js';
+      return '[name].js';
+      // return pathData.chunk.name === 'index' || pathData.chunk.name === 'common'
+      //   ? '[name].js'
+      //   : '[name]/[name].js';
     }
   },
   resolve: {
