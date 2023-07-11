@@ -130,7 +130,3 @@ function CloseMenuButton({ onClick, menuIsOpen }) {
 export function BasketItems({ children }) {
   return <div className="basket-items">{children}</div>;
 }
-
-export function VerticalDivider() {
-  return <div className="vertical-divider"></div>;
-}
