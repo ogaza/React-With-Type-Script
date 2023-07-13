@@ -3,22 +3,23 @@ import { useRef } from 'react';
 import './RippleUsingTransitions.scss';
 
 export function useRippleEventHandlers(ref) {
-  const handleEvent = getEventHandler(ref.current);
-
   return {
     onMouseDown: handleEvent,
     onMouseUp: handleEvent,
     onMouseLeave: handleEvent,
     onTouchStart: handleEvent,
-    onTouchEnd: handleEvent,
-    onClick: handleEvent
+    onTouchEnd: handleEvent
   };
+
+  function handleEvent(e) {
+    e.stopPropagation();
+    setElementDataStateAttributeBasedOnEventType(ref.current, e.type);
+    setEventCoordinatesInElementProperties(ref.current, getEventCoordinates(e));
+  }
 }
 
 export function RippleUsingTransitions({ children }) {
   const ref = useRef(null);
-
-  const handleEvent = getEventHandler(ref.current);
 
   return (
     <div
@@ -28,46 +29,39 @@ export function RippleUsingTransitions({ children }) {
       onMouseLeave={handleEvent}
       onTouchStart={handleEvent}
       onTouchEnd={handleEvent}
-      onClick={handleEvent}
       ref={ref}
     >
       {children}
     </div>
   );
-}
 
-function getEventHandler(htmlElem) {
-  return function handleEvent(e) {
+  function handleEvent(e) {
     e.stopPropagation();
-
-    setElementDataStateAttributeBasedOnEventType(htmlElem, e.type);
-
-    if (e.type === 'mouseup') {
-      return;
-    }
-
-    setEventCoordinatesInElementProperties(htmlElem, getEventCoordinates(e));
-  };
+    setElementDataStateAttributeBasedOnEventType(ref.current, e.type);
+    setEventCoordinatesInElementProperties(ref.current, getEventCoordinates(e));
+  }
 }
 
 //=================================================================================================
 
 const dataStateFor = {
   mousedown: 'pressed',
-  touchstart: 'pressed',
-  click: 'clicked'
+  mouseup: 'clicked',
+  touchstart: 'pressed'
 };
 function setElementDataStateAttributeBasedOnEventType(htmlElement, eventType) {
   if (!htmlElement) return;
 
   const dataState = dataStateFor[eventType];
 
-  if (dataState) {
-    htmlElement.dataset.state = dataState;
-
+  if (eventType === 'mouseup' && htmlElement.dataset.state !== 'pressed') {
     return;
   }
 
+  if (dataState) {
+    htmlElement.dataset.state = dataState;
+    return;
+  }
   htmlElement.removeAttribute('data-state');
 }
 

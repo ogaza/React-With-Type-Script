@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { useRef } from 'react';
-import {
-  RippleUsingTransitions,
-  useRippleEventHandlers
-} from '../clickIndication/rippleUsingTransitions/RippleUsingTransitions';
+import { useRippleEventHandlers } from '../clickIndication/rippleUsingTransitions/RippleUsingTransitions';
 import './ListSelectorNew.scss';
 
 export function ListSelector({
@@ -81,7 +78,7 @@ export function ListButtonWithRipple({
   closeButtonEnabled
 }) {
   const ref = useRef(null);
-  const { onClick: onClickRipple, ...rest } = useRippleEventHandlers(ref);
+  const { ...rest } = useRippleEventHandlers(ref);
 
   const cssClass = `ripple_ list-selector__item ${
     selected ? 'list-selector__item--selected' : ''
@@ -103,11 +100,10 @@ export function ListButtonWithRipple({
   );
 
   function handleClick(e) {
-    enabled && onClickRipple(e);
     enabled && onClick(id);
   }
 
-  function handleClose(e) {
+  function handleClose() {
     enabled && onClose(id);
   }
 }
@@ -124,7 +120,7 @@ function ListButtonClose({ onClick }) {
 
 function ListButtonCloseWithRipple({ onClick }) {
   const ref = useRef(null);
-  const { onClick: onClickRipple, ...rest } = useRippleEventHandlers(ref);
+  const { ...rest } = useRippleEventHandlers(ref);
 
   return (
     <div
@@ -139,8 +135,7 @@ function ListButtonCloseWithRipple({ onClick }) {
     </div>
   );
 
-  function handleClick(e) {
-    onClickRipple(e);
+  function handleClick() {
     onClick();
   }
 }
@@ -161,7 +156,7 @@ export function AddListButton({ onClick = () => {}, enabled = true }) {
 
 export function AddListButtonWithRipple({ onClick = () => {}, enabled = true }) {
   const ref = useRef(null);
-  const { onClick: onClickRipple, ...rest } = useRippleEventHandlers(ref);
+  const { ...rest } = useRippleEventHandlers(ref);
 
   const cssClass = `ripple_ add-list-button ${
     enabled ? '' : 'add-list-button--disabled'
@@ -179,8 +174,7 @@ export function AddListButtonWithRipple({ onClick = () => {}, enabled = true }) 
     </div>
   );
 
-  function handleClick(e) {
-    enabled && onClickRipple(e);
+  function handleClick() {
     enabled && onClick();
   }
 }

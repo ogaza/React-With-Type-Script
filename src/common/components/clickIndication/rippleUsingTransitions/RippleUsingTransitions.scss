@@ -1,17 +1,36 @@
-[data-state='pressed'] {
-  &.ripple_:after {
-    animation-name: pressed;
+.ripple_[data-state='pressed']:after {
+  visibility: visible;
+  animation-name: pressed_;
+}
+
+.ripple_[data-state='clicked']:after {
+  animation-name: ripple_;
+}
+
+@keyframes pressed_ {
+  from {
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
   }
 }
 
-[data-state='clicked'] {
-  &.ripple_:after {
-    animation-name: ripple;
+@keyframes ripple_ {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(var(--ripple-size));
+    opacity: 0;
   }
 }
 
 .ripple_ {
-  --duration: 0.5s;
+  --duration: 0.4s;
   --ripple-color: rgba(0, 0, 0, 0.4);
   --size: 48px;
   --ripple-size: 5;
@@ -24,12 +43,15 @@
     content: ' ';
     left: var(--x, 0);
     top: var(--y, 0);
+    transform: translate(-50%, -50%) scale(0);
 
     background-color: var(--ripple-color);
     border-radius: 50%;
     width: var(--size);
     height: var(--size);
+
     opacity: 0;
+    visibility: hidden;
 
     animation-duration: var(--duration);
     animation-fill-mode: both;
@@ -41,6 +63,7 @@
 [data-state='pressed'] {
   &.ripple > :after {
     animation-name: pressed;
+    visibility: visible;
   }
 }
 
@@ -72,6 +95,7 @@
     width: var(--size);
     height: var(--size);
     opacity: 0;
+    visibility: hidden;
 
     animation-duration: var(--duration);
     animation-fill-mode: both;
@@ -81,6 +105,7 @@
 @keyframes pressed {
   from {
     transform: translate(-50%, -50%) scale(0);
+    visibility: visible;
   }
 
   to {
@@ -93,8 +118,11 @@
   from {
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
+    visibility: visible;
   }
   to {
     transform: translate(-50%, -50%) scale(var(--ripple-size));
+    opacity: 0;
+    visibility: hidden;
   }
 }
