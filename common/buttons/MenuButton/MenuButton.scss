@@ -5,8 +5,8 @@
   --_bg-color: var(--bg-color, #0053b8);
   --_color: var(--bg-color, #ffffff);
   --_font-family: var(--font-family, 'Open Sans', Arial, Helvetica, sans-serif);
-  --_width: var(--width, 2rem);
-  --_height: var(--height, 2rem);
+  --_width: var(--width, 12rem);
+  --_height: var(--height, 6rem);
 
   background-color: var(--_bg-color);
   color: var(--_color);
@@ -24,17 +24,63 @@
 //==================================================
 // ripple effect
 
-// .item-menu__element-wrapper > div {
-//   display: flex;
-// }
+@property --ripple-size {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
 
-// .item-menu .ripple {
-//   display: flex;
-//   grid-row: 1/2;
-//   grid-column: 1/2;
+@property --ripple-color {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: transparent;
+}
 
-//   & > * {
-//     flex: 1;
-//   }
-//   // }
-// }
+@property --x {
+  syntax: '<number>';
+  inherits: false;
+  // initial-value: 0;
+}
+
+@property --y {
+  syntax: '<number>';
+  inherits: false;
+  // initial-value: 0;
+}
+
+.ripple {
+  --ripple-duration: 0.3s;
+  --ripple-size: 0;
+
+  animation-name: ripple;
+  animation-duration: var(--ripple-duration);
+  animation-fill-mode: both;
+
+  background-image: radial-gradient(
+    circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
+    var(--ripple-color) 0% calc(var(--ripple-size) * 50%),
+    transparent calc(var(--ripple-size) * 50%) 100%
+  );
+
+  &:active {
+    animation-name: pressed;
+    animation-duration: var(--ripple-duration);
+  }
+}
+
+@keyframes pressed {
+  to {
+    --ripple-size: 1;
+    --ripple-color: red;
+  }
+}
+
+@keyframes ripple {
+  from {
+    --ripple-size: 1;
+    --ripple-color: red;
+  }
+  to {
+    --ripple-size: 3;
+  }
+}

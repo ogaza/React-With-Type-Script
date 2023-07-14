@@ -7,7 +7,7 @@ import './style.scss';
 function renderApp() {
   return (
     <App>
-      <MenuButton />
+      <MenuButton additionalCssClass="ripple" />
     </App>
   );
 }
