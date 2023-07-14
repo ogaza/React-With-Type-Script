@@ -1,0 +1,57 @@
+html {
+  box-sizing: border-box;
+}
+body {
+  background-color: var(--app-bg-color);
+  margin: 0;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+:root {
+  --app-bg-color: #e4e9f0;
+}
+
+figure {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  // margin: 0;
+}
+
+a {
+  display: inline-block;
+}
+
+.sections {
+  display: grid;
+  row-gap: 1rem;
+
+  list-style: none;
+  margin: 0.5rem;
+
+  .content {
+    list-style: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .sections {
+    grid-template-columns: repeat(3, 250px);
+  }
+}

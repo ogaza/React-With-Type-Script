@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { MenuButton } from './MenuButton/MenuButton';
-// import App from './App';
+import './style.scss';
 
 export default function App() {
   return (
