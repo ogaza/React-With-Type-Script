@@ -1,16 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { MenuButton } from './MenuButton/MenuButton';
+import { App } from '../App/App';
 import './style.scss';
 
-export default function App() {
+function renderApp() {
   return (
-    <div>
+    <App>
       <MenuButton />
-    </div>
+    </App>
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
-console.log('test');
+ReactDOM.render(renderApp(), document.getElementById('root'));
