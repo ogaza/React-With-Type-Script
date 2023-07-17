@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useRef } from 'react';
+import { useRippleEventHandlers } from '../../hooks';
 import './MenuButton.scss';
 
 export function MenuButton({
@@ -10,6 +11,7 @@ export function MenuButton({
 }) {
   const ref = useRef(null);
   const cssClasses = `button--basket-item ${additionalCssClass}`;
+  const { onMouseDown, onTouchStart } = useRippleEventHandlers(ref);
 
   return (
     <div
@@ -17,8 +19,8 @@ export function MenuButton({
       className={cssClasses}
       role="button"
       onClick={handleClick}
-      onMouseDown={handleEvent}
-      onTouchStart={handleEvent}
+      onMouseDown={onMouseDown}
+      onTouchStart={onTouchStart}
       ref={ref}
     >
       {label}
@@ -27,45 +29,5 @@ export function MenuButton({
 
   function handleClick(e) {
     onClick();
-  }
-
-  function handleEvent(e) {
-    const eventCoordinates = getEventCoordinates(e);
-    const eventCoordinatesWithinElement = getEventCoordinatesWithinElement(
-      ref.current,
-      eventCoordinates
-    );
-    setCoordinatesAsProperties(ref.current, eventCoordinatesWithinElement);
-  }
-}
-
-export function setCoordinatesAsProperties(htmlElement, propValues) {
-  if (!htmlElement) return;
-
-  const [x, y] = propValues;
-
-  x && htmlElement.style.setProperty('--x', `${x}`);
-  y && htmlElement.style.setProperty('--y', `${y}`);
-}
-
-export function getEventCoordinatesWithinElement(htmlElement, eventCoordinates) {
-  const [x, y] = eventCoordinates;
-  const boundingClientRect = htmlElement.getBoundingClientRect();
-
-  return [x - boundingClientRect.left, y - boundingClientRect.top];
-}
-
-export function getEventCoordinates(e) {
-  switch (e.type) {
-    case 'mousedown':
-      return [e.clientX, e.clientY];
-    case 'touchstart': {
-      const x = e.touches[0].clientX;
-      const y = e.touches[0].clientY;
-
-      return [x, y];
-    }
-    default:
-      return [];
   }
 }
