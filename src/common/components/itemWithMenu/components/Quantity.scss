@@ -4,8 +4,7 @@
   align-items: center;
   gap: 10px;
 
-  &__decrement,
-  &__increment {
+  &__button--change {
     border: solid 2px;
     border-color: #6b7785;
     border-radius: 5px;
@@ -22,11 +21,14 @@
     height: 32px;
   }
 
-  &__decrement,
-  &__increment,
+  &__button--change,
   &__value {
     display: flex;
     align-items: center;
     justify-content: center;
   }
+}
+
+.quantity__button--change.use-ripple {
+  --ripple-color: rgba(0, 0, 0, 0.4);
 }
