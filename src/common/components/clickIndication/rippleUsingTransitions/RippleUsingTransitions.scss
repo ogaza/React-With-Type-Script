@@ -1,39 +1,38 @@
-.ripple_[data-state='pressed']:after {
+.ripple[data-state='pressed']:after {
   visibility: visible;
-  animation-name: pressed_;
+  animation-name: pressed;
 }
 
-.ripple_[data-state='clicked']:after {
-  animation-name: ripple_;
+.ripple[data-state='clicked']:after {
+  animation-name: ripple;
 }
 
-@keyframes pressed_ {
+@keyframes pressed {
   from {
-    opacity: 0;
+    --ripple-size: 0;
   }
   to {
-    transform: translate(-50%, -50%) scale(1);
+    --ripple-size: 1;
     opacity: 1;
   }
 }
 
-@keyframes ripple_ {
+@keyframes ripple {
   from {
-    transform: translate(-50%, -50%) scale(1);
+    --ripple-size: 1;
     opacity: 1;
     visibility: visible;
   }
   to {
-    transform: translate(-50%, -50%) scale(var(--ripple-size));
-    opacity: 0;
+    --ripple-size: 4;
   }
 }
 
-.ripple_ {
+.ripple {
   --duration: 0.4s;
   --ripple-color: rgba(0, 0, 0, 0.4);
   --size: 48px;
-  --ripple-size: 5;
+  --ripple-size: 0;
 
   overflow: hidden;
   position: relative;
@@ -43,7 +42,7 @@
     content: ' ';
     left: var(--x, 0);
     top: var(--y, 0);
-    transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(var(--ripple-size));
 
     background-color: var(--ripple-color);
     border-radius: 50%;
@@ -61,23 +60,23 @@
 //==================================
 
 [data-state='pressed'] {
-  &.ripple > :after {
-    animation-name: pressed;
+  &.ripple--in-wrapper > :after {
     visibility: visible;
+    animation-name: pressed--in-wrapper;
   }
 }
 
 [data-state='clicked'] {
-  &.ripple > :after {
-    animation-name: ripple;
+  &.ripple--in-wrapper > :after {
+    animation-name: ripple--in-wrapper;
   }
 }
 
-.ripple {
+.ripple--in-wrapper {
   --duration: 0.5s;
   --ripple-color: rgba(0, 0, 0, 0.4);
   --size: 48px;
-  --ripple-size: 5;
+  --ripple-size: 0;
 
   > * {
     overflow: hidden;
@@ -89,11 +88,13 @@
     content: ' ';
     left: var(--x, 0);
     top: var(--y, 0);
+    transform: translate(-50%, -50%) scale(var(--ripple-size));
 
     background-color: var(--ripple-color);
     border-radius: 50%;
     width: var(--size);
     height: var(--size);
+
     opacity: 0;
     visibility: hidden;
 
@@ -102,27 +103,26 @@
   }
 }
 
-@keyframes pressed {
+@keyframes pressed--in-wrapper {
   from {
-    transform: translate(-50%, -50%) scale(0);
     visibility: visible;
+    --ripple-size: 0;
   }
 
   to {
-    transform: translate(-50%, -50%) scale(1);
+    --ripple-size: 1;
     opacity: 1;
   }
 }
 
-@keyframes ripple {
+@keyframes ripple--in-wrapper {
   from {
-    transform: translate(-50%, -50%) scale(1);
+    --ripple-size: 1;
     opacity: 1;
     visibility: visible;
   }
   to {
-    transform: translate(-50%, -50%) scale(var(--ripple-size));
-    opacity: 0;
+    --ripple-size: 4;
     visibility: hidden;
   }
 }

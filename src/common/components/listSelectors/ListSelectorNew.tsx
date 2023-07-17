@@ -80,7 +80,7 @@ export function ListButtonWithRipple({
   const ref = useRef(null);
   const { ...rest } = useRippleEventHandlers(ref);
 
-  const cssClass = `ripple_ list-selector__item ${
+  const cssClass = `ripple list-selector__item ${
     selected ? 'list-selector__item--selected' : ''
   } ${enabled ? '' : 'list-selector__item--disabled'}`;
 
@@ -124,7 +124,7 @@ function ListButtonCloseWithRipple({ onClick }) {
 
   return (
     <div
-      className="ripple_ list-selector__close"
+      className="ripple list-selector__close"
       onClick={handleClick}
       {...rest}
       ref={ref}
@@ -158,7 +158,7 @@ export function AddListButtonWithRipple({ onClick = () => {}, enabled = true }) 
   const ref = useRef(null);
   const { ...rest } = useRippleEventHandlers(ref);
 
-  const cssClass = `ripple_ add-list-button ${
+  const cssClass = `ripple add-list-button ${
     enabled ? '' : 'add-list-button--disabled'
   }`;
 

@@ -23,7 +23,7 @@ export function RippleUsingTransitions({ children }) {
 
   return (
     <div
-      className="ripple"
+      className="ripple--in-wrapper"
       onMouseDown={handleEvent}
       onMouseUp={handleEvent}
       onMouseLeave={handleEvent}
