@@ -13,9 +13,8 @@ export function ArticlesPanel({ items, onItemSelected, enabled = true }) {
 
   function mapItemToTail({ id, name, price }) {
     return (
-      <RippleUsingTransitions>
+      <RippleUsingTransitions key={id}>
         <Tail
-          key={id}
           id={id}
           label={name}
           onClick={getTailClickedHandler({ id, name, price })}
