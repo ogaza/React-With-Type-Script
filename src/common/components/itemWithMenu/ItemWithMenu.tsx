@@ -19,7 +19,9 @@ export function ItemWithMenu({
 
   return (
     <div className={'basket-item'}>
-      <div className="basket-item__element basket-item__name">{name}</div>
+      <div className="basket-item__element basket-item__name-container">
+        <div className="basket-item__name">{name}</div>
+      </div>
       <div className="basket-item__element basket-item__price">
         <div className="basket-item__price-value">{price}</div>
         <div className="basket-item__price-icon">+</div>
