@@ -1,0 +1,11 @@
+.app {
+  height: 100vh;
+
+  display: grid;
+  grid-template-rows: 25% 50% 25%;
+
+  &__content {
+    display: flex;
+    justify-content: center;
+  }
+}

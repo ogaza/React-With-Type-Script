@@ -1,0 +1,31 @@
+@mixin simple-click-indicator($elementClassName, $bgColor) {
+  .#{$elementClassName} {
+    overflow: hidden;
+    position: relative;
+
+    &:active::after {
+      width: 7rem;
+      height: 7rem;
+
+      transition-duration: 0.2s;
+      transition-property: opacity, width, height;
+      transition-timing-function: ease-in;
+    }
+
+    &::after {
+      background-color: $bgColor;
+      border-radius: 50%;
+      content: '';
+      display: inline-block;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      width: 0;
+      height: 0;
+    }
+  }
+}

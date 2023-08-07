@@ -1,0 +1,68 @@
+.status-bar__container {
+  height: 64px;
+}
+
+.status-bar {
+  background-color: var(--status-panel-bg-color);
+  color: var(--app-text-color-lightest);
+  height: 100%;
+  padding: 0.625rem 1.125rem;
+
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
+
+  &__info {
+    text-align: left;
+  }
+
+  &__items {
+    text-align: center;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: end;
+  }
+}
+
+.app-menu-button {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .squares {
+    width: 20px;
+    height: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+
+    transition: all 0.5s;
+  }
+
+  .square {
+    width: 8px;
+    height: 8px;
+    border: 1px solid;
+
+    display: flex;
+
+    transition: all 0.5s;
+  }
+
+  &[data-state='open'] {
+    & .squares {
+      gap: 1px;
+    }
+
+    & .square {
+      // transform: scaleY(0.2);
+      transform: rotateZ(-45deg);
+      // transform: rotateZ(-45deg) translateY(50%);
+    }
+  }
+}

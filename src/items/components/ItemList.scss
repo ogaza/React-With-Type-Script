@@ -1,0 +1,42 @@
+.item-list,
+.item-list--placeholder {
+  background-color: var(--app-text-color-lightest);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.item,
+.item--placeholder {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  padding: 0.25rem;
+
+  &__button {
+    text-align: center;
+  }
+
+  &--disabled {
+    color: var(--button-disabled);
+  }
+}
+
+.item-list--placeholder {
+  color: var(--button-disabled);
+}
+
+.item--placeholder {
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  gap: 0.25rem;
+
+  & * {
+    background-color: var(--placeholder-bg);
+    border-radius: 0.5rem;
+
+    &::after {
+      content: '';
+      display: inline-block;
+      height: 0.75rem;
+    }
+  }
+}

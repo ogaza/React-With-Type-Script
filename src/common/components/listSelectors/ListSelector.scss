@@ -1,0 +1,100 @@
+// @import './clickIndication/simpleClickIndicator/SimpleClickIndicator.scss';
+@import '../clickIndication/rippleClickIndication/RippleClickIndicator.scss';
+
+.list-selector {
+  border-radius: 0.5rem;
+
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.25rem;
+
+  &__item {
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+    // position: relative;
+    width: 6rem;
+
+    flex-basis: 6rem;
+
+    display: flex;
+    justify-content: center;
+
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12),
+      0 1px 3px 0 rgba(0, 0, 0, 0.2);
+
+    &--selected {
+      background-color: var(--app-text-color-lightest);
+    }
+
+    &--disabled {
+      color: var(--button-disabled);
+    }
+  }
+
+  &__close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: solid 1px var(--divider-bg-color);
+    border-radius: 50%;
+    box-sizing: content-box;
+    color: var(--divider-bg-color);
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    position: absolute;
+
+    transform: rotate(45deg);
+
+    &--with-react-close-indicator {
+      position: static;
+
+      & .react-click-indicator {
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.add-list-button {
+  background-color: var(--app-text-color-lightest);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+
+  width: 6rem;
+
+  flex-basis: 6rem;
+
+  display: flex;
+  justify-content: center;
+
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12),
+    0 1px 3px 0 rgba(0, 0, 0, 0.2);
+
+  &--disabled {
+    background-color: var(--app-bg-color);
+    color: var(--button-disabled);
+  }
+}
+
+// pressed effects
+.list-selector__item--with-ripple-click-indicator {
+  @include pressed-effect(list-selector__item, var(--button-clicked-before-bg));
+  @include ripple-effect(list-selector__item, var(--button-clicked-before-bg));
+}
+
+.list-selector__close--with-ripple-click-indicator {
+  @include pressed-effect(list-selector__close, var(--button-clicked-before-bg), 24px);
+  @include ripple-effect(list-selector__close, var(--button-clicked-before-bg));
+
+  position: absolute;
+  right: 4px;
+  top: 4px;
+}
+
+.add-list-button--with-ripple-click-indicator {
+  @include pressed-effect(add-list-button, var(--button-clicked-before-bg));
+  @include ripple-effect(add-list-button, var(--button-clicked-before-bg));
+}

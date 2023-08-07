@@ -1,0 +1,128 @@
+.ripple[data-state='pressed']:after {
+  visibility: visible;
+  animation-name: pressed;
+}
+
+.ripple[data-state='clicked']:after {
+  animation-name: ripple;
+}
+
+@keyframes pressed {
+  from {
+    --ripple-size: 0;
+  }
+  to {
+    --ripple-size: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes ripple {
+  from {
+    --ripple-size: 1;
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    --ripple-size: 4;
+  }
+}
+
+.ripple {
+  --duration: 0.4s;
+  --ripple-color: rgba(0, 0, 0, 0.4);
+  --size: 48px;
+  --ripple-size: 0;
+
+  overflow: hidden;
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: ' ';
+    left: var(--x, 0);
+    top: var(--y, 0);
+    transform: translate(-50%, -50%) scale(var(--ripple-size));
+
+    background-color: var(--ripple-color);
+    border-radius: 50%;
+    width: var(--size);
+    height: var(--size);
+
+    opacity: 0;
+    visibility: hidden;
+
+    animation-duration: var(--duration);
+    animation-fill-mode: both;
+  }
+}
+
+//==================================
+
+[data-state='pressed'] {
+  &.ripple--in-wrapper > :after {
+    visibility: visible;
+    animation-name: pressed--in-wrapper;
+  }
+}
+
+[data-state='clicked'] {
+  &.ripple--in-wrapper > :after {
+    animation-name: ripple--in-wrapper;
+  }
+}
+
+.ripple--in-wrapper {
+  --duration: 0.5s;
+  --ripple-color: rgba(0, 0, 0, 0.4);
+  --size: 48px;
+  --ripple-size: 0;
+
+  > * {
+    overflow: hidden;
+    position: relative;
+  }
+
+  & > :after {
+    position: absolute;
+    content: ' ';
+    left: var(--x, 0);
+    top: var(--y, 0);
+    transform: translate(-50%, -50%) scale(var(--ripple-size));
+
+    background-color: var(--ripple-color);
+    border-radius: 50%;
+    width: var(--size);
+    height: var(--size);
+
+    opacity: 0;
+    visibility: hidden;
+
+    animation-duration: var(--duration);
+    animation-fill-mode: both;
+  }
+}
+
+@keyframes pressed--in-wrapper {
+  from {
+    visibility: visible;
+    --ripple-size: 0;
+  }
+
+  to {
+    --ripple-size: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes ripple--in-wrapper {
+  from {
+    --ripple-size: 1;
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    --ripple-size: 4;
+    visibility: hidden;
+  }
+}

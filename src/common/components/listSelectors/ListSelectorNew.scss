@@ -1,0 +1,103 @@
+// @import './clickIndication/simpleClickIndicator/SimpleClickIndicator.scss';
+
+.list-selector {
+  --n: 1;
+  --base-width: calc(100% / (var(--n) + 1));
+
+  display: flex;
+
+  height: 40px;
+  overflow: hidden;
+
+  border-bottom: 1px solid #a6adb5;
+
+  &__content {
+    flex-basis: calc(var(--n) * var(--base-width));
+
+    border-right: 1px solid #a6adb5;
+
+    display: flex;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .add-list-button {
+    flex-basis: var(--base-width);
+  }
+
+  &__item {
+    flex: 1;
+
+    border-left: 1px solid #a6adb5;
+
+    &:first-child {
+      border: 0;
+    }
+
+    height: 40px;
+    min-width: 6rem;
+    overflow: hidden;
+    position: relative;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+
+    & .list-selector__value {
+      grid-row: 1/2;
+      grid-column: 1/6;
+
+      display: flex;
+      justify-content: center;
+    }
+
+    &--selected {
+      background-color: var(--app-text-color-lightest);
+    }
+
+    &--disabled {
+      color: var(--button-disabled);
+    }
+  }
+
+  &__close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: solid 1px var(--divider-bg-color);
+    border-radius: 50%;
+    box-sizing: content-box;
+    color: var(--divider-bg-color);
+
+    width: 1.5rem;
+    height: 1.5rem;
+
+    grid-row: 1/2;
+    grid-column: 4/6;
+    justify-self: center;
+
+    transform: rotate(45deg);
+  }
+}
+
+.add-list-button {
+  background-color: var(--app-text-color-lightest);
+  height: 40px;
+  min-width: 6rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12),
+  //   0 1px 3px 0 rgba(0, 0, 0, 0.2);
+
+  &--disabled {
+    background-color: var(--app-bg-color);
+    color: var(--button-disabled);
+  }
+}
