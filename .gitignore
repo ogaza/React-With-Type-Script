@@ -36,5 +36,8 @@ bower_components/
 # API Docs
 docs/api/
 
+# logs folder
+logs/
+
 # DotEnv
 .env
