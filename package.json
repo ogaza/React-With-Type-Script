@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "repository": {},
+  "main": "electron/start.js",
   "scripts": {
     "restore": "npm install",
     "start_": "webpack-dev-server -d --content-base ./dist",
-    "start": "webpack serve --open"
+    "start": "webpack serve --open",
+    "start-electron": "electron ."
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -17,7 +19,12 @@
     "socket.io-client": "^4.6.1"
   },
   "devDependencies": {
+    "@redux-saga/types": "^1.1.0",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.2",
+    "@types/react-redux": "^7.1.25",
     "css-loader": "^6.7.3",
+    "electron": "^25.4.0",
     "html-webpack-plugin": "^5.5.3",
     "node-sass": "9.0.0",
     "prettier": "^2.8.4",
@@ -25,10 +32,6 @@
     "sass-loader": "13.3.2",
     "style-loader": "^3.3.3",
     "ts-loader": "^9.4.4",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.2",
-    "@types/react-redux": "^7.1.25",
-    "@redux-saga/types": "^1.1.0",
     "typescript": "^4.9.5",
     "webpack": "^5.88.1",
     "webpack-cli": "^5.1.4",
