@@ -8,7 +8,8 @@
     "restore": "npm install",
     "start_": "webpack-dev-server -d --content-base ./dist",
     "start": "webpack serve --open",
-    "start-electron": "electron ."
+    "start-electron": "electron .",
+    "start-dev-electron": "start webpack serve && start npm run start-electron"
   },
   "dependencies": {
     "react": "^17.0.2",
