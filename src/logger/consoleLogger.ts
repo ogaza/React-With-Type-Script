@@ -3,6 +3,14 @@ export class ConsoleLogger {
     console.log(message, ...optionalParams);
   }
 
+  debug(message?: any, ...optionalParams: any[]): void {
+    console.log(message, ...optionalParams);
+  }
+
+  info(message?: any, ...optionalParams: any[]): void {
+    console.log(message, ...optionalParams);
+  }
+
   warn(message?: any, ...optionalParams: any[]): void {
     console.warn(message, ...optionalParams);
   }
