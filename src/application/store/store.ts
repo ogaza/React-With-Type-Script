@@ -1,16 +1,22 @@
 import { applyMiddleware, createStore } from 'redux';
+import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
+import { logsSavingConfig, logToElectronMiddleware } from '../../logger';
 import { rootReducer } from './rootReducer';
 import rootSaga from './rootSaga';
-import { logToElectronMiddleware } from '../../logger';
-import logger from 'redux-logger';
+
+const {
+  minLogLevel,
+  reduxActions: { storingEnabled, actionLogLevel }
+} = logsSavingConfig;
+const logToElectron = storingEnabled && actionLogLevel >= minLogLevel;
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(
-  rootReducer,
-  applyMiddleware(sagaMiddleware, logger)
-  //   applyMiddleware(sagaMiddleware, logToElectronMiddleware, logger)
-);
+const storeEnhancer = logToElectron
+  ? applyMiddleware(sagaMiddleware, logToElectronMiddleware, logger)
+  : applyMiddleware(sagaMiddleware, logger);
+
+const store = createStore(rootReducer, storeEnhancer);
 sagaMiddleware.run(rootSaga);
 
 export default store;

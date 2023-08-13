@@ -9,7 +9,6 @@ export function logToElectronMiddleware({ getState }) {
 
 function createLogObjectFrom(action) {
   return {
-    redux_action: action.type,
-    action
+    reduxAction: action
   };
 }
