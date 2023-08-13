@@ -1,98 +1,37 @@
 // import moment from 'moment';
 import { electronApi } from '../communication/electron';
 import { logLevels } from './logLevels';
+import { logsSavingConfig } from './config';
 
-const minLogLevel = logLevels.trace;
+const { minLogLevel } = logsSavingConfig;
 // const logTimestampFormat = 'YYYY-MM-DD HH:mm:ss:sss';
 
 export class AppLogger {
-  logger;
-  constructor(logger) {
-    this.logger = logger;
-  }
+  log;
+  debug;
+  warn;
+  error;
 
-  log(message?: any, ...optionalParams: any[]): void {
-    const logLevel = logLevels.info;
-    invokeLoggingAndSendLogMessageToElectron(this.logger, {
-      message,
-      optionalParams,
-      logLevel
-    });
-  }
+  constructor() {
+    const { log, debug, warn, error } = console;
 
-  debug(message?: any, ...optionalParams: any[]): void {
-    const logLevel = logLevels.debug;
-    invokeLoggingAndSendLogMessageToElectron(this.logger, {
-      message,
-      optionalParams,
-      logLevel
-    });
-  }
-
-  warn(message?: any, ...optionalParams: any[]): void {
-    const logLevel = logLevels.warning;
-    invokeLoggingAndSendLogMessageToElectron(this.logger, {
-      message,
-      optionalParams,
-      logLevel
-    });
-  }
-
-  error(message?: any, ...optionalParams: any[]): void {
-    const logLevel = logLevels.error;
-    invokeLoggingAndSendLogMessageToElectron(this.logger, {
-      message,
-      optionalParams,
-      logLevel
-    });
+    this.log = withLoogingToElectron(log);
+    this.debug = withLoogingToElectron(debug);
+    this.warn = withLoogingToElectron(warn);
+    this.error = withLoogingToElectron(error);
   }
 }
 
-export function withLoogingToElectron(logger) {
-  return {
-    log(message?: any, ...optionalParams: any[]): void {
-      const logLevel = logLevels.info;
-      invokeLoggingAndSendLogMessageToElectron(logger, {
-        message,
-        optionalParams,
-        logLevel
-      });
-    },
+export function withLoogingToElectron(func) {
+  const functionName = func.name;
+  const logLevelValue = logLevels[functionName] || logLevels.info;
 
-    warn(message?: any, ...optionalParams: any[]): void {
-      const logLevel = logLevels.warning;
-      invokeLoggingAndSendLogMessageToElectron(logger, {
-        message,
-        optionalParams,
-        logLevel
-      });
-    },
+  if (logLevelValue < minLogLevel) {
+    return func;
+  }
 
-    error(message?: any, ...optionalParams: any[]): void {
-      const logLevel = logLevels.error;
-      invokeLoggingAndSendLogMessageToElectron(logger, {
-        message,
-        optionalParams,
-        logLevel
-      });
-    }
+  return function (...args) {
+    func(...args);
+    electronApi.sendMessage({ [`${functionName}`]: [...args] });
   };
-}
-
-function invokeLoggingAndSendLogMessageToElectron(
-  logger,
-  { message, optionalParams, logLevel }
-) {
-  invokeLogging(logger, message, optionalParams, logLevel);
-  if (logLevel < minLogLevel) {
-    return;
-  }
-  electronApi.sendMessage({ message, logLevel, optionalParams });
-}
-
-function invokeLogging(logger, message, optionalParams, logLevel) {
-  const funcName = Object.entries(logLevels)[logLevel][0];
-  const loggingFunc = logger[funcName];
-
-  loggingFunc(message, ...optionalParams);
 }

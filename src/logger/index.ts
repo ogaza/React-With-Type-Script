@@ -1,7 +1,7 @@
 import { AppLogger } from './appLogger';
-import { ConsoleLogger } from './consoleLogger';
 import { logToElectronMiddleware } from './logToElectronMiddleware';
+import { logsSavingConfig } from './config';
 
-const logger = new AppLogger(new ConsoleLogger());
+const logger = new AppLogger();
 
-export { logger, logToElectronMiddleware };
+export { logger, logToElectronMiddleware, logsSavingConfig };
