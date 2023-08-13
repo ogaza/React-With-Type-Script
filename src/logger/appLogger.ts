@@ -1,7 +1,7 @@
 // import moment from 'moment';
 import { electronApi } from '../communication/electron';
-import { logLevels } from './logLevels';
 import { logsSavingConfig } from './config';
+import { logLevels } from './logLevels';
 
 const { minLogLevel } = logsSavingConfig;
 // const logTimestampFormat = 'YYYY-MM-DD HH:mm:ss:sss';
