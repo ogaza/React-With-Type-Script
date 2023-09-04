@@ -1,4 +1,4 @@
-import { electronApi } from '../communication/electron';
+import { electronApi } from '../../src/communication/electron';
 
 export function logToElectronMiddleware({ getState }) {
   return (next) => (action) => {

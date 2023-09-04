@@ -1,5 +1,5 @@
 // import moment from 'moment';
-import { electronApi } from '../communication/electron';
+import { electronApi } from '../../src/communication/electron';
 import { logsSavingConfig } from './config';
 import { logLevels } from './logLevels';
 
