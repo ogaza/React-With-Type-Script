@@ -7,7 +7,8 @@
       "_src/*": ["src/*"]
     },
     "sourceMap": true,
-    "target": "ES2015"
+    "target": "ES2015",
+    "esModuleInterop": true
   },
   "exclude": ["node_modules", "dist", "public"],
   "include": ["./src", "./common"],

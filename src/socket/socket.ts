@@ -1,7 +1,5 @@
 import { io } from 'socket.io-client';
-import { AppLogger as Logger } from '../logger';
-
-const logger = new Logger();
+import { logger } from '../../common/logger';
 
 export const socket = io('http://localhost:8008');
 

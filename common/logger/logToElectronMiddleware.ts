@@ -1,4 +1,4 @@
-import { electronApi } from '../communication/electron';
+import { electronApi } from '../../src/communication/electron';
 
 export function logToElectronMiddleware({ getState }) {
   return (next) => (action) => {
@@ -9,7 +9,6 @@ export function logToElectronMiddleware({ getState }) {
 
 function createLogObjectFrom(action) {
   return {
-    redux_action: action.type,
-    action
+    reduxAction: action
   };
 }
