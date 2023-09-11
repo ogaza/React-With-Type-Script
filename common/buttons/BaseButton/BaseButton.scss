@@ -1,0 +1,61 @@
+.button--base {
+  --_bg-color: var(--bg-color, #0053b8);
+  --_color: var(--bg-color, #ffffff);
+  --_font-family: var(--font-family, 'Open Sans', Arial, Helvetica, sans-serif);
+  --_width: var(--width, 12rem);
+  --_height: var(--height, 6rem);
+
+  background-color: var(--_bg-color);
+  color: var(--_color);
+  font-family: var(--_font-family);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // display: grid;
+  // grid-template-columns: repeat(5, 1fr);
+  // grid-template-rows: repeat(3, 1fr);
+
+  position: relative;
+
+  width: var(--_width);
+  height: var(--_height);
+  // padding: 4px;
+
+  border-radius: 4px;
+
+  & .icon {
+    visibility: hidden;
+  }
+
+  &.button--locked {
+    border: 2px orange solid;
+
+    & .icon {
+      visibility: visible;
+
+      width: 24px;
+      height: 24px;
+
+      & #icon_lock_svg__a {
+        fill: var(--_color);
+      }
+    }
+  }
+
+  .icon {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+
+    border: 2px orange solid;
+    // border-bottom: 2px orange solid;
+    // border-bottom: 2px orange solid;
+
+    border-radius: 0 4px 0 4px;
+    // border-radius: 4px;
+
+    background-color: lightgrey;
+  }
+}
