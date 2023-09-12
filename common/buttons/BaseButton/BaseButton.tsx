@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { useRef } from 'react';
 import { useRippleEventHandlers } from '../../hooks';
-import IconBasketMore from '../../../styles/icons/icon_lock.svg';
+import IconLock from '../../../styles/icons/icon_lock.svg';
+import IconMore from '../../../styles/icons/icon_more.svg';
 
 import './BaseButton.scss';
 
-const permissionStates = {
+export const permissionStates = {
   none: 1,
-  locked: 2
+  locked: 2,
+  requested: 3
 };
 
 export function BaseButton({
@@ -17,12 +19,18 @@ export function BaseButton({
   onMouseDown = () => {},
   onTouchStart = () => {},
   additionalCssClass = '',
-  // permissionState = permissionStates.none
-  permissionState = permissionStates.locked
+  permissionState = permissionStates.none
 }) {
   const ref = useRef(null);
   let cssClasses = `button--base ${additionalCssClass}`;
-  cssClasses += permissionState === permissionStates.locked ? ' button--locked' : '';
+
+  // permissions
+  const locked = permissionState === permissionStates.locked;
+  const requested = permissionState === permissionStates.requested;
+
+  cssClasses += locked ? ' permission permission--locked' : '';
+  cssClasses += requested ? ' permission permission--requested' : '';
+
   const { onMouseDown: use_onMouseDown, onTouchStart: use_onTouchStart } =
     useRippleEventHandlers(ref);
 
@@ -37,9 +45,16 @@ export function BaseButton({
       ref={ref}
     >
       <div>{label}</div>
-      <div className="icon">
-        <IconBasketMore />
-      </div>
+      {locked && (
+        <div className="permission__icon icon--locked">
+          <IconLock />
+        </div>
+      )}
+      {requested && (
+        <div className="permission__icon icon--requested">
+          <IconMore />
+        </div>
+      )}
     </div>
   );
 
