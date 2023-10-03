@@ -12,17 +12,24 @@ export const permissionStates = {
   requested: 3
 };
 
+export const loadingStates = {
+  none: 1,
+  loading: 2
+};
+
 export function BaseButton({
   id = 0,
-  label = 'label',
+  label = '',
   onClick = () => {},
   onMouseDown = () => {},
   onTouchStart = () => {},
   additionalCssClass = '',
-  permissionState = permissionStates.none
+  enabled = true,
+  permissionState = permissionStates.none,
+  loadingState = loadingStates.none
 }) {
   const ref = useRef(null);
-  let cssClasses = `button--base ${additionalCssClass}`;
+  let cssClasses = `button--base use-ripple ${additionalCssClass}`;
 
   // permissions
   const locked = permissionState === permissionStates.locked;
@@ -30,6 +37,13 @@ export function BaseButton({
 
   cssClasses += locked ? ' permission permission--locked' : '';
   cssClasses += requested ? ' permission permission--requested' : '';
+
+  // loading
+  const isLoading = loadingState === loadingStates.loading;
+  cssClasses += isLoading ? ' button--loading' : '';
+
+  // enablement
+  cssClasses += !enabled ? ' button--disabled' : '';
 
   const { onMouseDown: use_onMouseDown, onTouchStart: use_onTouchStart } =
     useRippleEventHandlers(ref);
@@ -39,12 +53,12 @@ export function BaseButton({
       key={id}
       className={cssClasses}
       role="button"
-      onClick={createHandleClick({ onClick })}
-      onMouseDown={createHandleMouseDown({ onMouseDown })}
-      onTouchStart={createHandleTouchStart({ onTouchStart })}
+      onClick={createHandleClick({ onClick }, enabled, isLoading)}
+      onMouseDown={createHandleMouseDown({ onMouseDown }, enabled, isLoading)}
+      onTouchStart={createHandleTouchStart({ onTouchStart }, enabled, isLoading)}
       ref={ref}
     >
-      <div>{label}</div>
+      {isLoading ? <div>loading...</div> : <div>{label}</div>}
       {locked && (
         <div className="permission__icon icon--locked">
           <IconLock />
@@ -58,33 +72,36 @@ export function BaseButton({
     </div>
   );
 
-  function createHandleClick(otherHandlers, disabled = false) {
+  function createHandleClick(otherHandlers, enabled = false, isLoading = false) {
     const { onClick } = otherHandlers;
 
     return (event: React.MouseEvent) => {
-      if (!disabled) {
-        console.log('clicked');
+      if (enabled && !isLoading) {
         onClick?.(event);
       }
     };
   }
 
-  function createHandleMouseDown(otherHandlers, disabled = false) {
+  function createHandleMouseDown(otherHandlers, enabled = false, isLoading = false) {
     const { onMouseDown } = otherHandlers;
 
     return (event: React.MouseEvent) => {
-      if (!disabled) {
+      if (enabled && !isLoading) {
         use_onMouseDown(event);
         onMouseDown?.(event);
       }
     };
   }
 
-  function createHandleTouchStart(otherHandlers, disabled = false) {
+  function createHandleTouchStart(
+    otherHandlers,
+    enabled = false,
+    isLoading = false
+  ) {
     const { onTouchStart } = otherHandlers;
 
     return (event: React.TouchEvent) => {
-      if (!disabled) {
+      if (enabled && !isLoading) {
         use_onTouchStart(event);
         onTouchStart?.(event);
       }

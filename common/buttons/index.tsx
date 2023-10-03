@@ -1,7 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { MenuButton } from './MenuButton/MenuButton';
-import { BaseButton, permissionStates } from './BaseButton/BaseButton';
+import {
+  BaseButton,
+  loadingStates,
+  permissionStates
+} from './BaseButton/BaseButton';
 import { App } from '../App/App';
 import './style.scss';
 
@@ -10,14 +14,33 @@ function renderApp() {
     <App>
       {/* <MenuButton additionalCssClass="use-ripple" /> */}
       <BaseButton
-        additionalCssClass="use-ripple"
+        label="regular"
+        additionalCssClass="button--checkout"
+        onClick={handleButtonClick}
+      />
+      <BaseButton
+        label="locked button"
+        additionalCssClass="button--checkout"
         onClick={handleButtonClick}
         permissionState={permissionStates.locked}
       />
       <BaseButton
-        additionalCssClass="use-ripple"
+        label="permission requested"
+        additionalCssClass="button--checkout"
         onClick={handleButtonClick}
         permissionState={permissionStates.requested}
+      />
+      <BaseButton
+        label="loading"
+        additionalCssClass="button--checkout"
+        onClick={handleButtonClick}
+        loadingState={loadingStates.loading}
+      />
+      <BaseButton
+        label="disabled"
+        additionalCssClass="button--checkout"
+        onClick={handleButtonClick}
+        enabled={false}
       />
     </App>
   );

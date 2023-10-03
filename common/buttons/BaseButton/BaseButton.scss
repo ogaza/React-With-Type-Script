@@ -1,6 +1,6 @@
 .button--base {
   --_bg-color: var(--bg-color, #0053b8);
-  --_color: var(--bg-color, #ffffff);
+  --_color: var(--color, #ffffff);
   --_font-family: var(--font-family, 'Open Sans', Arial, Helvetica, sans-serif);
   --_width: var(--width, 12rem);
   --_height: var(--height, 6rem);
@@ -26,7 +26,7 @@
 }
 
 .permission {
-  border: 4px var(--border-color) solid;
+  border: var(--border-width) var(--border-color) solid;
 
   & .permission__icon {
     visibility: visible;
@@ -35,11 +35,12 @@
 
 .permission--locked {
   --border-color: lightgray;
-  // --border-color: #ffffff4d;
+  --border-width: 2px;
 }
 
 .permission--requested {
   --border-color: #ff5e24;
+  --border-width: 4px;
 }
 
 .icon--locked {
@@ -52,31 +53,21 @@
 }
 
 .permission__icon {
-  // width: 24px;
-  // height: 24px;
-  width: 20px;
-  height: 20px;
-
   visibility: hidden;
 
+  width: calc(24px - var(--border-width));
+  height: calc(24px - var(--border-width));
+
   position: absolute;
-  // top: -4px;
-  // right: -4px;
   top: 0;
   right: 0;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  // padding: 0 0 1px 2px;
 
-  // border: 4px var(--border-color) solid;
-  // border: 4px var(--_bg-color) solid;
-  // border: 4px #ff5e24 solid;
   border-radius: 0 0 0 8px;
-  // border-radius: 0 4px 0 8px;
   background-color: var(--bg-color);
-  // background-color: #ff5e24;
 }
 
 .permission__icon {
@@ -89,7 +80,6 @@
   & svg {
     fill: var(--_color);
     transform: rotate(90deg);
-    // fill: var(--_color);
   }
 }
 
@@ -101,6 +91,21 @@
     position: relative;
     top: -1px;
     right: -1px;
-    // fill: var(--_color);
   }
+}
+
+.button--loading {
+  --bg-color: rgb(0, 123, 224);
+}
+
+.button--disabled {
+  --bg-color: gray;
+  --color: lightgray;
+}
+
+.button--checkout {
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
