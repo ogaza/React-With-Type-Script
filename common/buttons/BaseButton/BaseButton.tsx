@@ -26,7 +26,8 @@ export function BaseButton({
   additionalCssClass = '',
   enabled = true,
   permissionState = permissionStates.none,
-  loadingState = loadingStates.none
+  loadingState = loadingStates.none,
+  children = null
 }) {
   const ref = useRef(null);
   let cssClasses = `button--base use-ripple ${additionalCssClass}`;
@@ -69,6 +70,7 @@ export function BaseButton({
           <IconMore />
         </div>
       )}
+      {children}
     </div>
   );
 

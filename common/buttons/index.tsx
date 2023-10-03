@@ -1,17 +1,19 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { MenuButton } from './MenuButton/MenuButton';
+import { App } from '../App/App';
 import {
   BaseButton,
   loadingStates,
   permissionStates
 } from './BaseButton/BaseButton';
-import { App } from '../App/App';
+import { MenuButton } from './MenuButton/MenuButton';
+import { QuickCardButton } from './QuickCard/QuickCardButton';
 import './style.scss';
 
 function renderApp() {
   return (
     <App>
+      <QuickCardButton />
       {/* <MenuButton additionalCssClass="use-ripple" /> */}
       <BaseButton
         label="regular"
@@ -24,7 +26,7 @@ function renderApp() {
         onClick={handleButtonClick}
         permissionState={permissionStates.locked}
       />
-      <BaseButton
+      {/* <BaseButton
         label="permission requested"
         additionalCssClass="button--checkout"
         onClick={handleButtonClick}
@@ -41,7 +43,7 @@ function renderApp() {
         additionalCssClass="button--checkout"
         onClick={handleButtonClick}
         enabled={false}
-      />
+      /> */}
     </App>
   );
 }

@@ -1,0 +1,22 @@
+.button--quick-card {
+  --app-text-color-lightest: #fff;
+
+  --width: 88px;
+  --height: 88px;
+  --bg-color: black;
+
+  border-radius: 50%;
+
+  svg {
+    width: 48px;
+    height: 48px;
+    #icon_mop_card_svg__a {
+      fill: var(--app-text-color-lightest);
+    }
+  }
+
+  @media (min-width: 1366px) and (max-width: 1920px) {
+    --width: 100px;
+    --height: 100px;
+  }
+}
