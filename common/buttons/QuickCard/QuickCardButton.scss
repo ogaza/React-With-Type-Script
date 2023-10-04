@@ -1,22 +1,14 @@
+// import is need only if using scss variables
+// not needed when using css variables
+@import '../../palette.scss';
+
 .button--quick-card {
-  --app-text-color-lightest: #fff;
+  --button-checkout-more-bg-color: #{$default};
+  --button-checkout-more-border-color: var(--primary-900);
+}
 
-  --width: 88px;
-  --height: 88px;
-  --bg-color: black;
-
-  border-radius: 50%;
-
-  svg {
-    width: 48px;
-    height: 48px;
-    #icon_mop_card_svg__a {
-      fill: var(--app-text-color-lightest);
-    }
-  }
-
-  @media (min-width: 1366px) and (max-width: 1920px) {
-    --width: 100px;
-    --height: 100px;
-  }
+.button--quick-card {
+  --bg-color: var(--button-checkout-more-bg-color);
+  --color: var(--button-checkout-more-border-color);
+  --ripple-color: gray;
 }

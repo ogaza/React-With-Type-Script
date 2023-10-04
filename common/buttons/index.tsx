@@ -8,42 +8,27 @@ import {
 } from './BaseButton/BaseButton';
 import { MenuButton } from './MenuButton/MenuButton';
 import { QuickCardButton } from './QuickCard/QuickCardButton';
+import { CheckoutButton } from './CheckoutButton/CheckoutButton';
 import './style.scss';
 
 function renderApp() {
   return (
     <App>
       <QuickCardButton />
-      {/* <MenuButton additionalCssClass="use-ripple" /> */}
-      <BaseButton
-        label="regular"
-        additionalCssClass="button--checkout"
-        onClick={handleButtonClick}
-      />
-      <BaseButton
-        label="locked button"
-        additionalCssClass="button--checkout"
-        onClick={handleButtonClick}
-        permissionState={permissionStates.locked}
-      />
-      {/* <BaseButton
-        label="permission requested"
-        additionalCssClass="button--checkout"
+      <CheckoutButton label="regular" onClick={handleButtonClick} />
+      <CheckoutButton
+        label="requested"
         onClick={handleButtonClick}
         permissionState={permissionStates.requested}
       />
-      <BaseButton
-        label="loading"
-        additionalCssClass="button--checkout"
+      <CheckoutButton
+        label="locked button"
         onClick={handleButtonClick}
-        loadingState={loadingStates.loading}
+        permissionState={permissionStates.locked}
       />
-      <BaseButton
-        label="disabled"
-        additionalCssClass="button--checkout"
-        onClick={handleButtonClick}
-        enabled={false}
-      /> */}
+      <MenuButton label="menu button" />
+      <MenuButton label="locked" permissionState={permissionStates.locked} />
+      <MenuButton label="requested" permissionState={permissionStates.requested} />
     </App>
   );
 }

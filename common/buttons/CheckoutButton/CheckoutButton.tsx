@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { BaseButton, permissionStates } from '../BaseButton/BaseButton';
-import './MenuButton.scss';
+import './CheckoutButton.scss';
 
-export function MenuButton({
+export function CheckoutButton({
   id = 0,
   label = 'label',
   onClick = () => {},
@@ -10,7 +10,7 @@ export function MenuButton({
 }) {
   return (
     <BaseButton
-      additionalCssClass="button--basket-item button--square"
+      additionalCssClass="button--checkout"
       key={id}
       onClick={handleClick}
       permissionState={permissionState ? permissionState : permissionStates.none}

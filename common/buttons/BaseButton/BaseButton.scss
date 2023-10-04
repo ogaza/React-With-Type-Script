@@ -1,11 +1,21 @@
+// import is need only if using scss variables
+// not needed when using css variables
+@import '../../palette.scss';
+
 .button--base {
-  --_bg-color: var(--bg-color, #0053b8);
-  --_color: var(--color, #ffffff);
+  --_bg-color: var(--bg-color, #{$primary-900});
+  // version with css variable:
+  // --_bg-color: var(--bg-color, var(--primary-900));
+  --_border: var(--border, 2px solid var(--_color));
+  --_color: var(--color, var(--default));
   --_font-family: var(--font-family, 'Open Sans', Arial, Helvetica, sans-serif);
   --_width: var(--width, 12rem);
-  --_height: var(--height, 6rem);
+  --_height: var(--height, 88px);
+
+  --_icon-size: var(--icon-size, 48px);
 
   background-color: var(--_bg-color);
+  border: var(--_border);
   color: var(--_color);
   font-family: var(--_font-family);
 
@@ -13,16 +23,35 @@
   justify-content: center;
   align-items: center;
 
-  // display: grid;
-  // grid-template-columns: repeat(5, 1fr);
-  // grid-template-rows: repeat(3, 1fr);
-
   position: relative;
   border-radius: 8px;
   overflow: hidden;
 
   width: var(--_width);
   height: var(--_height);
+
+  svg {
+    width: var(--_icon-size);
+    height: var(--_icon-size);
+
+    path {
+      fill: var(--_color);
+    }
+  }
+
+  @media (min-width: 1366px) and (max-width: 1920px) {
+    --_height: var(--height, 100px);
+  }
+
+  &.button--round {
+    --_width: var(--_height);
+
+    border-radius: 50%;
+  }
+
+  &.button--square {
+    --_width: var(--_height);
+  }
 }
 
 .permission {
@@ -101,11 +130,4 @@
 .button--disabled {
   --bg-color: gray;
   --color: lightgray;
-}
-
-.button--checkout {
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
 }

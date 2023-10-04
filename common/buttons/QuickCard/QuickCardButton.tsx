@@ -5,7 +5,7 @@ import './QuickCardButton.scss';
 
 export function QuickCardButton() {
   return (
-    <BaseButton additionalCssClass="button--quick-card">
+    <BaseButton additionalCssClass="button--quick-card button--round">
       <IconCard />
     </BaseButton>
   );
