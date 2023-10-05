@@ -15,6 +15,8 @@ function renderApp() {
   return (
     <App>
       <QuickCardButton />
+      <QuickCardButton permissionState={permissionStates.locked} />
+      <QuickCardButton permissionState={permissionStates.requested} />
       <CheckoutButton label="regular" onClick={handleButtonClick} />
       <CheckoutButton
         label="requested"

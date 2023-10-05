@@ -3,21 +3,22 @@
 @import '../../palette.scss';
 
 .button--base {
-  --_bg-color: var(--bg-color, #{$primary-900});
+  --bg-color: #{$primary-900};
   // version with css variable:
-  // --_bg-color: var(--bg-color, var(--primary-900));
-  --_border: var(--border, 2px solid var(--_color));
-  --_color: var(--color, var(--default));
-  --_font-family: var(--font-family, 'Open Sans', Arial, Helvetica, sans-serif);
-  --_width: var(--width, 12rem);
-  --_height: var(--height, 88px);
+  // --bg-color: var(--primary-900);
+  --border: 2px solid var(--color);
+  --border-width: 0px;
+  --color: var(--default);
+  --font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  --width: 12rem;
+  --height: 88px;
 
-  --_icon-size: var(--icon-size, 48px);
+  --icon-size: 48px;
 
-  background-color: var(--_bg-color);
-  border: var(--_border);
-  color: var(--_color);
-  font-family: var(--_font-family);
+  background-color: var(--bg-color);
+  border: var(--border);
+  color: var(--color);
+  font-family: var(--font-family);
 
   display: flex;
   justify-content: center;
@@ -25,67 +26,55 @@
 
   position: relative;
   border-radius: 8px;
-  overflow: hidden;
 
-  width: var(--_width);
-  height: var(--_height);
+  width: var(--width);
+  height: var(--height);
 
   svg {
-    width: var(--_icon-size);
-    height: var(--_icon-size);
+    width: var(--icon-size);
+    height: var(--icon-size);
 
     path {
-      fill: var(--_color);
+      fill: var(--color);
     }
   }
 
   @media (min-width: 1366px) and (max-width: 1920px) {
-    --_height: var(--height, 100px);
-  }
-
-  &.button--round {
-    --_width: var(--_height);
-
-    border-radius: 50%;
-  }
-
-  &.button--square {
-    --_width: var(--_height);
+    --height: var(--height, 100px);
   }
 }
 
-.permission {
-  border: var(--border-width) var(--border-color) solid;
+.button--round {
+  --width: var(--height);
 
-  & .permission__icon {
-    visibility: visible;
-  }
+  border-radius: 50%;
 }
 
-.permission--locked {
-  --border-color: lightgray;
-  --border-width: 2px;
+.button--square {
+  --width: var(--height);
+}
+
+.button--disabled {
+  --bg-color: gray;
+  --color: lightgray;
+}
+
+.button--loading {
+  --bg-color: var(--primary1-light);
 }
 
 .permission--requested {
-  --border-color: #ff5e24;
+  --border-color: var(--warning);
   --border-width: 4px;
-}
 
-.icon--locked {
-  --bg-color: #ffffff;
-  --border-color: #ffffff;
-}
-
-.icon--requested {
-  --bg-color: #ff5e24;
+  border: var(--border-width) var(--border-color) solid;
 }
 
 .permission__icon {
-  visibility: hidden;
+  background-color: var(--bg-color);
 
-  width: calc(24px - var(--border-width));
-  height: calc(24px - var(--border-width));
+  width: 24px;
+  height: 24px;
 
   position: absolute;
   top: 0;
@@ -96,38 +85,53 @@
   align-items: center;
 
   border-radius: 0 0 0 8px;
-  background-color: var(--bg-color);
-}
 
-.permission__icon {
-  & #icon_lock_svg__a {
-    fill: #202832;
+  &.icon--requested {
+    --bg-color: var(--warning);
+
+    & svg {
+      fill: var(--default);
+      transform: rotate(90deg);
+    }
   }
-}
 
-.permission__icon.icon--requested {
-  & svg {
-    fill: var(--_color);
-    transform: rotate(90deg);
+  &.icon--locked {
+    --bg-color: var(--default);
   }
-}
 
-.permission__icon {
   & svg {
     width: 16px;
     height: 16px;
 
     position: relative;
-    top: -1px;
-    right: -1px;
+  }
+
+  & #icon_lock_svg__a {
+    fill: var(--secondary1);
   }
 }
 
-.button--loading {
-  --bg-color: rgb(0, 123, 224);
+.button--base.permission--requested,
+.button--base.permission--locked {
+  overflow: hidden;
 }
 
-.button--disabled {
-  --bg-color: gray;
-  --color: lightgray;
+.button--base.permission--requested {
+  .permission__icon {
+    top: calc(-1 * var(--border-width));
+    right: calc(-1 * var(--border-width));
+  }
+}
+
+.button--round.permission {
+  overflow: visible;
+
+  .permission__icon {
+    top: 0;
+    right: 0;
+
+    border-radius: 50%;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12),
+      0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
 }
