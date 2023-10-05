@@ -6,7 +6,8 @@
   --bg-color: #{$primary-900};
   // version with css variable:
   // --bg-color: var(--primary-900);
-  --border: 2px solid var(--color);
+  // --border: none;
+  // --border: 2px solid var(--color);
   --border-width: 0px;
   --color: var(--default);
   --font-family: 'Open Sans', Arial, Helvetica, sans-serif;
@@ -16,7 +17,8 @@
   --icon-size: 48px;
 
   background-color: var(--bg-color);
-  border: var(--border);
+  border: var(--border-width) var(--color) solid;
+
   color: var(--color);
   font-family: var(--font-family);
 
@@ -63,7 +65,7 @@
   --bg-color: var(--primary1-light);
 }
 
-.permission--requested {
+.permission.permission--requested {
   --border-color: var(--warning);
   --border-width: 4px;
 
@@ -85,6 +87,8 @@
   align-items: center;
 
   border-radius: 0 0 0 8px;
+
+  text-wrap: nowrap;
 
   &.icon--requested {
     --bg-color: var(--warning);

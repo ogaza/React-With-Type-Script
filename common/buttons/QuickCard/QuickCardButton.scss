@@ -8,7 +8,13 @@
 }
 
 .button--quick-card {
-  --bg-color: var(--button-checkout-more-bg-color);
-  --color: var(--button-checkout-more-border-color);
-  --ripple-color: gray;
+  --bg-color: #{$default};
+  //   --bg-color: var(--button-checkout-more-bg-color);
+  --color: var(--primary-900);
+  //   --color: var(--button-checkout-more-border-color);
+  --ripple-color: var(--secondary2);
+  //   --ripple-color: gray;
+
+  --border-width: 2px;
+  //   --border-color
 }
