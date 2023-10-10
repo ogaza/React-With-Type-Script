@@ -72,6 +72,21 @@ function getDiscountCode(discount) {
   return result;
 }
 
+function isApplicable(discount, selectedServices, year) {
+  const { services: discountServices, years: discountYears } = discount;
+  const isOnProperYear = !discountYears.length || discountYears.includes(year);
+
+  if (!isOnProperYear) {
+    return false;
+  }
+
+  const discountCode = getDiscountCode(discount);
+  const servicesCode = getDiscountCode({ services: selectedServices });
+  const hasProperServices = (discountCode & servicesCode) === discountCode;
+
+  return hasProperServices;
+}
+
 function areColliding(discountOne, discountTwo) {
   const codeOne = getDiscountCode(discountOne);
   const codeTwo = getDiscountCode(discountTwo);
