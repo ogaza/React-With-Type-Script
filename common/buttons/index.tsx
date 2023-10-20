@@ -10,27 +10,49 @@ import { MenuButton } from './MenuButton/MenuButton';
 import { QuickCardButton } from './QuickCard/QuickCardButton';
 import { CheckoutButton } from './CheckoutButton/CheckoutButton';
 import './style.scss';
+import { BasketOptionButton } from './BasketOptionButton/BasketOptionButton';
 
 function renderApp() {
   return (
     <App>
-      <QuickCardButton />
-      <QuickCardButton permissionState={permissionStates.locked} />
-      <QuickCardButton permissionState={permissionStates.requested} />
-      <CheckoutButton label="regular" onClick={handleButtonClick} />
-      <CheckoutButton
-        label="requested"
-        onClick={handleButtonClick}
-        permissionState={permissionStates.requested}
-      />
-      <CheckoutButton
-        label="locked button"
-        onClick={handleButtonClick}
-        permissionState={permissionStates.locked}
-      />
-      <MenuButton label="menu button" />
-      <MenuButton label="locked" permissionState={permissionStates.locked} />
-      <MenuButton label="requested" permissionState={permissionStates.requested} />
+      <div className="button-container">
+        <div>QuickCardButton</div>
+        <QuickCardButton />
+        <QuickCardButton permissionState={permissionStates.locked} />
+        <QuickCardButton permissionState={permissionStates.requested} />
+      </div>
+      <div className="button-container">
+        <div>CheckoutButton</div>
+        <CheckoutButton label="regular" onClick={handleButtonClick} />
+        <CheckoutButton
+          label="requested"
+          onClick={handleButtonClick}
+          permissionState={permissionStates.requested}
+        />
+        <CheckoutButton
+          label="locked button"
+          onClick={handleButtonClick}
+          permissionState={permissionStates.locked}
+        />
+      </div>
+      <div className="button-container">
+        <div>BasketOptionButton</div>
+        <BasketOptionButton label="basket option" />
+        <BasketOptionButton
+          label="basket option locked"
+          permissionState={permissionStates.locked}
+        />
+        <BasketOptionButton
+          label="basket option requested"
+          permissionState={permissionStates.requested}
+        />
+      </div>
+      <div className="button-container">
+        <div>MenuButton</div>
+        <MenuButton label="menu button" />
+        <MenuButton label="locked" permissionState={permissionStates.locked} />
+        <MenuButton label="requested" permissionState={permissionStates.requested} />
+      </div>
     </App>
   );
 }

@@ -1,0 +1,15 @@
+//=================================================
+// menu button
+.button--basket-option {
+  --height: 120px;
+
+  font-size: 16px;
+  text-align: center;
+
+  @media (min-width: 1025px) {
+    --height: 144px;
+    --width: 138px;
+
+    font-size: 20px;
+  }
+}

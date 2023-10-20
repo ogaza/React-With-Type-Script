@@ -2,15 +2,26 @@
   height: 100vh;
 
   display: grid;
-  grid-template-rows: 10% 60% 25%;
+  grid-template-rows: 0% 90% 10%;
 
   &__content {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px;
+    // display: flex;
+    // flex-direction: column;
+    // flex-wrap: wrap;
+    // justify-content: center;
+    // gap: 4px;
+
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr 1fr;
 
     padding: 8px;
   }
+}
+
+.button-container {
+  // margin: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
