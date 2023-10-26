@@ -7,7 +7,7 @@ export function QuickCardButton({ permissionState = null }) {
   return (
     <BaseButton
       additionalCssClass="button--quick-card button--round"
-      permissionState={permissionState ? permissionState : permissionStates.none}
+      permissionState={permissionState ? permissionState : permissionStates.allowed}
     >
       <IconCard />
     </BaseButton>

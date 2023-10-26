@@ -13,7 +13,7 @@ export function MenuButton({
       additionalCssClass="button--basket-item button--square"
       key={id}
       onClick={handleClick}
-      permissionState={permissionState ? permissionState : permissionStates.none}
+      permissionState={permissionState ? permissionState : permissionStates.allowed}
     >
       {label}
     </BaseButton>

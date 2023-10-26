@@ -18,7 +18,7 @@ function renderApp() {
       <div className="button-container">
         <div>QuickCardButton</div>
         <QuickCardButton />
-        <QuickCardButton permissionState={permissionStates.locked} />
+        <QuickCardButton permissionState={permissionStates.onDemand} />
         <QuickCardButton permissionState={permissionStates.requested} />
       </div>
       <div className="button-container">
@@ -32,7 +32,7 @@ function renderApp() {
         <CheckoutButton
           label="locked button"
           onClick={handleButtonClick}
-          permissionState={permissionStates.locked}
+          permissionState={permissionStates.onDemand}
         />
       </div>
       <div className="button-container">
@@ -40,7 +40,7 @@ function renderApp() {
         <BasketOptionButton label="basket option" />
         <BasketOptionButton
           label="basket option locked"
-          permissionState={permissionStates.locked}
+          permissionState={permissionStates.onDemand}
         />
         <BasketOptionButton
           label="basket option requested"
@@ -50,7 +50,7 @@ function renderApp() {
       <div className="button-container">
         <div>MenuButton</div>
         <MenuButton label="menu button" />
-        <MenuButton label="locked" permissionState={permissionStates.locked} />
+        <MenuButton label="locked" permissionState={permissionStates.onDemand} />
         <MenuButton label="requested" permissionState={permissionStates.requested} />
       </div>
     </App>

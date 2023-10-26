@@ -13,7 +13,7 @@ export function CheckoutButton({
       additionalCssClass="button--checkout"
       key={id}
       onClick={handleClick}
-      permissionState={permissionState ? permissionState : permissionStates.none}
+      permissionState={permissionState ? permissionState : permissionStates.allowed}
     >
       {label}
     </BaseButton>

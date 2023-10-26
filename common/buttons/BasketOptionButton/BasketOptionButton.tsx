@@ -13,7 +13,7 @@ export function BasketOptionButton({
       additionalCssClass="button--basket-option button--square"
       key={id}
       onClick={handleClick}
-      permissionState={permissionState ? permissionState : permissionStates.none}
+      permissionState={permissionState ? permissionState : permissionStates.allowed}
     >
       {label}
     </BaseButton>
