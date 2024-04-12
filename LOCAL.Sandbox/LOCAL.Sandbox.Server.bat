@@ -1,5 +1,5 @@
 @echo off
 echo "LOCAL.Sandbox.Server"
 
-cd \websocket-server
+cd ..\websocket-server
 node backend/server.js

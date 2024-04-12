@@ -1,5 +1,5 @@
 @echo off
 echo "LOCAL.Sandbox"
 
-cd \webclient
+cd ..\webclient
 npm run start
