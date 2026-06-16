@@ -1,0 +1,75 @@
+/* typography ====================================== */
+:root {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* heights ====================================== */
+
+:root {
+  --app-height: 100vh;
+  --status-bar-height: 80px;
+}
+
+.app-container {
+  height: var(--app-height);
+  display: grid;
+  grid-template-rows: var(--status-bar-height) auto;
+}
+
+.app-header {
+  display: grid;
+  align-items: center;
+  padding: 0.25rem;
+}
+
+/* grid and layout ====================================== */
+
+.panel-container {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  /* grid-template-rows: 80px auto; */
+}
+
+.panel__left {
+  grid-column: 1/2;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  padding: 0.25rem;
+}
+
+.panel__right {
+  grid-column: 2/3;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.25rem;
+}
+
+/* display ====================================== */
+
+/*  colors ====================================== */
+
+.app-header {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+.panel__left {
+  background-color: var(--status-bar-bg-color);
+  background-color: #5394e4;
+  color: var(--secondary);
+}
+
+.panel__right {
+  background-color: var(--default-background)
+}
+
+/* component styling ====================================== */
+
+/* component states */

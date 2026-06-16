@@ -4,4 +4,11 @@
 
   /* Secondary */
   --secondary: var(--neutral-0);
+
+  --default-background: var(--neutral-0);
+  --app-bg-color: var(--neutral-1);
+
+  /* components */
+  --status-bar-bg-color: var(--primary-900);
+  --status-bar-text-color: var(--neutral-0);
 }
