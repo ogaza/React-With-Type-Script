@@ -1,0 +1,7 @@
+:root {
+  /* Primary */
+  --primary: var(--primary-900);
+
+  /* Secondary */
+  --secondary: var(--neutral-0);
+}

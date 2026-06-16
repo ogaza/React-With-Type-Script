@@ -1,0 +1,4 @@
+.main-display-shell {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
