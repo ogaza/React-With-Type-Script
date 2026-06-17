@@ -1,4 +1,5 @@
 import { ClickableArea } from "../Buttons/ClickableArea/ClickableArea";
+import ArticlesPanel from "../Article/ArticlesPanel"; 
 
 export default function MainDisplayShell() {
   const className = ["main-display-shell"].join(" ");
@@ -11,8 +12,9 @@ export default function MainDisplayShell() {
       <div className="panel-container">
         <section className="panel panel__left"></section>
         <section className="panel panel__right">
+          <ArticlesPanel />
           {/* <section className="panel panel__right" style={{"visibility": "hidden" }}> */}
-          <ClickableArea />
+          {/* <ClickableArea /> */}
         </section>
       </div>
     </div>

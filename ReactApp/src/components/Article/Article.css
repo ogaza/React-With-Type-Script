@@ -1,0 +1,43 @@
+.article {
+  --article-bg-color: var(--secondary);
+
+  --shadow-color-0: rgba(0, 0, 0, 0.2);
+  --shadow-color-1: rgba(0, 0, 0, 0.12);
+  --shadow-color-2: rgba(0, 0, 0, 0.14);
+
+  --elevation-01: 
+    0rem 0.0625rem 0.1875rem 0rem var(--shadow-color-0), 
+    0rem 0.125rem 0.0625rem 0rem var(--shadow-color-1), 
+    0rem 0.0625rem 0.0625rem 0rem var(--shadow-color-2);
+}
+
+.article {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.article-image-container {
+  background-color: var(--article-bg-color);
+
+  border-radius: 0.5rem;
+  box-shadow: var(--elevation-01);
+
+  width: var(--article-width);
+  height: var(--article-width);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-image {
+}
+
+.article-labels {
+  display: flex;
+  flex-flow: column;
+}
+
+.article-title {}
+
+.article-price {}
