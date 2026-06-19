@@ -1,0 +1,16 @@
+@import url('../../src/components/Article/index.css');
+
+:root {
+  --main-color: #cadbeb;
+  --secondary: seashell;
+  /* --secondary: #ffffff; */
+  /* background-color: seashell; */
+
+  --article-width: 6rem;
+
+  background-color: var(--main-color);
+}
+
+.article {
+  /* --article-bg-color: var(--secondary-color); */
+}

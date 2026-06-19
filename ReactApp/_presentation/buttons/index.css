@@ -1,0 +1,12 @@
+@import url('../../src/components/Buttons/index.css');
+
+:root {
+  --main-color: #cadbeb;
+  --secondary-color: #ffffff;
+
+  background-color: var(--main-color);
+}
+
+.clickable-area {
+  --ca-bg-color: var(--secondary-color);
+}

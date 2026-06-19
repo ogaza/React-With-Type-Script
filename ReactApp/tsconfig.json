@@ -10,7 +10,7 @@
     "rootDir": "../.."
   },
   "exclude": ["node_modules", "dist", "public"],
-  "include": ["./src"],
+  "include": ["./src", "_presentation"],
   "compileOnSave": false,
   "files": ["declarations.d.ts"]
 }

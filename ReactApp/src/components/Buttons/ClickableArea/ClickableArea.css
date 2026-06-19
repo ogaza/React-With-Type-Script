@@ -1,5 +1,7 @@
 .clickable-area {
-  background-color: var(--primary);
+  --ca-bg-color: var(--primary);
+
+  background-color: var(--ca-bg-color);
 
   width: 64px;
   height: 32px;
