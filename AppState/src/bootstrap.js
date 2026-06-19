@@ -1,1 +1,1 @@
-console.log("an app with a state");
+import "./app";
