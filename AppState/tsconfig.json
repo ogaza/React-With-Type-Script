@@ -10,6 +10,6 @@
     "rootDir": "../.."
   },
   "exclude": ["node_modules", "dist", "public"],
-  "include": ["./src", "_presentation"],
+  "include": ["./src"],
   "compileOnSave": false
 }
