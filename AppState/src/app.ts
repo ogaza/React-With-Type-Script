@@ -1,4 +1,5 @@
 import { usersSlice } from "./users";
+import { tasksSlice } from "./tasks";
 import { store } from "./store";
 
 const unsubscribe = store.subscribe(handleStoreChanged);
@@ -6,6 +7,11 @@ const unsubscribe = store.subscribe(handleStoreChanged);
 console.log("initial state:", store.getState());
 
 store.dispatch(usersSlice.actions.add("user two"));
+store.dispatch(tasksSlice.actions.add("task three"));
+
+const taskId = store.getState().tasks[0].id;
+
+store.dispatch(tasksSlice.actions.toggle({ id: taskId, completed: true }));
 
 unsubscribe();
 

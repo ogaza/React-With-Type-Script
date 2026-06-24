@@ -15,8 +15,22 @@ export const tasksSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
-    add: (state, action) => {
-      state.push(createTask(action.payload));
-    },
+    add,
+    toggle,
   },
 });
+
+function add(state, action) {
+  state.push(createTask(action.payload));
+}
+
+function toggle(state, action) {
+  const { payload } = action;
+  const task = state.find((task) => {
+    return task.id == payload.id;
+  });
+
+  if (!task) return;
+
+  task.completed = payload.completed;
+}
