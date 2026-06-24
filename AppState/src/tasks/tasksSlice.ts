@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
 
 function createTask(title: string) {
   return {
@@ -11,6 +11,17 @@ function createTask(title: string) {
 
 const initialState = [createTask("task one"), createTask("task two")];
 
+export const fetchTasksThunk = createAsyncThunk(
+  "tasks/fetchTasksAsync",
+  async function getTaskAsync(taskName) {
+    const resultPromise = new Promise((resolve, reject) => {
+      resolve(createTask(taskName));
+    });
+
+    return await resultPromise;
+  },
+);
+
 export const tasksSlice = createSlice({
   name: "tasks",
   initialState,
@@ -18,6 +29,11 @@ export const tasksSlice = createSlice({
     add,
     toggle,
     assignToUser,
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchTasksThunk.fulfilled, (state, action) => {
+      state.push(action.payload);
+    });
   },
 });
 
