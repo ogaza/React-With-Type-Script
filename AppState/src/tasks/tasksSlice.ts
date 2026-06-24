@@ -17,6 +17,7 @@ export const tasksSlice = createSlice({
   reducers: {
     add,
     toggle,
+    assignToUser,
   },
 });
 
@@ -33,4 +34,9 @@ function toggle(state, action) {
   if (!task) return;
 
   task.completed = payload.completed;
+}
+
+function assignToUser(state, action) {
+  const task = state.find((task) => task.id === action.payload.taskId);
+  task.assignedTo = action.payload.userId;
 }
