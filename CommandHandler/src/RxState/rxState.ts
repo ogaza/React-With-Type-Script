@@ -1,4 +1,4 @@
-import { BasketsCommands, BasketsSubscription } from "./basketCommands";
+import { BasketsCommands, BasketsSubscription } from "../commands";
 import { IRxState, RxManagerState } from "./interfaces";
 
 export class RxState implements IRxState {

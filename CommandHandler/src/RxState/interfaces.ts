@@ -1,4 +1,4 @@
-import { BasketsCommands, BasketsSubscription } from "./basketCommands";
+import { BasketsCommands, BasketsSubscription } from "../commands/basketCommands";
 
 export interface IRxState {
   loadStore(): void;
