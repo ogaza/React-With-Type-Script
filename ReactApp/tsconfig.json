@@ -12,5 +12,5 @@
   "exclude": ["node_modules", "dist", "public"],
   "include": ["./src", "_presentation"],
   "compileOnSave": false,
-  "files": ["declarations.d.ts"]
+  "files": ["declarations.d.ts", "./src/components/MainDisplayShell/NavBar.tsx", "src/components/MainDisplayShell/Menus.tsx", "src/components/MainDisplayShell/MenusPresenter.tsx"]
 }

@@ -2,3 +2,32 @@
   background-color: var(--primary);
   color: var(--secondary);
 }
+
+.menu-switcher {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  height: 3rem;
+}
+
+.additional-panel {
+  visibility: hidden;
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+.additional-panel {
+  background-color: var(--neutral-50);
+}
+
+@media screen and (min-width: 768px) {
+  .additional-panel {
+    grid-row: 1/2;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .additional-panel {
+    visibility: visible;
+  }
+}

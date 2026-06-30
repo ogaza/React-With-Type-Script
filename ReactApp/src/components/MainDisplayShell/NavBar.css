@@ -1,0 +1,8 @@
+.navbar-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.navbar-title {
+  display: flex;
+}

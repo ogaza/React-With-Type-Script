@@ -1,9 +1,12 @@
 :root {
-  /* --mtp-font-family: font-family-mtp; */
   /* Primary */
-  --primary-900: #0053b8;
-
   --neutral-0: #ffffff;
   --neutral-1: #e4e9f0;
+  --neutral-10: #f9fafb;
   --neutral-25: #f2f4f8;
+  --neutral-100: #c5cad1;
+  --neutral-50: #e4e9f0;
+  --neutral-900: #202832;
+  
+  --primary-900: #0053b8;
 }

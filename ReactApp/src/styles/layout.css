@@ -24,11 +24,18 @@
 
 /* grid and layout ====================================== */
 
+.panel-container {
+  display: grid;
+}
+
 .panel__left {
   padding: 0.25rem;
 
   max-height: calc(var(--app-height) - var(--status-bar-height));
   overflow: hidden;
+
+  grid-column: 1/2;
+  grid-row: 1/2;
 }
 
 .panel__right {
@@ -36,6 +43,9 @@
 
   max-height: calc(var(--app-height) - var(--status-bar-height));
   overflow: hidden;
+
+  grid-column: 1/2;
+  grid-row: 1/2;
 }
 
 .panel__right {
@@ -45,19 +55,48 @@
   justify-content: center;
 }
 
+.panel__third {
+  display: grid;
+  grid-template-rows: calc(3rem + 2 * 0.25rem) 1fr;
+
+  grid-column: 1/2;
+  grid-row: 1/2;
+  max-height: calc(var(--app-height) - var(--status-bar-height));
+
+  /* position: relative;
+  top: 2rem; */
+}
+
+.panel__third {
+  visibility: hidden;
+}
+
 @media screen and (min-width: 768px) {
   .panel-container {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
   }
 
   .panel__left {
     grid-column: 1/2;
+    grid-row: 1/2;
   }
   
   .panel__right {
     visibility: visible;
     grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  .panel__third {
+    grid-column: 2/3;
+    grid-row: 1/2;
+
+    grid-template-rows: 1fr;
+
+    /* position: static;
+    top: 0; */
   }
 }
 
@@ -73,9 +112,17 @@
   .panel__right {
     grid-column: 2/3;
   }
+  
+  .panel__third {
+    grid-column: 3/4;
+  }
 }
 
 /* display ====================================== */
+
+.panel-container {
+  overflow: hidden;
+}
 
 /*  colors ====================================== */
 

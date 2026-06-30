@@ -1,10 +1,12 @@
 interface IClickableAreaProps {
   dataTestId?: string;
   description?: string;
+  onClick?: () => void;
+  children?: string;
 }
 
 export function ClickableArea(props: IClickableAreaProps) {
-  const { dataTestId, description } = props;
+  const { dataTestId, description, onClick, children } = props;
 
   return (
     <button
@@ -13,8 +15,13 @@ export function ClickableArea(props: IClickableAreaProps) {
       onClick={handleClick}
       data-testid={dataTestId}
       aria-label={description}
-    />
+    >
+      {children}
+    </button>
   );
+
+  function handleClick() {
+    onClick && onClick();
+  }
 }
 
-function handleClick() {}
