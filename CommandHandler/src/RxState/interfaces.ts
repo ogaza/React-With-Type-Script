@@ -1,10 +1,11 @@
-import { BasketsCommands, BasketsSubscription } from "../commands/basketCommands";
+import { BasketsSubscription } from "../commands";
+import { BasketsCommands } from "../commands/basketCommands";
 
 export interface IRxState {
   loadStore(): void;
-  _commonapi: {
-    // subscriptions: _CommonApiSubscription;
-  };
+  // _commonapi: {
+  // subscriptions: _CommonApiSubscription;
+  // };
 
   baskets: RxManagerState<BasketsCommands, BasketsSubscription>;
 }

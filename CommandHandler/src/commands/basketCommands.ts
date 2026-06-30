@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { BasketsCommandNames } from "./names";
+import { PosStatusDto } from "../dtos";
+import { SubscriptionBase } from "../subscriptions";
 
 export class BasketsCommands {
   public async postBasketsByIdBarcodes(
@@ -27,5 +29,3 @@ export class BasketsCommands {
     }
   }
 }
-
-export class BasketsSubscription {}

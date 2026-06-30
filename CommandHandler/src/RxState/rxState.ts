@@ -15,7 +15,7 @@ export class RxState implements IRxState {
   }
 
   protected constructor() {}
-  public _commonapi = {};
+//   public _commonapi = {};
 
   public loadStore() {}
 

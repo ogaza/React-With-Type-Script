@@ -11,6 +11,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "rxjs": "7.8.2",
     "uuid": "14.0.0"
   },
   "devDependencies": {
