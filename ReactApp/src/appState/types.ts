@@ -1,0 +1,1 @@
+export type AsyncDataStatus = "empty" | "pending" | "fulfilled";

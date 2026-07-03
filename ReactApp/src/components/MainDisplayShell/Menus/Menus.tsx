@@ -9,5 +9,5 @@ export function Menu({ isOpen: isOpen, children, style }: IMenuProps) {
 export interface IMenuProps {
   isOpen: boolean;
   style?: { [key: string]: string };
-  children?: string;
+  children?: string | React.JSX.Element;
 }

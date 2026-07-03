@@ -1,5 +1,11 @@
-import MainDisplayShell from '../MainDisplayShell/MainDisplayShell';
+import { MainDisplayShell } from "..";
+import { store } from "../../appState";
+import { Provider } from "react-redux";
 
 export function App() {
-  return <MainDisplayShell />;
+  return (
+    <Provider store={store}>
+      <MainDisplayShell />
+    </Provider>
+  );
 }

@@ -1,4 +1,3 @@
 @import url('./MainDisplayShell.css');
-/* @import url('./Menus.css'); */
-@import url('./Menus_v2.css');
-@import url('./NavBar.css');
+@import url('./Menus/index.css');
+@import url('./NavBar/index.css');
