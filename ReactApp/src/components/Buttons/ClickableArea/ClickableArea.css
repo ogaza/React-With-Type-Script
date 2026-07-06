@@ -1,12 +1,18 @@
 .clickable-area {
   --ca-bg-color: var(--neutral-50);
 
+  --shadow-color-0: rgba(0, 0, 0, 0.2);
+  --shadow-color-1: rgba(0, 0, 0, 0.12);
+  --shadow-color-2: rgba(0, 0, 0, 0.14);
+  --elevation-01: 0rem 0.0625rem 0.1875rem 0rem var(--shadow-color-0), 0rem 0.125rem 0.0625rem 0rem var(--shadow-color-1), 0rem 0.0625rem 0.0625rem 0rem var(--shadow-color-2);
+
   background-color: var(--ca-bg-color);
 
   border: none;
   border-radius: 0.5rem;
 
   color: var(--neutral-900);
+  box-shadow: var(--elevation-01);
 
   /* width: 64px;
   height: 32px; */

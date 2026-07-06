@@ -2,6 +2,7 @@ import ArticlesPanel from "../Article/ArticlesPanel";
 import { NavBar } from "./NavBar/NavBar";
 import { MenusPresenter } from "./Menus/MenusPresenter";
 import { MenuSwitcher } from "./Menus/MenuSwitcher";
+import { DialogContainer } from "..";
 
 export function MainDisplayShell() {
   const className = ["main-display-shell"].join(" ");
@@ -23,6 +24,7 @@ export function MainDisplayShell() {
           <MenusPresenter />
         </section>
       </div>
+      <DialogContainer />
     </div>
   );
 }

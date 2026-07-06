@@ -1,4 +1,4 @@
-import { ClickableArea } from "../..";
+import { ClickableArea, useDialogs } from "../..";
 import {
   fetchTasksThunk,
   MenuName,
@@ -9,17 +9,21 @@ import { useMenus } from "./useMenus";
 
 export function MenuSwitcher() {
   const [, switchMenu] = useMenus();
+  const [, toggleDialog] = useDialogs();
 
   return (
     <div className="menu-switcher">
       <ClickableArea value="menuOne" onClick={handleMenuSelection}>
-        Menu one
+        Menu One
       </ClickableArea>
       <ClickableArea value="menuTwo" onClick={handleMenuSelection}>
-        Menu two
+        Menu Two
       </ClickableArea>
       <ClickableArea value="" onClick={handleMenuSelection}>
         Close Menu
+      </ClickableArea>
+      <ClickableArea value="" onClick={handleDialogSwitch}>
+        Dialog
       </ClickableArea>
     </div>
   );
@@ -35,6 +39,10 @@ export function MenuSwitcher() {
       return;
     }
     switchMenu(menuName);
+  }
+
+  function handleDialogSwitch() {
+    toggleDialog();
   }
 }
 

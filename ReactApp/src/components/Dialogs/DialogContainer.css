@@ -1,0 +1,93 @@
+.dialog-presenter {
+  --transition-duration: 200ms;
+}
+
+/* layout */
+.dialog-presenter {
+  display: grid;
+  padding: 3.5rem 1rem 2rem;
+  
+  grid-row: 1/3;
+}
+
+.dialog-container {
+  display: grid;
+  grid-template-rows: 2.5rem auto;
+}
+
+.dialog-header {
+  display: grid;
+  padding: 0.5rem;
+}
+
+.dialog-header-content {
+  display: flex;
+  justify-content: end;
+}
+
+.dialog-content {
+  padding: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .dialog-presenter {
+    padding: 4rem 3rem 2rem;
+  }
+}
+
+/*
+visibility
+*/
+.dialog-presenter {
+  visibility: hidden;
+}
+
+.dialog-presenter[data-isopen="true"] {
+  visibility: visible;
+}
+
+/* appearence */
+.dialog-presenter {
+  background-color: #80808080;
+}
+
+.dialog-container {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem #0003;
+}
+
+/* animations */
+.dialog-presenter {
+  transition: visibility calc(var(--transition-duration) / 2);
+}
+
+.dialog-presenter {
+  animation: hide calc(var(--transition-duration) / 2) ease-in-out;
+}
+
+.dialog-presenter[data-isopen="true"] {
+  transition: visibility var(--transition-duration);
+  animation: show var(--transition-duration) ease-in-out;
+}
+
+/* animation keyframes */
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

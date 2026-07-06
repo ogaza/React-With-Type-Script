@@ -1,3 +1,4 @@
+export * from "./dialogs";
 export * from "./menus";
 export * from "./store";
 export * from "./tasks";

@@ -20,7 +20,23 @@
   display: grid;
   align-items: center;
   padding: 0.25rem;
+
+  grid-column: 1/2;
+  grid-row: 1/2;
 }
+
+.panel-container {
+  display: grid;
+
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+.dialog-presenter {
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
 
 /* grid and layout ====================================== */
 
