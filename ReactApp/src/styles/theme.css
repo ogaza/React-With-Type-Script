@@ -1,5 +1,13 @@
 :root {
-  /* Primary */
+
+  /* Colors */
+  --brand-colors-dn-blue: #0058a1;
+  --brand-colors-dn-purple: #590d82;
+  --brand-colors-dn-red: #bf1d35;
+
+  --neutral-neutral-0: #ffffff;
+  --neutral-neutral-50: #e4e9f0;
+
   --neutral-0: #ffffff;
   --neutral-1: #e4e9f0;
   --neutral-10: #f9fafb;
@@ -7,6 +15,39 @@
   --neutral-100: #c5cad1;
   --neutral-50: #e4e9f0;
   --neutral-900: #202832;
-  
+
   --primary-900: #0053b8;
+  --primary-primary-900: #0053b8;
+
+  --color-surface-surface-default: var(--neutral-neutral-0);
+  --color-outline-outline: var(--neutral-neutral-50);
+
+  /* Primary */
+
+  /* Color Palette */
+  --functional-error-900: #b30006;
+  --color-error-error: var(--functional-error-900);
+
+  /* Border Radius */
+  --border-radius-none: 0;
+
+  /* Typography */
+  --font-family: "Lato", sans-serif;
+  --font-weight-font-weight-300: 400;
+
+  /* Tokens */
+  --color-primary-primary: var(--primary-primary-900);
+
+  --elevation-ambient: rgba(0, 0, 0, 0.1200);
+  --elevation-penumbra: rgba(0, 0, 0, 0.1400);
+  --elevation-umbra: rgba(0, 0, 0, 0.2000);
+
+  --elevation-01dp:
+    0 1px 1px 0 var(--elevation-penumbra),
+    0 2px 1px 0 var(--elevation-ambient),
+    0 1px 3px 0 var(--elevation-umbra);
+  --elevation-24dp:
+    0 24px 38px 0 var(--elevation-penumbra),
+    0 9px 46px 0 var(--elevation-ambient),
+    0 11px 15px 0 var(--elevation-umbra);
 }

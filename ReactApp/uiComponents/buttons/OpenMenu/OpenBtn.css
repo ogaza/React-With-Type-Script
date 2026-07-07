@@ -1,0 +1,57 @@
+/* layout */
+.open-menu-btn {
+  height: 64px;
+  min-width: 64px;
+
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+
+  /* 
+  position
+  box-sizing
+  display
+  height
+  margin
+  width
+  padding
+  width 
+  */
+}
+
+.open-menu-btn::before {
+  /* position: absolute; */
+  width: 24px;
+  height: 24px;
+}
+
+/* text */
+.open-menu-btn {
+}
+
+/* appearance */
+.open-menu-btn {
+  background-color: var(--color-surface-surface-default);
+  border: none;
+  /* border: 2px solid var(--color-outline-outline); */
+  box-shadow: var(--elevation-01dp);
+}
+
+.open-menu-btn::before {
+  background-color: var(--primary-900);
+}
+
+/* other */
+.open-menu-btn {
+  border-radius: 0.5rem;
+}
+
+.open-menu-btn::before {
+  mask: url("../../../icons/menu-burger.svg") center no-repeat;
+}
+
+/* generated */
+.open-menu-btn::before {
+  content: "";
+}

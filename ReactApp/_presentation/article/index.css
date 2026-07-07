@@ -1,16 +1,17 @@
-@import url('../../src/components/Article/index.css');
+@import url('../../src/index.css');
+@import url('../../uiComponents/index.css');
 
 :root {
-  --main-color: #cadbeb;
-  --secondary: seashell;
-  /* --secondary: #ffffff; */
-  /* background-color: seashell; */
-
+  background-color: #cadbeb;
+  /* override */
   --article-width: 6rem;
-
-  background-color: var(--main-color);
 }
 
-.article {
-  /* --article-bg-color: var(--secondary-color); */
+.presentation-container {
+  /* layout */
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
 }

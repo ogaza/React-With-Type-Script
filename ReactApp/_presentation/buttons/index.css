@@ -1,12 +1,17 @@
-@import url('../../src/components/Buttons/index.css');
+@import url('../../src/index.css');
+@import url('../../uiComponents/index.css');
 
 :root {
-  --main-color: #cadbeb;
-  --secondary-color: #ffffff;
-
-  background-color: var(--main-color);
+  background-color: #cadbeb;
+  /* override */
+  --ca-bg-color: var(--neutral-neutral-0);
 }
 
-.clickable-area {
-  --ca-bg-color: var(--secondary-color);
+.presentation-container {
+  /* layout */
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
 }
