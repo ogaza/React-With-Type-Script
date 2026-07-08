@@ -5,6 +5,7 @@ import { createTask } from "./thunks";
 
 export function add(state: TasksState, action: PayloadAction<string>) {
   state.data.push(createTask(action.payload));
+  state.status = "fulfilled";
 }
 
 export function toggle(
@@ -19,6 +20,8 @@ export function toggle(
   if (!task) return;
 
   task.completed = payload.completed;
+
+  state.status = "fulfilled";
 }
 
 export function clearAll(state: TasksState) {

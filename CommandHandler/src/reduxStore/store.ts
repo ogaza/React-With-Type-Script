@@ -2,13 +2,9 @@ import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit";
 import { tasksSlice } from "./tasks";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
+export const listenerMiddleware = createListenerMiddleware();
+
 export const store = makeStore();
-
-export const storeDispatch = (component: string, action: any) => {
-  store.dispatch(action);
-};
-
-const listenerMiddleware = createListenerMiddleware();
 
 export function makeStore() {
   const store = configureStore({
@@ -25,3 +21,18 @@ export function makeStore() {
 
   return store;
 }
+
+export function registerListener(
+  listenerMiddleware: any,
+  actionCreator: any,
+  effect: any
+) {
+  listenerMiddleware.startListening({
+    actionCreator,
+    effect: effect,
+  });
+}
+
+export const storeDispatch = (component: string, action: any) => {
+  store.dispatch(action);
+};
