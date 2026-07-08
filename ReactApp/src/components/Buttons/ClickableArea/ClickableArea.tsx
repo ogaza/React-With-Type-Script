@@ -4,10 +4,11 @@ interface IClickableAreaProps {
   description?: string;
   onClick?: (value: string) => void;
   children?: string;
+  ref?: any;
 }
 
 export function ClickableArea(props: IClickableAreaProps) {
-  const { value, dataTestId, description, onClick, children } = props;
+  const { value, dataTestId, description, onClick, children, ref } = props;
 
   return (
     <button
@@ -17,6 +18,7 @@ export function ClickableArea(props: IClickableAreaProps) {
       data-testid={dataTestId}
       aria-label={description}
       value={value}
+      ref={ref}
     >
       {children}
     </button>
@@ -26,4 +28,3 @@ export function ClickableArea(props: IClickableAreaProps) {
     onClick && onClick(value);
   }
 }
-

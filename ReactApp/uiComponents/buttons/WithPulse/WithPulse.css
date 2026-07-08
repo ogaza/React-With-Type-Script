@@ -1,0 +1,45 @@
+.pulse .pulse__element {
+  --pulse-color: olive;
+  /* --pulse-color: var(--neutral-100, red); */
+  /* color: olive; */
+}
+
+/* layout */
+.pulse {
+  overflow: hidden;
+  position: relative;
+}
+
+.pulse .pulse__element {
+  left: var(--x, 0);
+  top: var(--y, 0);
+
+  width: 32px;
+  height: 32px;
+
+  position: absolute;
+  visibility: hidden;
+
+  /* 
+  position
+  box-sizing
+  display
+  height
+  margin
+  width
+  padding
+  width 
+  */
+}
+
+/* text */
+
+/* appearance */
+.pulse .pulse__element {
+  background-color: var(--pulse-color);
+}
+
+/* other */
+.pulse .pulse__element {
+  border-radius: 50%;
+}

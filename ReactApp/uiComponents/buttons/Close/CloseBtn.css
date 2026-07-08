@@ -27,8 +27,7 @@
 }
 
 /* text */
-.close-btn {
-}
+.close-btn {}
 
 /* appearance */
 .close-btn {
@@ -54,4 +53,22 @@
 /* generated */
 .close-btn::before {
   content: "";
+}
+
+/* pulse effect */
+.pulse {
+  overflow: hidden;
+  position: relative;
+
+  .pulse__element {
+    width: 32px;
+    height: 32px;
+    background-color: aqua;
+    border-radius: 50%;
+
+    position: absolute;
+    left: var(--x, 0);
+    top: var(--y, 0);
+    visibility: hidden;
+  }
 }

@@ -15,3 +15,13 @@
   gap: 1rem;
   padding: 1rem;
 }
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.row-header {
+  grid-column: 1 / 5;
+}
