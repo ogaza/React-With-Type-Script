@@ -1,10 +1,13 @@
 import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit";
 import { tasksSlice } from "./tasks";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import { EffectsContainer } from "../effects";
 
 export const listenerMiddleware = createListenerMiddleware();
 
 export const store = makeStore();
+
+EffectsContainer.Instance.listenerMiddleware = listenerMiddleware;
 
 export function makeStore() {
   const store = configureStore({
