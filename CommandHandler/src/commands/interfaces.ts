@@ -4,7 +4,7 @@ export interface IInvokeCommandHandler {
     setupCommandHandler(): void;
     invokeCommand(data: string): boolean;
 
-    // get basketCommandHandler(): IBasketsCommandHandler;
+    // get taskCommandHandler(): ITasksCommandHandler;
     get commandHandler(): ICommandHandler;
 }
 
@@ -38,5 +38,5 @@ export interface PayloadWrapper<T> {
   payload: T;
 }
 
-export interface IBasketsCommandHandler {
+export interface ITasksCommandHandler {
 }

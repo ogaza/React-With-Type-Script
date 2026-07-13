@@ -1,33 +1,28 @@
 import { ListenerMiddlewareInstance } from "@reduxjs/toolkit";
 import { BaseFlow } from "../flows";
-import { FlowNames } from "./types";
+import { EffectFactory, FlowNames } from "./types";
 import { EventEmitter } from "../events";
-
-export interface IEffectsContainer {
-  listenerMiddleware: ListenerMiddlewareInstance | undefined;
-  eventEmitter: EventEmitter | undefined;
-
-  addEffect(
-    effectName: FlowNames,
-    effectFactory: (listenerMiddleware: ListenerMiddlewareInstance) => BaseFlow
-  ): void;
-
-  startAll(): void;
-}
-
 export class EffectsContainer implements IEffectsContainer {
-  /** takes an effect factory function and puts it in  the 
-  * effectFactories dictionary under the effectName key
-  */
-  addEffect(
-    effectName: FlowNames,
-    effectFactory: (listenerMiddleware: ListenerMiddlewareInstance) => BaseFlow
-  ): void {
-    throw new Error("Method not implemented.");
+  /** takes an effect factory function and puts it in  the
+   * effectFactories dictionary under the effectName key
+   */
+  addEffect(effectName: FlowNames, effectFactory: EffectFactory): void {
+    this.effectFactories[effectName.trim()] = effectFactory;
   }
 
-  startAll(): void {
-    throw new Error("Method not implemented.");
+  public start(effectName: string): void {
+    const effect = this.effects[effectName];
+
+    effect?.start();
+  }
+
+  public startAll(): void {
+    for (const name in this.effectFactories) {
+      this.effects[name] = this.effectFactories[name](this.listenerMiddleware!);
+
+      const effect = this.effects[name];
+      effect?.start();
+    }
   }
 
   /* Singleton pattern impl. */
@@ -63,6 +58,16 @@ export class EffectsContainer implements IEffectsContainer {
   protected effects: { [key: string]: BaseFlow } = {};
 }
 
-type EffectFactory = (
-  listenerMiddleware: ListenerMiddlewareInstance
-) => BaseFlow;
+export interface IEffectsContainer {
+  listenerMiddleware: ListenerMiddlewareInstance | undefined;
+  eventEmitter: EventEmitter | undefined;
+
+  addEffect(
+    effectName: FlowNames,
+    effectFactory: (listenerMiddleware: ListenerMiddlewareInstance) => BaseFlow
+  ): void;
+
+  start(effectName: string): void;
+
+  startAll(): void;
+}

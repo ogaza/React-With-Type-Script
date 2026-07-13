@@ -1,16 +1,16 @@
 import { v4 as uuidv4 } from "uuid";
-import { BasketsCommandNames } from "./names";
-import { PosStatusDto } from "../dtos";
+import { TasksCommandNames } from "./names";
+import { AppStatusDto } from "../dtos";
 import { SubscriptionBase } from "../subscriptions";
 
-export class BasketsCommands {
-  public async postBasketsByIdBarcodes(
+export class TasksCommands {
+  public async postTasksByIdBarcodes(
     id: string,
     payload: any,
-    // payload: PostBasketsByIdBarcodesQueryDto,
+    // payload: PostTasksByIdBarcodesQueryDto,
     commandId?: string
   ) {
-    // const commandProps: PostBasketsByIdBarcodesCommandProps = {
+    // const commandProps: PostTasksByIdBarcodesCommandProps = {
     const commandProps = {
       id,
       payload,
@@ -20,7 +20,7 @@ export class BasketsCommands {
       const data = {
         // const data: PayloadBase<ICommandPayload> = {
         commandId: commandId ?? uuidv4(),
-        command: BasketsCommandNames.PostBasketsByIdBarcodes,
+        command: TasksCommandNames.PostTasksByIdBarcodes,
         payload: commandProps,
       };
       window.invokeCommand(JSON.stringify(data));

@@ -1,3 +1,3 @@
 export * from "./interfaces";
-export * from "../commands/basketCommands";
+export * from "../commands/taskCommands";
 export * from "./rxState";

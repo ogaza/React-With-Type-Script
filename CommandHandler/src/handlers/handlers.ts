@@ -1,5 +1,5 @@
 import { HandlerBase } from "./handler-base";
-import { ObservableNames } from "./observableNames";
+import { ObservableNames } from "../observables";
 
 export class ObservablesHandler extends HandlerBase<ObservableNames> {
   public constructor() {

@@ -1,4 +1,5 @@
-import { BasketsCommands, BasketsSubscription } from "../commands";
+import { TasksCommands } from "../commands";
+import { TasksSubscription } from "../subscriptions";
 import { IRxState, RxManagerState } from "./interfaces";
 
 export class RxState implements IRxState {
@@ -19,8 +20,8 @@ export class RxState implements IRxState {
 
   public loadStore() {}
 
-  public baskets: RxManagerState<BasketsCommands, BasketsSubscription> = {
-    commands: new BasketsCommands(),
-    subscriptions: new BasketsSubscription(),
+  public tasks: RxManagerState<TasksCommands, TasksSubscription> = {
+    commands: new TasksCommands(),
+    subscriptions: new TasksSubscription(),
   };
 }

@@ -28,5 +28,11 @@ export function clearAll(state: TasksState) {
   return {
     data: [],
     status: "empty" as AsyncDataStatus,
+    queue: [],
   };
 }
+
+export function pushFlowStartAction(
+  state: TasksState,
+  action: PayloadAction<string>
+) {}

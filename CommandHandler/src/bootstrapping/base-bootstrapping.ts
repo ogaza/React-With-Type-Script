@@ -1,5 +1,7 @@
-import { MtpHostGlobalThis } from "./globalThis";
-import { observablesHandler } from "./handlers";
+import { EffectsContainer, registerEffects } from "../effects";
+import { EventEmitter } from "../events";
+import { MtpHostGlobalThis } from "../globals";
+import { observablesHandler } from "../handlers";
 
 export function registerHostCallbacks(): void {
   const hostGlobalThis = globalThis as MtpHostGlobalThis;
@@ -24,4 +26,9 @@ export function registerHostCallbacks(): void {
       );
     }
   };
+}
+
+export async function baseBootstrapping(options: any): Promise<void> {
+  registerEffects(new EventEmitter());
+  EffectsContainer.Instance.startAll();
 }

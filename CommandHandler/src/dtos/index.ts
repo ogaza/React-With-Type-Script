@@ -1,1 +1,1 @@
-export * from "./posStatusDto";
+export * from "./appStatusDto";

@@ -6,7 +6,7 @@ import {
   PayloadBase,
 } from "./interfaces";
 
-import { BasketsCommandNames, CommandNames } from "./names";
+import { TasksCommandNames, CommandNames } from "./names";
 
 export class InvokeCommandHandler implements IInvokeCommandHandler {
   public commandHandler: CommandHandler = new CommandHandler();
@@ -26,15 +26,15 @@ export class InvokeCommandHandler implements IInvokeCommandHandler {
   }
 
   setupCommandHandler(): void {
-    this.setupBasketsCommandsHandler();
+    this.setupTasksCommandsHandler();
   }
 
-  public setupBasketsCommandsHandler() {
+  public setupTasksCommandsHandler() {
     this.commandHandler.on(
-      BasketsCommandNames.PostBasketsByIdBarcodes,
+      TasksCommandNames.PostTasksByIdBarcodes,
       (payload) => {
-        this.flowCommandHandler.basketsMutationFlow({
-          mutationName: BasketsCommandNames.PostBasketsByIdBarcodes,
+        this.flowCommandHandler.tasksMutationFlow({
+          mutationName: TasksCommandNames.PostTasksByIdBarcodes,
           payload: payload.payload,
         });
       }
@@ -75,11 +75,11 @@ export class FlowCommandHandler {
     );
   }
 
-  public basketsMutationFlow(payload: any) {
+  public tasksMutationFlow(payload: any) {
     storeDispatch(
-      `FlowCommandHandler.basketsMutationFlow: ${payload.mutationName}`,
+      `FlowCommandHandler.tasksMutationFlow: ${payload.mutationName}`,
       payload
-      // basketsMutationQueueSlice.actions.basketsMutationQueuePushFlowStartAction(payload),
+      // tasksMutationQueueSlice.actions.tasksMutationQueuePushFlowStartAction(payload),
     );
   }
 }

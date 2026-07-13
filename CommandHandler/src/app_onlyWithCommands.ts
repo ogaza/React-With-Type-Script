@@ -1,9 +1,9 @@
 import {
-  BasketsCommandNames,
+  TasksCommandNames,
   InvokeCommandHandler,
   SetupInvokeCommand,
 } from "./commands";
-import { RxState } from "./RxState";
+import { RxState } from "./rxState";
 
 document.addEventListener("DOMContentLoaded", handleAppLoaded);
 
@@ -16,10 +16,10 @@ function handleAppLoaded() {
 function runWithRxStateCommands() {
   SetupInvokeCommand.Instance.setupInvokeCommand();
 
-  const basketId = "id_1";
+  const taskId = "id_1";
   const code = "xyz_123";
 
-  RxState.Instance.baskets.commands.postBasketsByIdBarcodes(basketId, {
+  RxState.Instance.tasks.commands.postTasksByIdBarcodes(taskId, {
     requestBody: {
       barcode: {
         barcode: code,
@@ -30,7 +30,7 @@ function runWithRxStateCommands() {
 
 function runInvokeCommandHandler() {
   const data = {
-    command: BasketsCommandNames.PostBasketsByIdBarcodes,
+    command: TasksCommandNames.PostTasksByIdBarcodes,
     payload: {
       payload: {
         command: "test",

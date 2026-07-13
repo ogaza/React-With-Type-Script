@@ -1,5 +1,5 @@
-import { BasketsSubscription } from "../commands";
-import { BasketsCommands } from "../commands/basketCommands";
+import { TasksSubscription } from "../subscriptions";
+import { TasksCommands } from "../commands/taskCommands";
 
 export interface IRxState {
   loadStore(): void;
@@ -7,7 +7,7 @@ export interface IRxState {
   // subscriptions: _CommonApiSubscription;
   // };
 
-  baskets: RxManagerState<BasketsCommands, BasketsSubscription>;
+  tasks: RxManagerState<TasksCommands, TasksSubscription>;
 }
 
 export interface RxManagerState<TCommands, TSubscription> {

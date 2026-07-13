@@ -7,7 +7,11 @@ export type Task = {
   assignedTo?: string;
 };
 
-export type TasksState = { data: Task[]; status: AsyncDataStatus };
+export type TasksState = {
+  data: Task[];
+  status: AsyncDataStatus;
+  queue: any[];
+};
 
 export type ToggleTaskPayload = {
   id: string;

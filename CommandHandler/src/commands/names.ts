@@ -1,5 +1,5 @@
-export type CommandNames = | BasketsCommandNames;
+export type CommandNames = | TasksCommandNames;
 
-export enum BasketsCommandNames {
-  PostBasketsByIdBarcodes = "PostBasketsByIdBarcodes",
+export enum TasksCommandNames {
+  PostTasksByIdBarcodes = "PostTasksByIdBarcodes",
 }
