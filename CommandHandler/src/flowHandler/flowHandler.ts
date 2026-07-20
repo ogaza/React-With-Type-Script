@@ -14,14 +14,24 @@ export class FlowHandler implements IFlowHandler {
   }
 
   protected constructor() {}
-  activeFlows: { [key: string]: BaseFlow } | undefined;
+  activeFlows: { [key: string]: BaseFlow } = {};
   stateSubscription: Subject<{ [key: string]: BaseFlow }> | undefined;
-  startFlow(flowName: string, flow: BaseFlow): void {
-    // throw new Error("Method not implemented.");
+
+  public startFlow(flowName: string, flow: BaseFlow) {
+    this.activeFlows[flowName] = flow;
+    this.refreshState();
   }
-  endFlow(flowName: string, flow: BaseFlow): void {
-    // throw new Error("Method not implemented.");
+  public endFlow(flowName: string, _flow: BaseFlow) {
+    delete this.activeFlows[flowName];
+    this.refreshState();
   }
+
+  // startFlow(flowName: string, flow: BaseFlow): void {
+    // throw new Error("Method not implemented.");
+  // }
+  // endFlow(flowName: string, flow: BaseFlow): void {
+    // throw new Error("Method not implemented.");
+  // }
   refreshState(): void {
     // throw new Error("Method not implemented.");
   }
@@ -40,7 +50,7 @@ export class FlowHandler implements IFlowHandler {
 }
 
 export interface IFlowHandler {
-  activeFlows: { [key: string]: BaseFlow } | undefined;
+  activeFlows: { [key: string]: BaseFlow };
   stateSubscription: Subject<{ [key: string]: BaseFlow }> | undefined;
 
   startFlow(flowName: string, flow: BaseFlow): void;

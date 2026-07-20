@@ -32,7 +32,41 @@ export function clearAll(state: TasksState) {
   };
 }
 
-export function pushFlowStartAction(
+export function tasksMutationQueuePushReducer(
   state: TasksState,
   action: PayloadAction<string>
-) {}
+) {
+  // console.log("tasksMutationQueuePushReducer");
+  return state;
+}
+
+export function subFlowStartReducer(
+  state: TasksState,
+  action: PayloadAction<string>
+) {
+  console.log("sub flow start");
+  return state;
+}
+
+export function subFlowEndReducer(
+  state: TasksState,
+  action: PayloadAction<string>
+) {
+  console.log("sub flow end");
+  return state;
+}
+export function subFlowTwoStartReducer(
+  state: TasksState,
+  action: PayloadAction<string>
+) {
+  console.log("sub flow two start");
+  return state;
+}
+
+export function subFlowTwoEndReducer(
+  state: TasksState,
+  action: PayloadAction<string>
+) {
+  console.log("sub flow two end");
+  return state;
+}

@@ -2,7 +2,7 @@ import { ListenerMiddlewareInstance } from "@reduxjs/toolkit";
 import { EventEmitter } from "../events";
 import { EffectsContainer } from "./EffectsContainer";
 import { FlowNames } from "./types";
-import { TasksMutationQueuePushFlow } from "../flows";
+import { SubFlow, SubFlowTwo, TasksMutationQueuePushFlow } from "../flows";
 
 export const registerEffects = (eventEmitter: EventEmitter) => {
   EffectsContainer.Instance.eventEmitter = eventEmitter;
@@ -11,6 +11,22 @@ export const registerEffects = (eventEmitter: EventEmitter) => {
     FlowNames.TasksMutationQueuePushFlow,
     (lmw: ListenerMiddlewareInstance) =>
       new TasksMutationQueuePushFlow(
+        lmw,
+        EffectsContainer.Instance.eventEmitter!
+      )
+  );
+  EffectsContainer.Instance.addEffect(
+    FlowNames.SubFlow,
+    (lmw: ListenerMiddlewareInstance) =>
+      new SubFlow(
+        lmw,
+        EffectsContainer.Instance.eventEmitter!
+      )
+  );
+  EffectsContainer.Instance.addEffect(
+    FlowNames.SubFlowTwo,
+    (lmw: ListenerMiddlewareInstance) =>
+      new SubFlowTwo(
         lmw,
         EffectsContainer.Instance.eventEmitter!
       )

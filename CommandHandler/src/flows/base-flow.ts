@@ -1,5 +1,7 @@
 import {
+  ActionCreatorWithPayload,
   ListenerMiddlewareInstance,
+  UnknownAction,
   UnsubscribeListener,
 } from "@reduxjs/toolkit";
 import { ObservableNames } from "../observables";
@@ -12,6 +14,40 @@ export abstract class BaseFlow {
     protected listenerMiddleware: ListenerMiddlewareInstance,
     public eventEmitter: EventEmitter
   ) {}
+
+  public async waitFor(
+    // listenerApi: ListenerEffectAPIType,
+    actions: ActionCreatorWithPayload<any, string>[]
+  ) {
+    const p = this.waitForInt(actions);
+    // p.finally(() => {
+    //   this.clearWaitingForAction();
+    // });
+    return p;
+  }
+
+  protected async waitForInt(
+    //    listenerApi: ListenerEffectAPIType,
+    actions: ActionCreatorWithPayload<any, string>[]
+  ): Promise<[UnknownAction, unknown, unknown]> {
+    // this.waitingForActions = actions.map((action) => action.type);
+    // FlowHandler.Instance.refreshState();
+    try {
+      return await this.listenerApi!.take((currentAction: any) =>
+        actions
+          .map((action) => action.match(currentAction))
+          .reduce((acc, curr) => acc || curr)
+      );
+    } catch (error) {
+      if ((error as { name: string }).name === "TaskAbortError") {
+        // console.info(`in waitFor:`, error);
+        // this.listenerApiIsCanceled = true;
+      } else {
+        console.error(`in waitFor:`, error);
+      }
+    }
+    return [{} as UnknownAction, undefined, undefined];
+  }
 
   public start(): void {
     this.unsubscribeListener = this.listenerMiddleware.startListening(

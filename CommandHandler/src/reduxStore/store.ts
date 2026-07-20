@@ -3,7 +3,14 @@ import { tasksSlice } from "./tasks";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { EffectsContainer } from "../effects";
 
-export const listenerMiddleware = createListenerMiddleware();
+export const listenerMiddleware = createListenerMiddleware({
+  onError: onListenerHandlerError,
+});
+
+function onListenerHandlerError(error: any, errorInfo: any) {
+  console.log("error: ", error);
+  console.log("errorInfo: ", errorInfo);
+}
 
 export const store = makeStore();
 

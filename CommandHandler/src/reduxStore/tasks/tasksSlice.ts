@@ -3,7 +3,11 @@ import {
   add,
   clearAll,
   toggle,
-  pushFlowStartAction
+  tasksMutationQueuePushReducer,
+  subFlowStartReducer,
+  subFlowEndReducer,
+  subFlowTwoStartReducer,
+  subFlowTwoEndReducer,
 } from "./reducers";
 import { TasksState } from "./types";
 import { fetchTasksThunk } from "./thunks";
@@ -17,7 +21,11 @@ export const tasksSlice = createSlice({
     add,
     clearAll,
     toggle,
-    tasksMutationQueuePushFlowStartAction: pushFlowStartAction
+    tasksMutationQueuePushFlowStartAction: tasksMutationQueuePushReducer,
+    subFlowStartAction: subFlowStartReducer,
+    subFlowEndAction: subFlowEndReducer,
+    subFlowTwoStartAction: subFlowTwoStartReducer,
+    subFlowTwoEndAction: subFlowTwoEndReducer,
   },
   extraReducers: (builder) => {
     builder
@@ -30,4 +38,10 @@ export const tasksSlice = createSlice({
   },
 });
 
-export const { tasksMutationQueuePushFlowStartAction } = tasksSlice.actions;
+export const {
+  tasksMutationQueuePushFlowStartAction,
+  subFlowStartAction,
+  subFlowEndAction,
+  subFlowTwoStartAction,
+  subFlowTwoEndAction
+} = tasksSlice.actions;
