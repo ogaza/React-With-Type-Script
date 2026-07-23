@@ -87,10 +87,15 @@
   visibility: hidden;
 }
 
+:root {
+  --layout-tablet: 1fr 1fr;
+  --layout-desktop: 1fr 1fr 1fr;
+}
+
 @media screen and (min-width: 768px) {
   .panel-container {
     /* display: grid; */
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: var(--layout-tablet);
     grid-template-rows: 1fr;
   }
 
@@ -118,7 +123,7 @@
 
 @media screen and (min-width: 1024px) {
   .panel-container {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: var(--layout-desktop);
   }
 
   .panel__left {
