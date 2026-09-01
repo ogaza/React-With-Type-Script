@@ -1,5 +1,5 @@
 import { AppStatusDto } from "../dtos";
-import { RxState } from "../rxState";
+import { RxState } from "../RxState";
 import { observablesHandler } from "../handlers/handlers";
 import { ObservableNames } from "./observableNames";
 
