@@ -4,13 +4,15 @@
   "main": "src/server.js",
   "type": "module",
   "scripts": {
-    "start": "node ws_server/index.js"
+    "start": "node server/server_ws.js",
+    "start-old": "node ws_server/index.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "express": "^5.1.0",
+    "socket.io": "^4.8.3",
     "ws": "^8.21.3"
   }
 }
