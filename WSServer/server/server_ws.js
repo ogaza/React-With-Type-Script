@@ -41,7 +41,6 @@ wss.on("connection", function (ws, request) {
 
       const isFueling = fuelpointStateType === "Fuelling";
 
-      //---------------------------------------------------------
       const { points } = state;
       let selectedPoint = points.find(
         (point) => point.msgParsed.data.fuelPointsState.id == id
@@ -67,7 +66,10 @@ wss.on("connection", function (ws, request) {
         clearInterval(fuellingInterval);
         selectedPoint.fuellingInterval = undefined;
       }
-      // --------------------------------------------------------
+
+      if (isFueling) {
+        return;
+      }
     }
 
     wss.clients.forEach(function each(client) {
@@ -96,17 +98,19 @@ function scheduleFuelingMesssgesFor(selectedPoint, wss, ws) {
     const newRunningVolume =
       runningVolume === undefined || runningVolume === null
         ? 0
-        : runningVolume + 0.23;
+        : runningVolume + 0.43;
 
     selectedPoint.msgParsed.data.fuelPointsState.fuelpointState.runningVolume =
       newRunningVolume;
 
-    // console.log(
-    //   `sending fuelling update - fuelPointId: ${id}, runningVolume: ${newRunningVolume}`
-    // );
+    const { id } = selectedPoint.msgParsed.data.fuelPointsState;
+
+    console.log(
+      `sending fuelling update - fuelPointId: ${id}, runningVolume: ${newRunningVolume}`
+    );
 
     sendMsgObjectToAllClients(wss, ws, selectedPoint.msgParsed);
-  }, 100);
+  }, 1000);
 
   return interval;
 }
